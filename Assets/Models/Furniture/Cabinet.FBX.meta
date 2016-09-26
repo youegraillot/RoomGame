@@ -1,0 +1,136 @@
+fileFormatVersion: 2
+guid: aa83fff753a7c2847a8f35494bafb8a3
+timeCreated: 1474902102
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: drawer_low
+    100004: drawer_low 1
+    100006: drawer_low 2
+    100008: drawer_low 3
+    100010: drawer_middle
+    100012: drawer_middle_handle
+    100014: drawer_top
+    100016: drawer_top_handle
+    100018: little_ring_middle
+    100020: little_ring_top
+    100022: metal_part_middle
+    100024: metal_part_top
+    400000: //RootNode
+    400002: drawer_low
+    400004: drawer_low 1
+    400006: drawer_low 2
+    400008: drawer_low 3
+    400010: drawer_middle
+    400012: drawer_middle_handle
+    400014: drawer_top
+    400016: drawer_top_handle
+    400018: little_ring_middle
+    400020: little_ring_top
+    400022: metal_part_middle
+    400024: metal_part_top
+    2300000: //RootNode
+    2300002: drawer_low
+    2300004: drawer_low 1
+    2300006: drawer_low 2
+    2300008: drawer_low 3
+    2300010: drawer_middle
+    2300012: drawer_middle_handle
+    2300014: drawer_top
+    2300016: drawer_top_handle
+    2300018: little_ring_middle
+    2300020: little_ring_top
+    2300022: metal_part_middle
+    2300024: metal_part_top
+    3300000: //RootNode
+    3300002: drawer_low
+    3300004: drawer_low 1
+    3300006: drawer_low 2
+    3300008: drawer_low 3
+    3300010: drawer_middle
+    3300012: drawer_middle_handle
+    3300014: drawer_top
+    3300016: drawer_top_handle
+    3300018: little_ring_middle
+    3300020: little_ring_top
+    3300022: metal_part_middle
+    3300024: metal_part_top
+    4300000: cabinet
+    4300002: drawer_top
+    4300004: drawer_top_handle
+    4300006: metal_part_top
+    4300008: little_ring_top
+    4300010: drawer_middle
+    4300012: drawer_middle_handle
+    4300014: little_ring_middle
+    4300016: metal_part_middle
+    4300018: drawer_low
+    4300020: drawer_low
+    4300022: drawer_low
+    4300024: drawer_low
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.7
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
