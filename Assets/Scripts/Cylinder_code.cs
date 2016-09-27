@@ -17,11 +17,7 @@ public class Cylinder_code : MonoBehaviour {
         else
             m_value = 0;
 
-        float temp=transform.localEulerAngles.x;
-        temp += 36.0f;
-        transform.Rotate(new Vector3(0,1,0),36);
-
-        transform.parent.gameObject.GetComponent<Door_code>().valueChange();
+        transform.Rotate(new Vector3(0,1,0),36.0f,Space.Self);
     }
 
     public int getValue()
