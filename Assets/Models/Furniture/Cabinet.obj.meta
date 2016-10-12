@@ -1,32 +1,32 @@
 fileFormatVersion: 2
-guid: 6cf57b226548c104bb7b238aa5da6053
-timeCreated: 1474894694
+guid: b22ecc429f45cad4088e59e8bf39eaa4
+timeCreated: 1476262745
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Chest
-    100002: Latch
-    100004: //RootNode
-    100006: Padlock
-    100008: Top
-    400000: Chest
-    400002: Latch
-    400004: //RootNode
-    400006: Padlock
-    400008: Top
-    2300000: Chest
-    2300002: Latch
-    2300004: Padlock
-    2300006: Top
-    3300000: Chest
-    3300002: Latch
-    3300004: Padlock
-    3300006: Top
-    4300000: Chest
-    4300002: Top
-    4300004: Latch
-    4300006: Padlock
+    100000: cabinet
+    100002: //RootNode
+    100004: drawer_middle
+    100006: drawer_middle_handle
+    100008: little_ring_middle
+    400000: cabinet
+    400002: //RootNode
+    400004: drawer_middle
+    400006: drawer_middle_handle
+    400008: little_ring_middle
+    2300000: cabinet
+    2300002: drawer_middle
+    2300004: drawer_middle_handle
+    2300006: little_ring_middle
+    3300000: cabinet
+    3300002: drawer_middle
+    3300004: drawer_middle_handle
+    3300006: little_ring_middle
+    4300000: cabinet
+    4300002: drawer_middle
+    4300004: drawer_middle_handle
+    4300006: little_ring_middle
   materials:
     importMaterials: 0
     materialName: 0
@@ -51,7 +51,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.12
+    globalScale: 0.05
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -68,7 +68,7 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 1
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 0
   copyAvatar: 0

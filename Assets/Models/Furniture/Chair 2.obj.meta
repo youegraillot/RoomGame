@@ -1,32 +1,22 @@
 fileFormatVersion: 2
-guid: 6cf57b226548c104bb7b238aa5da6053
-timeCreated: 1474894694
+guid: 518d5938641f3394b8bcface7d2f3e5f
+timeCreated: 1476286353
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Chest
-    100002: Latch
-    100004: //RootNode
-    100006: Padlock
-    100008: Top
-    400000: Chest
-    400002: Latch
-    400004: //RootNode
-    400006: Padlock
-    400008: Top
-    2300000: Chest
-    2300002: Latch
-    2300004: Padlock
-    2300006: Top
-    3300000: Chest
-    3300002: Latch
-    3300004: Padlock
-    3300006: Top
-    4300000: Chest
-    4300002: Top
-    4300004: Latch
-    4300006: Padlock
+    100000: //RootNode
+    100002: Cushion
+    100004: Structure
+    400000: //RootNode
+    400002: Cushion
+    400004: Structure
+    2300000: Cushion
+    2300002: Structure
+    3300000: Cushion
+    3300002: Structure
+    4300000: Cushion
+    4300002: Structure
   materials:
     importMaterials: 0
     materialName: 0
@@ -51,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.12
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
