@@ -18,6 +18,15 @@ ModelImporter:
     100020: RightColone
     100022: workbanch
     100024: Desk
+    100026: Drawer_Left_Bot
+    100028: Drawer_Left_Mid
+    100030: Drawer_Left_Top
+    100032: Drawer_Right_Top
+    100034: Drawer_RightBot
+    100036: Drawer_Riht_Mid
+    100038: MidDrawer
+    100040: Drawer_Right_Mid
+    100042: Drawer_Right_Bot
     400000: Box001
     400002: //RootNode
     400004: Drawer
@@ -31,6 +40,15 @@ ModelImporter:
     400020: RightColone
     400022: workbanch
     400024: Desk
+    400026: Drawer_Left_Bot
+    400028: Drawer_Left_Mid
+    400030: Drawer_Left_Top
+    400032: Drawer_Right_Top
+    400034: Drawer_RightBot
+    400036: Drawer_Riht_Mid
+    400038: MidDrawer
+    400040: Drawer_Right_Mid
+    400042: Drawer_Right_Bot
     2300000: Box001
     2300002: Drawer
     2300004: Drawer001
@@ -43,6 +61,15 @@ ModelImporter:
     2300018: RightColone
     2300020: workbanch
     2300022: Desk
+    2300024: Drawer_Left_Bot
+    2300026: Drawer_Left_Mid
+    2300028: Drawer_Left_Top
+    2300030: Drawer_Right_Top
+    2300032: Drawer_RightBot
+    2300034: Drawer_Riht_Mid
+    2300036: MidDrawer
+    2300038: Drawer_Right_Mid
+    2300040: Drawer_Right_Bot
     3300000: Box001
     3300002: Drawer
     3300004: Drawer001
@@ -55,6 +82,15 @@ ModelImporter:
     3300018: RightColone
     3300020: workbanch
     3300022: Desk
+    3300024: Drawer_Left_Bot
+    3300026: Drawer_Left_Mid
+    3300028: Drawer_Left_Top
+    3300030: Drawer_Right_Top
+    3300032: Drawer_RightBot
+    3300034: Drawer_Riht_Mid
+    3300036: MidDrawer
+    3300038: Drawer_Right_Mid
+    3300040: Drawer_Right_Bot
     4300000: Box001
     4300002: Drawer
     4300004: Drawer001
@@ -67,6 +103,15 @@ ModelImporter:
     4300018: RightColone
     4300020: workbanch
     4300022: Desk
+    4300024: Drawer_Left_Bot
+    4300026: Drawer_Left_Mid
+    4300028: Drawer_Left_Top
+    4300030: Drawer_Right_Top
+    4300032: Drawer_RightBot
+    4300034: Drawer_Riht_Mid
+    4300036: MidDrawer
+    4300038: Drawer_Right_Mid
+    4300040: Drawer_Right_Bot
   materials:
     importMaterials: 0
     materialName: 0

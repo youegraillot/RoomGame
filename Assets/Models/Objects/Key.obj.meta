@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 518d5938641f3394b8bcface7d2f3e5f
-timeCreated: 1476286353
+guid: 19a8929cdf862354ebf94143827fd18f
+timeCreated: 1476285590
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cushion
-    100004: Structure
-    400000: //RootNode
-    400002: Cushion
-    400004: Structure
-    2300000: Cushion
-    2300002: Structure
-    3300000: Cushion
-    3300002: Structure
-    4300000: Cushion
-    4300002: Structure
+    100000: Box001
+    100002: //RootNode
+    100004: Key
+    400000: Box001
+    400002: //RootNode
+    400004: Key
+    2300000: Box001
+    2300002: Key
+    3300000: Box001
+    3300002: Key
+    4300000: Box001
+    4300002: Key
   materials:
     importMaterials: 0
     materialName: 0
@@ -57,8 +57,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 180
-    normalImportMode: 1
+    normalSmoothAngle: 67
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 0
   copyAvatar: 0
