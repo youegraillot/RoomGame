@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DeskDrawer
+  m_Name: BookBlack
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 5
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 44b06ddcbbdd0ec478c0a414cc4516cf, type: 3}
+          m_Texture: {fileID: 2800000, guid: 79c3764f7a940574ea85f0ea9957e4c6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: d3cc1b6b1c013bb418d8855c9918bd39, type: 3}
+          m_Texture: {fileID: 2800000, guid: edf9e09a5ea3d8d42b4d638e1fb22618, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -40,14 +40,14 @@ Material:
         first:
           name: _ParallaxMap
         second:
-          m_Texture: {fileID: 2800000, guid: 415ac16a1078f0540a83e2c633c5fe3b, type: 3}
+          m_Texture: {fileID: 2800000, guid: 3fff06f6689fc544aa70a928deffdceb, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _OcclusionMap
         second:
-          m_Texture: {fileID: 2800000, guid: 25acdfd3ecc2b3d47bd8681a0ab40428, type: 3}
+          m_Texture: {fileID: 2800000, guid: d2fb577a7e8ff7448adb20c854960285, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -61,7 +61,7 @@ Material:
         first:
           name: _DetailMask
         second:
-          m_Texture: {fileID: 2800000, guid: 1a414ff940b3c7e429aecd061872ba02, type: 3}
+          m_Texture: {fileID: 2800000, guid: 4bd859b84cae12441b018eafcb5429c9, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -93,16 +93,16 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Glossiness
+        second: 0.5
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -135,4 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.8897059, g: 0.70707256, b: 0.588776, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
