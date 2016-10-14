@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: d7a568a7f649fd74fa519da395897751
-timeCreated: 1474896248
+guid: d7696b45b8f17f7499118241e5a0b6f5
+timeCreated: 1476432703
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Shotgun
+    100000: Object023
+    100002: //RootNode
+    100004: Winchester
+    400000: Object023
+    400002: //RootNode
+    400004: Winchester
+    2300000: Object023
+    2300002: Winchester
+    3300000: Object023
+    3300002: Winchester
+    4300000: Object023
+    4300002: Winchester
   materials:
     importMaterials: 0
     materialName: 0
@@ -34,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -50,8 +57,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 90
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
   importAnimation: 0
   copyAvatar: 0
