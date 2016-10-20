@@ -19,7 +19,7 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureActive;
     [SerializeField, Range(1, 32)]
     int m_reticleSize = 24;
-    
+
     void Start ()
     {
         if (!m_reticleTextureIdle)
@@ -55,6 +55,7 @@ public class KeyboardController : PlayerController
                 if (newTarget != Target)
                     Target = newTarget;
             }
+
             // Target is not MoveableObject
             else
                 Target = null;
