@@ -88,7 +88,7 @@ public abstract class PlayerController : MonoBehaviour
             m_currentObject.isFreezed = !m_currentObject.isFreezed;
     }
 
-    protected void interact(GameObject obj)
+    protected void interact()
     {
 
     }
