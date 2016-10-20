@@ -10,8 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 20: {fileID: 2000000}
   - 81: {fileID: 8100000}
-  - 114: {fileID: 11460748}
-  - 114: {fileID: 11428618}
+  - 114: {fileID: 11458432}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -174,7 +173,7 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 0
     shellOffset: 0.01
---- !u!114 &11428618
+--- !u!114 &11458432
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,26 +181,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a838e2e9612b946985f1237aafa1a7, type: 3}
+  m_Script: {fileID: 11500000, guid: ead0b9c06e072754b85fbb24615edefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_holdingDistance: 0
---- !u!114 &11460748
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343f0e0b1681e3e408d25ae860f709a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_range: 8.3
-  m_objectHandler: {fileID: 11428618}
+  FPSController: {fileID: 11400004}
+  m_holdingDistance: 0.8
+  m_raycastRange: 1
   m_displayReticle: 1
-  m_reticleTexture: {fileID: 2800000, guid: 5485e2f56028a3c4cb54f5caa167377e, type: 3}
-  m_reticleSize: 10
+  m_reticleTextureIdle: {fileID: 2800000, guid: 827c9cd4a3943534f909ac6473e17288,
+    type: 3}
+  m_reticleTextureActive: {fileID: 2800000, guid: 5485e2f56028a3c4cb54f5caa167377e,
+    type: 3}
+  m_reticleSize: 24
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
