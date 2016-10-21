@@ -216,7 +216,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291841533}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!23 &27077809
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -381,7 +381,7 @@ Transform:
   m_Children:
   - {fileID: 781033561}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &84834518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ed3f09d929a7f2b4b927458555c7d7e7, type: 3}
@@ -509,7 +509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 518d5938641f3394b8bcface7d2f3e5f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 518d5938641f3394b8bcface7d2f3e5f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -676,7 +676,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1291841533}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a51b832dbbec7342b696c5b599540dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -708,7 +708,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a51b832dbbec7342b696c5b599540dd, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4a51b832dbbec7342b696c5b599540dd, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -872,7 +872,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291841533}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!23 &550026898
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1339,8 +1339,8 @@ Transform:
   m_Children:
   - {fileID: 1811221297}
   - {fileID: 2710970}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1274573565}
+  m_RootOrder: 4
 --- !u!1 &852448161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291841533}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!23 &1086262259
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1629,7 +1629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1291841533}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!23 &1204777657
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1708,7 +1708,6 @@ Transform:
   m_Children:
   - {fileID: 1471807043}
   - {fileID: 2038542654}
-  - {fileID: 1274573565}
   - {fileID: 84834518}
   - {fileID: 1618188691}
   - {fileID: 27077808}
@@ -1716,8 +1715,8 @@ Transform:
   - {fileID: 1086262258}
   - {fileID: 1204777656}
   - {fileID: 1437720875}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1274573565}
+  m_RootOrder: 3
 --- !u!1 &1360200946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1819,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 1f1c89b6116521746b86c2e732d15105, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 1f1c89b6116521746b86c2e732d15105, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2071,7 +2070,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ed3f09d929a7f2b4b927458555c7d7e7, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: ed3f09d929a7f2b4b927458555c7d7e7, type: 3}
       propertyPath: m_Name
