@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Book : MoveableObject
 {
-
-    public float ValidPosX { get; set; }
-    public E_Library library{get;set;}
     public bool isInLibrary { get; set; }
    
     public Book leftBook { get; set; }

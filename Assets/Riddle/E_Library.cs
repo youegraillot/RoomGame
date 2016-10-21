@@ -33,27 +33,23 @@ public class E_Library : MonoBehaviour
     {
         m_bookList = new List<Book>();
         float x_dist = m_extremaLeft.transform.localPosition.x - m_extremaRight.transform.localPosition.x;
-        float nbr = x_dist;
+        float distanceX = x_dist;
         int counter = 0;
-        while (nbr >= m_distanceBetweenBooks)
+        while (distanceX >= m_distanceBetweenBooks)
         {
             Vector3 pos = new Vector3(m_extremaRight.transform.position.x + m_distanceBetweenBooks * counter,
-            m_extremaRight.transform.position.y + m_distanceBetweenBooks, m_extremaRight.transform.position.z);
-            GameObject go = Instantiate(prefabBook) as GameObject;
-            go.transform.position = new Vector3(pos.x, m_heightPosition, pos.z);
+            m_heightPosition, m_extremaRight.transform.position.z);
+            GameObject go = Instantiate(prefabBook,pos,Quaternion.identity) as GameObject;
             go.transform.Rotate(0, 180, 0);
-            Book book = go.GetComponent<Book>();          
-            m_bookList.Add(book);
-            nbr -= m_distanceBetweenBooks;
+            m_bookList.Add(go.GetComponent<Book>());
+            distanceX -= m_distanceBetweenBooks;
             counter++;
         }
 
         for(int i=0;i<m_bookList.Count-1;i++)
         {
             m_bookList[i].leftBook = m_bookList[i + 1];
-            //m_bookList[i].GetComponent<Rigidbody>().isKinematic = false;
         }
-        Debug.Log("number of book that can be contained : " + x_dist / m_distanceBetweenBooks);
     }
 
     void Update()
