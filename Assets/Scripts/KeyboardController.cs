@@ -45,8 +45,10 @@ public class KeyboardController : PlayerController
     public override void updateTarget()
     {
         m_ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-        if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange))
+        int libraryLayer = LayerMask.NameToLayer("BookPlacement");
+        int layerMask = 1 << libraryLayer;
+        layerMask = ~layerMask;
+        if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange,layerMask))
         {
             MoveableObject newTarget = m_targeInfo.transform.GetComponent<MoveableObject>();
 
