@@ -17,7 +17,7 @@ public class Cylinder_code : MonoBehaviour {
         else
             m_value = 0;
 
-        transform.Rotate(new Vector3(0,1,0),36.0f,Space.Self);
+        transform.Rotate(new Vector3(1,0,0),-36.0f,Space.Self);
     }
 
     public int getValue()
