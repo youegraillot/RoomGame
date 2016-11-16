@@ -5,7 +5,7 @@ using System.Collections;
 public class MoveableObject : MonoBehaviour {
 
     Quaternion m_initialRotation;
-    Rigidbody m_rigidbody;
+    protected Rigidbody m_rigidbody;
 
     public bool isFreezed
     {
@@ -32,13 +32,13 @@ public class MoveableObject : MonoBehaviour {
         m_initialRotation = transform.localRotation;
     }
 
-    public void moveTo(Vector3 newPositon)
+    public virtual void moveTo(Vector3 newPositon)
     {
         transform.position = newPositon;
         m_rigidbody.velocity = Vector3.zero;
     }
     
-    public void rotate(Quaternion newRotation)
+    public virtual void rotate(Quaternion newRotation)
     {
         transform.localRotation = m_initialRotation * newRotation;
     }
