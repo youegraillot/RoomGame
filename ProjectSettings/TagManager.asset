@@ -13,6 +13,7 @@ TagManager:
   - UI
   - 
   - 
+  - Ignore Player
   - 
   - 
   - 
@@ -34,8 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Player
   - 
   m_SortingLayers:
   - name: Default
