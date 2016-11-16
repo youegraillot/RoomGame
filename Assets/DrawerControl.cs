@@ -7,6 +7,7 @@ public class DrawerControl : MoveableObject {
     public Vector3 openingDirection = new Vector3(0,0,1);
     public float openingForce = 0.25f;
 
+
     
     
 	// Use this for initialization
@@ -23,11 +24,6 @@ public class DrawerControl : MoveableObject {
     {
         
     }
-    
 
-   
-    void FixedUpdate () {
-	    
-    }
    
 }

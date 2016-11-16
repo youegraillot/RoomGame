@@ -276,6 +276,22 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300010, guid: f1d7c38a157a05e4183fc50c956b8904, type: 3}
+--- !u!1 &51569924 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 125994, guid: 9564ee9678100bb4e9f0b3d64283bf8b, type: 2}
+  m_PrefabInternal: {fileID: 836237133}
+--- !u!65 &51569929
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51569924}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8110245, y: 0.8713044, z: 0.82175064}
+  m_Center: {x: 0.000000013645658, y: 0.4718703, z: -0.041878223}
 --- !u!1 &65186684
 GameObject:
   m_ObjectHideFlags: 0
