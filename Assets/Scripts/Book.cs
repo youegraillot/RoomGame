@@ -28,9 +28,10 @@ public class Book : InteractiveObject
     {
         if (!m_isActivated)
         {
+            Debug.Log("activ");
+            m_isActivated = true;
             StartCoroutine(animate());
             m_library.activeBook(this);
-            m_isActivated = true;
         }
         return m_isActivated;
     }
