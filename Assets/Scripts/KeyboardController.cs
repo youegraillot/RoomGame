@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
@@ -23,8 +21,6 @@ public class KeyboardController : PlayerController
     Vector3 m_controllerPosition;
     Vector3 m_previousControllerPosition;
 
-
-
     void Start ()
     {
         if (!m_reticleTextureIdle)
@@ -36,10 +32,9 @@ public class KeyboardController : PlayerController
 	public override void Update ()
     {
         m_controllerPosition = Input.mousePosition;
-        base.Update(); // Calls moveObject and updateTarget
-        eventController();
-        m_isHolding = Input.GetMouseButton(1) && Target;
-        RotateState = Input.GetKey(KeyCode.LeftControl);
+
+		// Calls moveObject, updateTarget, eventHandler
+		base.Update();
     }
 
     Ray m_ray;
@@ -50,7 +45,7 @@ public class KeyboardController : PlayerController
 
         if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange))
         {
-            MoveableObject newTarget = m_targeInfo.transform.GetComponent<MoveableObject>();
+			InteractiveObject newTarget = m_targeInfo.transform.GetComponent<InteractiveObject>();
 
             if (newTarget)
             {
@@ -76,13 +71,13 @@ public class KeyboardController : PlayerController
     public override void moveObject()
     {
         
-        if(Target.GetType() == typeof(DrawerControl))
+        if(Target.GetType() == typeof(Drawer))
         {
-            Target.moveTo(m_controllerPosition - m_previousControllerPosition);
+            ((MoveableObject)Target).moveTo(m_controllerPosition - m_previousControllerPosition);
         }
         else if (Target.GetType() == typeof(MoveableObject))
         {
-            Target.moveTo(transform.position + transform.forward * m_holdingDistance);
+			((MoveableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
         }
         
         
@@ -96,13 +91,21 @@ public class KeyboardController : PlayerController
         Vector3 newAngle = new Vector2(Mathf.Lerp(-135, 135, Input.mousePosition.x / Screen.width),
                                        Mathf.Lerp(-135, 135, Input.mousePosition.y / Screen.height));
 
-        Target.rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
+		((MoveableObject)Target).rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
     }
 
-    /// <summary>
-    /// Draw the reticle.
-    /// </summary>
-    void OnGUI()
+	/// <summary>
+	/// Override to define how the object should be drawed.
+	/// </summary>
+	public override void drawObject()
+	{
+		((Drawer)Target).draw(Input.mousePosition);
+	}
+
+	/// <summary>
+	/// Draw the reticle.
+	/// </summary>
+	void OnGUI()
     {
         if (m_displayReticle)
         {
@@ -116,45 +119,24 @@ public class KeyboardController : PlayerController
     }
 
 
-    //Store all the event linked to the mouse events, call in the update
-    //if target = drawer when right click
-    // Disable the mouse cursor locked location at the center of the screen
-    // Disable the screen movement and moves
-
-    //Left Click Freeze the selected object
-
-    void eventController()
+	/// <summary>
+	/// Handle mouse and keyboard events.
+	/// </summary>
+	// Left Click : Freeze(MoveableObject) | Draw(Drawer)
+	// Right Click : Hold(MoveableObject) | Activate(ActivableObject)
+	// CTRL Left : Rotate(MoveableObject)
+	protected override void eventHandler()
     {
-        if(Input.GetMouseButtonDown(1))
-        {
-            if (Target != null)
-            {
-                if (Target.GetType() == typeof(DrawerControl))
-                {
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = false;
-                    Cursor.lockState = CursorLockMode.None;
-                }
-            }
-        }
-        if (Input.GetMouseButton(1))
-        {
-            if(m_previousControllerPosition != m_controllerPosition)
-                m_previousControllerPosition = m_controllerPosition; 
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            if (Target != null)
-            {
-                if (Target.GetType() == typeof(DrawerControl))
-                {
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = true;
-                    Target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-            }
-        }
+		if (Input.GetMouseButtonDown(0) && Target)
+		{
+			if (Target is MoveableObject)
+				freezeObject();
+			else if (Target is ActivableObject)
+				activate();
+		}
 
-        if (Input.GetMouseButtonDown(0))
-            freezeObject();
-    }
+		m_isHolding = Input.GetMouseButton(1) && Target is MoveableObject;
+		DrawState = Input.GetMouseButton(1) && Target is Drawer;
+		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MoveableObject;
+	}
 }
