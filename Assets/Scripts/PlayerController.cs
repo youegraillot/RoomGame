@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class PlayerController : MonoBehaviour
 {
     protected bool m_isHolding;
+    
     private bool m_isRotating;
     MoveableObject m_currentObject;
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
@@ -19,7 +20,11 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureActive;
     [SerializeField, Range(1, 32)]
     int m_reticleSize = 24;
-    
+    Vector3 m_controllerPosition;
+    Vector3 m_previousControllerPosition;
+
+
+
     void Start ()
     {
         if (!m_reticleTextureIdle)
@@ -30,13 +35,10 @@ public class KeyboardController : PlayerController
 	
 	public override void Update ()
     {
+        m_controllerPosition = Input.mousePosition;
         base.Update(); // Calls moveObject and updateTarget
-
-        if (Input.GetMouseButtonDown(0))
-            freezeObject();
-
+        eventController();
         m_isHolding = Input.GetMouseButton(1) && Target;
-
         RotateState = Input.GetKey(KeyCode.LeftControl);
     }
 
@@ -73,7 +75,17 @@ public class KeyboardController : PlayerController
     /// </summary>
     public override void moveObject()
     {
-        Target.moveTo(transform.position + transform.forward * m_holdingDistance);
+        
+        if(Target.GetType() == typeof(DrawerControl))
+        {
+            Target.moveTo(m_controllerPosition - m_previousControllerPosition);
+        }
+        else if (Target.GetType() == typeof(MoveableObject))
+        {
+            Target.moveTo(transform.position + transform.forward * m_holdingDistance);
+        }
+        
+        
     }
 
     /// <summary>
@@ -101,5 +113,48 @@ public class KeyboardController : PlayerController
             else
                 GUI.DrawTexture(screenCenter, m_reticleTextureIdle, ScaleMode.StretchToFill, true);
         }
+    }
+
+
+    //Store all the event linked to the mouse events, call in the update
+    //if target = drawer when right click
+    // Disable the mouse cursor locked location at the center of the screen
+    // Disable the screen movement and moves
+
+    //Left Click Freeze the selected object
+
+    void eventController()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            if (Target != null)
+            {
+                if (Target.GetType() == typeof(DrawerControl))
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = false;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+            }
+        }
+        if (Input.GetMouseButton(1))
+        {
+            if(m_previousControllerPosition != m_controllerPosition)
+                m_previousControllerPosition = m_controllerPosition; 
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            if (Target != null)
+            {
+                if (Target.GetType() == typeof(DrawerControl))
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = true;
+                    Target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+            freezeObject();
     }
 }
