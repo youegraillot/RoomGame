@@ -85,16 +85,17 @@ public abstract class PlayerController : MonoBehaviour
     {
         updateTarget();
 
-        if (m_currentObject && m_isHolding)
+        if (m_currentObject)
         {
-            moveObject();
+			if(m_isHolding)
+				moveObject();
 
             if (m_isRotating)
                 rotateObject();
-		}
 
-		if (m_currentObject && m_isDrawing)
-			drawObject();
+			if (m_isDrawing)
+				drawObject();
+		}
 
 		eventHandler();
 	}

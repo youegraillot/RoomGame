@@ -120,14 +120,19 @@ public class KeyboardController : PlayerController
 	// CTRL Left : Rotate(MoveableObject)
 	protected override void eventHandler()
     {
-		if (Input.GetMouseButtonDown(0) && Target)
+		// Trigger events
+		if (Target)
 		{
-			if (Target is MovableObject)
-				freezeObject();
-			else if (Target is ActivableObject)
-				activate();
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (Target is MovableObject)
+					freezeObject();
+				else if (Target is ActivableObject)
+					activate();
+			}
 		}
 
+		// Holding events
 		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;

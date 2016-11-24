@@ -3,8 +3,8 @@
 [RequireComponent(typeof(Rigidbody))]
 public class MovableObject : InteractiveObject
 {
-    Quaternion m_initialRotation;
-    protected Rigidbody m_rigidbody;
+	Quaternion m_initialRotation;
+	protected Rigidbody m_rigidbody;
 
     public bool isFreezed
     {
@@ -28,8 +28,8 @@ public class MovableObject : InteractiveObject
 
     public void initRotation()
     {
-        m_initialRotation = transform.localRotation;
-    }
+		m_initialRotation = transform.localRotation;
+	}
 
     public virtual void moveTo(Vector3 newPositon)
     {
@@ -40,5 +40,5 @@ public class MovableObject : InteractiveObject
     public virtual void rotate(Quaternion newRotation)
     {
         transform.localRotation = m_initialRotation * newRotation;
-    }
+	}
 }
