@@ -22,6 +22,7 @@ public class Digit : ActivableObject
 
     protected override void specificDeactivation()
     {
+		transform.Rotate(transform.right, -36);
         m_value = (m_value+1) % 10;
     }
 }

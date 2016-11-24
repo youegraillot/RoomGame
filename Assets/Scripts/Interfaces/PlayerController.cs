@@ -45,7 +45,7 @@ public abstract class PlayerController : MonoBehaviour
 
                 if (value)
                 {
-					((MoveableObject)m_currentObject).initRotation();
+					((MovableObject)m_currentObject).initRotation();
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
@@ -72,7 +72,7 @@ public abstract class PlayerController : MonoBehaviour
 
 				if (value)
 				{
-					((Drawer)m_currentObject).initDraw(Input.mousePosition);
+					((DrawableObject)m_currentObject).initDraw(Input.mousePosition);
 					Cursor.lockState = CursorLockMode.None;
 				}
 				else
@@ -130,7 +130,7 @@ public abstract class PlayerController : MonoBehaviour
 	protected void freezeObject()
     {
         if (m_currentObject != null)
-			((MoveableObject)m_currentObject).isFreezed = !(m_currentObject as MoveableObject).isFreezed;
+			((MovableObject)m_currentObject).isFreezed = !(m_currentObject as MovableObject).isFreezed;
     }
 
 	/// <summary>

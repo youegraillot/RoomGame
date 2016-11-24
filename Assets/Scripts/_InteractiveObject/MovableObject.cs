@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MoveableObject : InteractiveObject
+public class MovableObject : InteractiveObject
 {
     Quaternion m_initialRotation;
     protected Rigidbody m_rigidbody;

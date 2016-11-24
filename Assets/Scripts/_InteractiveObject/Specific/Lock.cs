@@ -28,7 +28,7 @@ public class Lock : ActivableObject
     }
 
     /// <summary>
-    /// TODO
+    /// TODO : Open door
     /// </summary>
     void unlock()
     {

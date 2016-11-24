@@ -19,7 +19,6 @@ public class KeyboardController : PlayerController
     [SerializeField, Range(1, 32)]
     int m_reticleSize = 24;
     Vector3 m_controllerPosition;
-    Vector3 m_previousControllerPosition;
 
     void Start ()
     {
@@ -71,16 +70,10 @@ public class KeyboardController : PlayerController
     public override void moveObject()
     {
         
-        if(Target.GetType() == typeof(Drawer))
+        if (Target.GetType() == typeof(MovableObject))
         {
-            ((MoveableObject)Target).moveTo(m_controllerPosition - m_previousControllerPosition);
-        }
-        else if (Target.GetType() == typeof(MoveableObject))
-        {
-			((MoveableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
-        }
-        
-        
+			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
+        }        
     }
 
     /// <summary>
@@ -91,7 +84,7 @@ public class KeyboardController : PlayerController
         Vector3 newAngle = new Vector2(Mathf.Lerp(-135, 135, Input.mousePosition.x / Screen.width),
                                        Mathf.Lerp(-135, 135, Input.mousePosition.y / Screen.height));
 
-		((MoveableObject)Target).rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
+		((MovableObject)Target).rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
     }
 
 	/// <summary>
@@ -99,7 +92,7 @@ public class KeyboardController : PlayerController
 	/// </summary>
 	public override void drawObject()
 	{
-		((Drawer)Target).draw(Input.mousePosition);
+		((DrawableObject)Target).draw(Input.mousePosition);
 	}
 
 	/// <summary>
@@ -129,14 +122,14 @@ public class KeyboardController : PlayerController
     {
 		if (Input.GetMouseButtonDown(0) && Target)
 		{
-			if (Target is MoveableObject)
+			if (Target is MovableObject)
 				freezeObject();
 			else if (Target is ActivableObject)
 				activate();
 		}
 
-		m_isHolding = Input.GetMouseButton(1) && Target is MoveableObject;
-		DrawState = Input.GetMouseButton(1) && Target is Drawer;
-		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MoveableObject;
+		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
+		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
+		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
 	}
 }
