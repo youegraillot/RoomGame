@@ -127,10 +127,13 @@ public class KeyboardController : PlayerController
     {
         if(Input.GetMouseButtonDown(1))
         {
-            if (Target.GetType() == typeof(DrawerControl))
-            { 
-                GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = false;    
-                Cursor.lockState = CursorLockMode.None;
+            if (Target != null)
+            {
+                if (Target.GetType() == typeof(DrawerControl))
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = false;
+                    Cursor.lockState = CursorLockMode.None;
+                }
             }
         }
         if (Input.GetMouseButton(1))
@@ -140,11 +143,14 @@ public class KeyboardController : PlayerController
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            if(Target.GetType() == typeof(DrawerControl))
+            if (Target != null)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = true;
-                Target.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                Cursor.lockState = CursorLockMode.Locked;
+                if (Target.GetType() == typeof(DrawerControl))
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<RigidbodyFirstPersonController>().enabled = true;
+                    Target.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
             }
         }
 
