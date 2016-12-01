@@ -37,7 +37,19 @@ public class KeyboardController : PlayerController
     }
 
     Ray m_ray;
-    RaycastHit m_targeInfo;
+    RaycastHit m_targeInfo, m_prevTargeInfo;
+    bool m_hasPreviousHit = false;
+
+    private void updateGameObjectLayer(GameObject gameObj, string layerName)
+    {
+        gameObj.layer = LayerMask.NameToLayer(layerName);
+
+        foreach (Transform child in gameObj.transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer(layerName);
+        }
+    }
+
     public override void updateTarget()
     {
         m_ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -49,15 +61,42 @@ public class KeyboardController : PlayerController
             if (newTarget)
             {
                 if (newTarget != Target)
+                {
+                    if (m_hasPreviousHit)
+                    {
+                        updateGameObjectLayer(m_prevTargeInfo.transform.gameObject, "Default");
+                        m_hasPreviousHit = false;
+                    }
+
+                    updateGameObjectLayer(m_targeInfo.transform.gameObject, "Ignore Player");
+
+                    m_prevTargeInfo = m_targeInfo;
                     Target = newTarget;
+
+                    m_hasPreviousHit = true;
+                }
             }
             // Target is not MoveableObject
             else
+            {
+                if (m_hasPreviousHit)
+                {
+                    updateGameObjectLayer(m_prevTargeInfo.transform.gameObject, "Default");
+                    m_hasPreviousHit = false;
+                }
                 Target = null;
+            }
         }
         // No target
         else
+        {
+            if (m_hasPreviousHit)
+            {
+                updateGameObjectLayer(m_prevTargeInfo.transform.gameObject, "Default");
+                m_hasPreviousHit = false;
+            }
             Target = null;
+        }
 
 #if UNITY_EDITOR
         Debug.DrawRay(m_ray.origin, m_ray.direction * m_raycastRange, Color.blue);
