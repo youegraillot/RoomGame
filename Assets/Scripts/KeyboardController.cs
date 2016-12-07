@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
@@ -19,7 +18,8 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureActive;
     [SerializeField, Range(1, 32)]
     int m_reticleSize = 24;
-    
+    Vector3 m_controllerPosition;
+
     void Start ()
     {
         if (!m_reticleTextureIdle)
@@ -30,14 +30,10 @@ public class KeyboardController : PlayerController
 	
 	public override void Update ()
     {
-        base.Update(); // Calls moveObject and updateTarget
+        m_controllerPosition = Input.mousePosition;
 
-        if (Input.GetMouseButtonDown(0))
-            freezeObject();
-
-        m_isHolding = Input.GetMouseButton(1) && Target;
-
-        RotateState = Input.GetKey(KeyCode.LeftControl);
+		// Calls moveObject, updateTarget, eventHandler
+		base.Update();
     }
 
     Ray m_ray;
@@ -48,7 +44,7 @@ public class KeyboardController : PlayerController
 
         if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange))
         {
-            MoveableObject newTarget = m_targeInfo.transform.GetComponent<MoveableObject>();
+			InteractiveObject newTarget = m_targeInfo.transform.GetComponent<InteractiveObject>();
 
             if (newTarget)
             {
@@ -73,7 +69,11 @@ public class KeyboardController : PlayerController
     /// </summary>
     public override void moveObject()
     {
-        Target.moveTo(transform.position + transform.forward * m_holdingDistance);
+        
+        if (Target.GetType() == typeof(MovableObject))
+        {
+			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
+        }        
     }
 
     /// <summary>
@@ -84,13 +84,21 @@ public class KeyboardController : PlayerController
         Vector3 newAngle = new Vector2(Mathf.Lerp(-135, 135, Input.mousePosition.x / Screen.width),
                                        Mathf.Lerp(-135, 135, Input.mousePosition.y / Screen.height));
 
-        Target.rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
+		((MovableObject)Target).rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
     }
 
-    /// <summary>
-    /// Draw the reticle.
-    /// </summary>
-    void OnGUI()
+	/// <summary>
+	/// Override to define how the object should be drawed.
+	/// </summary>
+	public override void drawObject()
+	{
+		((DrawableObject)Target).draw(Input.mousePosition);
+	}
+
+	/// <summary>
+	/// Draw the reticle.
+	/// </summary>
+	void OnGUI()
     {
         if (m_displayReticle)
         {
@@ -102,4 +110,31 @@ public class KeyboardController : PlayerController
                 GUI.DrawTexture(screenCenter, m_reticleTextureIdle, ScaleMode.StretchToFill, true);
         }
     }
+
+
+	/// <summary>
+	/// Handle mouse and keyboard events.
+	/// </summary>
+	// Left Click : Freeze(MoveableObject) | Draw(Drawer)
+	// Right Click : Hold(MoveableObject) | Activate(ActivableObject)
+	// CTRL Left : Rotate(MoveableObject)
+	protected override void eventHandler()
+    {
+		// Trigger events
+		if (Target)
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (Target is MovableObject)
+					freezeObject();
+				else if (Target is ActivableObject)
+					activate();
+			}
+		}
+
+		// Holding events
+		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
+		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
+		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
+	}
 }
