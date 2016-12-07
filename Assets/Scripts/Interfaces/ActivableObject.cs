@@ -26,7 +26,7 @@ public abstract class ActivableObject : InteractiveObject
 	/// </summary>
 	public bool activate()
     {
-        if(!m_isActivated && m_canBeActivated)
+        if (!m_isActivated && m_canBeActivated)
         {
             specificActivation();
             m_isActivated = true && m_updateState;
