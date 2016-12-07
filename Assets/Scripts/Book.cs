@@ -2,8 +2,10 @@
 using System.Collections;
 using System;
 
-public class Book : InteractiveObject
+public class Book : ActivableObject
 {
+    [SerializeField]
+    bool m_isResetBook=false;
     private E_Library m_library;
     [SerializeField]
     private int m_id;
@@ -24,26 +26,34 @@ public class Book : InteractiveObject
         m_initPos = transform.position;
     }
 
-    public override bool Activate()
+    protected override void specificActivation()
     {
-        if (!m_isActivated)
+        if (!m_isResetBook)
         {
-            Debug.Log("activ");
-            m_isActivated = true;
-            StartCoroutine(animate());
+            canBeActivated = false;
+            StartCoroutine(animate(true));
             m_library.activeBook(this);
         }
-        return m_isActivated;
+        else
+        {
+            deactivate();
+            updateState = false;
+            m_library.resetProposal();
+        }
+    }
+
+    protected override void specificDeactivation()
+    {
+
     }
     /// <summary>
     /// animation function (best way is just to have an animator/animation
     /// </summary>
 
-    IEnumerator animate()
+    IEnumerator animate(bool act)
     {
-        if (m_isActivated)
+        if (act)
         {
-            Debug.Log("ani");
             for(int i=0;i<4;i++)
             {
                 transform.Translate(-0.01f * i, 0f, 0f);
@@ -59,18 +69,8 @@ public class Book : InteractiveObject
 
     public void reset()
     {
-        m_isActivated = false;
-        StartCoroutine(animate());
+        deactivate();
+        canBeActivated = true;
+        StartCoroutine(animate(false));
     }
-
-#if UNITY_EDITOR
-    void OnMouseUp()
-    {
-        if(!m_isActivated)
-        {
-            Debug.Log("activate go " + m_id);
-            Activate();
-        }
-    }
-#endif
 }

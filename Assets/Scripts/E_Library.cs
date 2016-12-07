@@ -4,6 +4,8 @@ using System.Collections;
 public class E_Library : MonoBehaviour
 {
     [SerializeField]
+    Book m_resetBook;
+    [SerializeField]
     private Book[] m_bookArray;
     [SerializeField]
     private int[] m_solution;
@@ -23,6 +25,7 @@ public class E_Library : MonoBehaviour
             m_bookArray[i].SetLibrary(this);
         }
         m_indiceArray = 0;
+        m_resetBook.SetLibrary(this);
     }
 
     public void resetProposal()
@@ -49,11 +52,13 @@ public class E_Library : MonoBehaviour
     }
     void CheckForSolution()
     {
-        Debug.Log("check");
         for (int i=0;i<m_playerProposal.Length;i++)
         {
             if (m_playerProposal[i] != m_solution[i])
+            {
+                Debug.Log("bad soluce");
                 return;
+            }
         }
         Debug.Log("soluce ok");
         canReset = false;
