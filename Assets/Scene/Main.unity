@@ -1203,19 +1203,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1291841533}
+    m_TransformParent: {fileID: 810637301}
     m_Modifications:
     - target: {fileID: 496920, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.26
+      value: 1.0742
       objectReference: {fileID: 0}
     - target: {fileID: 496920, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.232684
       objectReference: {fileID: 0}
     - target: {fileID: 496920, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.93
+      value: -3.58035
       objectReference: {fileID: 0}
     - target: {fileID: 496920, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1235,9 +1235,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 496920, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6530652, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6549898, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6521070, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6560404, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6586830, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6507020, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6527778, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6571382, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6546684, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
+    - {fileID: 6546898, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b241c3cc0b2fda4d9f5b7498b08d234, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &317176396
@@ -2710,6 +2720,7 @@ Transform:
   m_Children:
   - {fileID: 1811221297}
   - {fileID: 2710970}
+  - {fileID: 31860140}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 4
 --- !u!1 &828800778
@@ -3342,7 +3353,6 @@ Transform:
   - {fileID: 1204777656}
   - {fileID: 1437720875}
   - {fileID: 836237134}
-  - {fileID: 31860140}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 3
 --- !u!1 &1360200946
