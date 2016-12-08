@@ -9,21 +9,13 @@ public class InventoryView : MonoBehaviour {
     [SerializeField] RenderTexture m_previewTexture;
     [SerializeField] GameObject m_inventoryItemPrefab;
 
-    [SerializeField, Range(1, 5)] float m_previewZoom = 2;
+    [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
     InventoryModel m_inventoryModel;
     
-	void Start ()
+	public void Init (InventoryModel model)
     {
-        m_inventoryModel = new InventoryModel(this);
-
-        //DEBUG
-
-        m_inventoryModel.add("cube", GameObject.CreatePrimitive(PrimitiveType.Cube));
-        m_inventoryModel.add("sphere", GameObject.CreatePrimitive(PrimitiveType.Sphere));
-        m_inventoryModel.add("cylindre", GameObject.CreatePrimitive(PrimitiveType.Cylinder));
-
-        UpdateContent();
+        m_inventoryModel = model;
     }
 
     public void UpdateContent()
@@ -46,7 +38,8 @@ public class InventoryView : MonoBehaviour {
             newItemCard.GetComponentInChildren<Text>().text = item.Key;
 
             // Generate Preview Image
-            item.Value.transform.position = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom;
+            item.Value.transform.position = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.Value.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
+            item.Value.transform.rotation = Quaternion.Euler(-30,140,0);
 
             item.Value.SetActive(true);
             m_cameraPreview.Render();

@@ -6,10 +6,13 @@ public abstract class PlayerController : MonoBehaviour
     
     private bool m_isRotating;
 	private bool m_isDrawing;
-	InteractiveObject m_currentObject;
+    private bool m_displayInventory;
+    InteractiveObject m_currentObject;
 
     [SerializeField]
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
+    [SerializeField]
+    InventoryController m_inventoryController;
 
     /// <summary>
     /// Targeted object
@@ -81,7 +84,34 @@ public abstract class PlayerController : MonoBehaviour
 		}
 	}
 
-	public virtual void Update()
+    /// <summary>
+	/// 
+	/// </summary>
+	protected bool DisplayInventory
+    {
+        get
+        {
+            return m_displayInventory;
+        }
+        set
+        {
+            if (m_displayInventory != value)
+            {
+                m_displayInventory = value;
+                FPSController.enabled = !value;
+
+                if (value)
+                    Cursor.lockState = CursorLockMode.None;
+                else
+                    Cursor.lockState = CursorLockMode.Locked;
+
+                Cursor.visible = value;
+                m_inventoryController.visible = value;
+            }
+        }
+    }
+
+    public virtual void Update()
     {
         updateTarget();
 
@@ -142,4 +172,13 @@ public abstract class PlayerController : MonoBehaviour
 		if (m_currentObject != null)
 			((ActivableObject)m_currentObject).activate();
 	}
+
+    /// <summary>
+	/// Add to inventory the MovableObject.
+	/// </summary>
+	protected void addToInventory()
+    {
+        if (m_currentObject != null)
+            m_inventoryController.add(m_currentObject.gameObject);
+    }
 }

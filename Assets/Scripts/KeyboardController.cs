@@ -136,5 +136,14 @@ public class KeyboardController : PlayerController
 		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
+
+        // Inventory events
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            DisplayInventory = !DisplayInventory;
+            m_displayReticle = !DisplayInventory;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && Target is MovableObject)
+            addToInventory();
 	}
 }

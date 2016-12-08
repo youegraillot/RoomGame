@@ -5,36 +5,35 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField]
     InventoryView m_inventoryView;
-    [SerializeField]
-    InventoryController m_inventoryController;
-
-    bool m_active = false;
-    public bool isActive
+    InventoryModel m_inventoryModel;
+    
+    public bool visible
     {
-        get { return m_active; }
         set
         {
-            m_active = value;
-            m_inventoryView.gameObject.SetActive(m_active);
+            m_inventoryView.gameObject.SetActive(value);
         }
     }
 
-    void toggle()
+    void Start()
     {
-        isActive = !isActive;
+        m_inventoryModel = new InventoryModel();
+        m_inventoryView.Init(m_inventoryModel);
     }
 
-    void pick()
+    public void pick()
     {
-
+        
     }
 
-    void add()
+    public void add(GameObject obj)
     {
-
+        obj.transform.parent = transform;
+        m_inventoryModel.add(obj.name, obj);
+        m_inventoryView.UpdateContent();
     }
 
-    void remove()
+    public void remove()
     {
 
     }
