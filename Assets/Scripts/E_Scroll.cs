@@ -3,35 +3,34 @@ using System.Collections;
 
 public class E_Scroll : MonoBehaviour
 {
-    public float timeToLit = 3.0f;
-    private Renderer rend;
-    private bool isLit = false;
-    private float litTime = 0.0f;
-    private Light LightProperty;
+    public float m_timeToLit = 3.0f;
+    private Renderer m_rend;
+    private bool m_isLit = false;
+    private float m_litTime = 0.0f;
+    private Light m_LightProperty;
     // Use this for initialization
     void Start()
     {
-        rend = transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        m_rend = transform.GetChild(0).gameObject.GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isLit && litTime <= timeToLit)
+        if (m_isLit && m_litTime <= m_timeToLit)
         {
-            litTime += Time.deltaTime;
-            Debug.Log(litTime);
-            rend.material.SetFloat("_ProximityLight", litTime / timeToLit);
+            m_litTime += Time.deltaTime;
+            m_rend.material.SetFloat("_ProximityLight", m_litTime / m_timeToLit);
         }
 
     }
 
-    void setLitState(bool state) { isLit = state; }
+    void setLitState(bool state) { m_isLit = state; }
     void OnTriggerEnter(Collider other)
     {
-        if (LightProperty = other.gameObject.GetComponent<Light>())
+        if (m_LightProperty = other.gameObject.GetComponent<Light>())
         {
-            isLit = true;
+            m_isLit = true;
 
         }
     }
@@ -39,7 +38,7 @@ public class E_Scroll : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Light>())
         {
-            isLit = false;
+            m_isLit = false;
         }
     }
 }
