@@ -4,6 +4,8 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_OutlineColor("Outline color ", Color) = (0,0,1,1)
+		_OutlineSize("Outline Size", Range(0,3)) = 0.2
+		_DisplacementIntensity("Displacement Instensity", Range(0,30)) = 10
 	}
 	CGINCLUDE
 		#include "UnityCG.cginc"
@@ -19,93 +21,88 @@
 			float2 uv : TEXCOORD0;
 			UNITY_FOG_COORDS(1)
 			float4 vertex : SV_POSITION;
+			float4 localPos : TEXCOORD1;
 			float4 normal : NORMAL;
 		};
 
 		sampler2D _MainTex;
 		float4 _MainTex_ST;
 		float4 _OutlineColor;
+		float _OutlineSize;
+		float _DisplacementIntensity;
 	ENDCG
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" }
+		Tags  {"Queue"="Transparent" "RenderType" = "Transparent" }
+		
 		LOD 100
+		
 		Pass
 		{
-			Name "DISPLACEMENT"
-			Cull Back
-			ZWrite On
-			ZTest LEqual
+			Name "OUTLINE"
+			
+			ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
+			Cull Front
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
-
 			v2f vert (appdata v)
 			{
 				v2f o;
 				v.vertex.xz /= lerp(1,10,v.uv.y );
-				v.vertex.x += lerp(0,1,v.uv.y )/10 * sin(_Time.y);
-				v.vertex.z += lerp(0,1,v.uv.y )/10 * cos(_Time.y*lerp(1,1.01,v.uv.y ));
-				//v.normal.xz /= lerp(1,10,v.uv.y );
-				//v.normal.x += lerp(0,1,v.uv.y )/10 * sin(_Time.y);
-				//v.normal.z += lerp(0,1,v.uv.y )/10 * cos(_Time.y*lerp(1,1.01,v.uv.y ));
-				//half3 norm = mul((half3x3)UNITY_MATRIX_IT_MV, v.normal);
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				//o.normal.xyz = norm.xyz;
-				UNITY_TRANSFER_FOG(o,o.vertex);
+				v.vertex.x += lerp(0,1,v.uv.y )/(30-_DisplacementIntensity) * sin(_Time.y);
+				v.vertex.z += lerp(0,1,v.uv.y )/(30-_DisplacementIntensity) * cos(_Time.y*lerp(1,1+1/_DisplacementIntensity,v.uv.y ));
+				o.localPos = v.vertex;
+				v.vertex += v.normal * _OutlineSize;
+				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);			
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv);
-				// apply fog
-				col.rgb = (0,0,0);
-				//col.b = lerp(0,255,abs(i.uv.y/255));
-				//col.a = lerp(0,255,abs(i.uv.y));
-				col.rgb = (i.uv.y, i.uv.y, 1-i.uv.y); 
+				fixed4 col = _OutlineColor;
+				col.a = 0.1;// lerp(col.a, 0, i.localPos.y);
+				return col;
+			}
+			ENDCG
+		}
+		Pass
+		{
+			Name "DISPLACEMENT"
+			ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
+			Cull Off
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
 
-				UNITY_APPLY_FOG(i.fogCoord, col);
+			v2f vert (appdata v)
+			{
+				v2f o;
+				o.localPos = v.vertex;
+				v.vertex.xz /= lerp(1,10,v.uv.y );
+				v.vertex.x += lerp(0,1,v.uv.y )/(30-_DisplacementIntensity) * sin(_Time.y);
+				v.vertex.z += lerp(0,1,v.uv.y )/(30-_DisplacementIntensity) * cos(_Time.y*lerp(1,1+1/_DisplacementIntensity,v.uv.y ));
+				
+				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				return o;
+			}
+			
+			fixed4 frag (v2f i) : SV_Target
+			{
+				fixed4 col = tex2D(_MainTex, i.uv);
+			
+				col = lerp(fixed4(1,1,0, 0.8), fixed4(1,0,0,0), i.localPos.y);
 				return col;
 			}
 			ENDCG
 		}
 		
-		//Pass
-		//{
-		//	Name "OUTLINE"
-		//	Cull Front
-		//	CGPROGRAM
-		//	#pragma vertex vert
-		//	#pragma fragment frag
-		//	// make fog work
-		//	#pragma multi_compile_fog
-		//	v2f vert (appdata v)
-		//	{
-		//		v2f o;
-		//		o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
-		//		half3 norm = mul((half3x3)UNITY_MATRIX_IT_MV, v.normal);
-		//		half2 offset = TransformViewToProjection(norm.xy);
-		//		o.vertex.xy += offset * o.vertex.z * 1/1000000000;
-				
-		//		return o;
-		//	}
-			
-		//	fixed4 frag (v2f i) : SV_Target
-		//	{
-		//		// sample the texture
-		//		fixed4 col = _OutlineColor;
-				
+		
+		
 
-		//		UNITY_APPLY_FOG(i.fogCoord, col);
-		//		return col;
-		//	}
-		//	ENDCG
-		//}
+		
 		
 		
 	}
