@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 0f8ab976d368ace4ca2e41be0c1e9eb2
+timeCreated: 1476265807
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: lamp_10
+    100002: lamp_10_COLLISION
+    100004: lamp_17
+    100006: lamp_17_COLLISION
+    100008: lamp_18
+    100010: lamp_18_COLLISION
+    100012: lamp_18_hanging
+    100014: lamp_18_hanging_COLLISION
+    100016: lamp_18_wall
+    100018: lamp_18_wall_COLLISION
+    100020: lamp_3
+    100022: lamp_3_COLLISION
+    100024: lamp_4
+    100026: lamp_4_COLLISION
+    100028: //RootNode
+    400000: lamp_10
+    400002: lamp_10_COLLISION
+    400004: lamp_17
+    400006: lamp_17_COLLISION
+    400008: lamp_18
+    400010: lamp_18_COLLISION
+    400012: lamp_18_hanging
+    400014: lamp_18_hanging_COLLISION
+    400016: lamp_18_wall
+    400018: lamp_18_wall_COLLISION
+    400020: lamp_3
+    400022: lamp_3_COLLISION
+    400024: lamp_4
+    400026: lamp_4_COLLISION
+    400028: //RootNode
+    2300000: lamp_10
+    2300002: lamp_10_COLLISION
+    2300004: lamp_17
+    2300006: lamp_17_COLLISION
+    2300008: lamp_18
+    2300010: lamp_18_COLLISION
+    2300012: lamp_18_hanging
+    2300014: lamp_18_hanging_COLLISION
+    2300016: lamp_18_wall
+    2300018: lamp_18_wall_COLLISION
+    2300020: lamp_3
+    2300022: lamp_3_COLLISION
+    2300024: lamp_4
+    2300026: lamp_4_COLLISION
+    3300000: lamp_10
+    3300002: lamp_10_COLLISION
+    3300004: lamp_17
+    3300006: lamp_17_COLLISION
+    3300008: lamp_18
+    3300010: lamp_18_COLLISION
+    3300012: lamp_18_hanging
+    3300014: lamp_18_hanging_COLLISION
+    3300016: lamp_18_wall
+    3300018: lamp_18_wall_COLLISION
+    3300020: lamp_3
+    3300022: lamp_3_COLLISION
+    3300024: lamp_4
+    3300026: lamp_4_COLLISION
+    4300000: lamp_18_hanging_COLLISION
+    4300002: lamp_18_wall_COLLISION
+    4300004: lamp_3_COLLISION
+    4300006: lamp_4_COLLISION
+    4300008: lamp_10_COLLISION
+    4300010: lamp_18_COLLISION
+    4300012: lamp_17_COLLISION
+    4300014: lamp_18_hanging
+    4300016: lamp_18_wall
+    4300018: lamp_3
+    4300020: lamp_4
+    4300022: lamp_10
+    4300024: lamp_17
+    4300026: lamp_18
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 180
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
