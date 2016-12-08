@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+using System.Collections.Generic;
 
 public class InventoryView : MonoBehaviour {
 
@@ -22,7 +22,12 @@ public class InventoryView : MonoBehaviour {
     {
         m_content.sizeDelta = Vector2.zero;
 
-        foreach (var item in m_inventoryModel.Data)
+        // Clear old cards
+        foreach (Transform item in m_content.transform)
+            Destroy(item.gameObject);
+
+        // Generate new ones
+        foreach (KeyValuePair<string, GameObject> item in m_inventoryModel.Data)
         {
             GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
             newItemCard.transform.SetParent(m_content);
@@ -37,7 +42,7 @@ public class InventoryView : MonoBehaviour {
             // Set the card Name
             newItemCard.GetComponentInChildren<Text>().text = item.Key;
 
-            // Generate Preview Image
+            // Generate scaled Preview Image
             item.Value.transform.position = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.Value.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
             item.Value.transform.rotation = Quaternion.Euler(-30,140,0);
 

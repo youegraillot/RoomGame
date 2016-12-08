@@ -18,6 +18,7 @@ public class InventoryModel
     public void add(string name, GameObject obj)
     {
         m_data.Add(name, obj);
+        obj.SetActive(false);
     }
 
     public void remove(string name)

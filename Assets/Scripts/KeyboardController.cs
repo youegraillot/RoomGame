@@ -112,13 +112,15 @@ public class KeyboardController : PlayerController
     }
 
 
-	/// <summary>
-	/// Handle mouse and keyboard events.
-	/// </summary>
-	// Left Click : Freeze(MoveableObject) | Draw(Drawer)
-	// Right Click : Hold(MoveableObject) | Activate(ActivableObject)
-	// CTRL Left : Rotate(MoveableObject)
-	protected override void eventHandler()
+    /// <summary>
+    /// Handle mouse and keyboard events.
+    /// </summary>
+    // Left Click : Freeze(MoveableObject) | Draw(Drawer)
+    // Right Click : Hold(MoveableObject) | Activate(ActivableObject)
+    // CTRL Left : Rotate(MoveableObject)
+    // Tab : DisplayInventory
+    // E : addToInventory(MoveableObject)
+    protected override void eventHandler()
     {
 		// Trigger events
 		if (Target)
