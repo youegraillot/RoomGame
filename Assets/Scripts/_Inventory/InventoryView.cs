@@ -6,14 +6,16 @@ public class InventoryView : MonoBehaviour {
 
     [SerializeField] RectTransform m_content;
     [SerializeField] Camera m_cameraPreview;
+    [SerializeField] Transform m_originPreviewTransform;
     [SerializeField] RenderTexture m_previewTexture;
     [SerializeField] GameObject m_inventoryItemPrefab;
 
     [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
     InventoryModel m_inventoryModel;
-    
-	public void Init (InventoryModel model)
+    GameObject m_selected;
+
+    public void Init (InventoryModel model)
     {
         m_inventoryModel = model;
     }
@@ -26,11 +28,14 @@ public class InventoryView : MonoBehaviour {
         foreach (Transform item in m_content.transform)
             Destroy(item.gameObject);
 
+        Debug.ClearDeveloperConsole();
+
         // Generate new ones
         foreach (KeyValuePair<string, GameObject> item in m_inventoryModel.Data)
         {
             GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
             newItemCard.transform.SetParent(m_content);
+            newItemCard.name = item.Key;
 
             // Place Card and extend Content viewport
             newItemCard.GetComponent<RectTransform>().anchoredPosition = m_inventoryItemPrefab.GetComponent<RectTransform>().anchoredPosition;
@@ -42,9 +47,12 @@ public class InventoryView : MonoBehaviour {
             // Set the card Name
             newItemCard.GetComponentInChildren<Text>().text = item.Key;
 
+            // Define OnClick() callback
+            GameObject tmp = item.Value;
+            newItemCard.GetComponent<Button>().onClick.AddListener(() => SelectPreview(tmp, true));
+
             // Generate scaled Preview Image
-            item.Value.transform.position = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.Value.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
-            item.Value.transform.rotation = Quaternion.Euler(-30,140,0);
+            PlaceForPreview(item.Value.transform);
 
             item.Value.SetActive(true);
             m_cameraPreview.Render();
@@ -60,8 +68,30 @@ public class InventoryView : MonoBehaviour {
         }
     }
 
-    public void SelectPreview(string name)
+    public void SelectPreview(GameObject obj, bool active)
     {
-        m_inventoryModel.Data[name].transform.position = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom;
+        if (active)
+        {
+            SelectPreview(m_selected, false);
+            PlaceForPreview(obj.transform);
+            
+            obj.SetActive(true);
+            obj.GetComponent<Rigidbody>().isKinematic = true;
+
+            m_selected = obj;
+        }
+        else if (m_selected != null)
+        {
+            m_selected.SetActive(false);
+            m_selected.GetComponent<Rigidbody>().isKinematic = false;
+            m_selected = null;
+        }
+    }
+
+    void PlaceForPreview(Transform item)
+    {
+        m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
+        item.position = m_originPreviewTransform.position;
+        item.rotation = Quaternion.Euler(-30, 140, 0);
     }
 }

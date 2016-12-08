@@ -6,7 +6,6 @@ public abstract class PlayerController : MonoBehaviour
     
     private bool m_isRotating;
 	private bool m_isDrawing;
-    private bool m_displayInventory;
     InteractiveObject m_currentObject;
 
     [SerializeField]
@@ -91,13 +90,13 @@ public abstract class PlayerController : MonoBehaviour
     {
         get
         {
-            return m_displayInventory;
+            return m_inventoryController.visible;
         }
         set
         {
-            if (m_displayInventory != value)
+            if (m_inventoryController.visible != value)
             {
-                m_displayInventory = value;
+                m_inventoryController.visible = value;
                 FPSController.enabled = !value;
 
                 if (value)
@@ -106,7 +105,6 @@ public abstract class PlayerController : MonoBehaviour
                     Cursor.lockState = CursorLockMode.Locked;
 
                 Cursor.visible = value;
-                m_inventoryController.visible = value;
             }
         }
     }
@@ -180,5 +178,13 @@ public abstract class PlayerController : MonoBehaviour
     {
         if (m_currentObject != null)
             m_inventoryController.add(m_currentObject.gameObject);
+    }
+
+    /// <summary>
+	/// Pick from inventory.
+	/// </summary>
+	public void pickFromInventory()
+    {
+        DisplayInventory = false;
     }
 }

@@ -9,6 +9,7 @@ public class InventoryController : MonoBehaviour
     
     public bool visible
     {
+        get { return m_inventoryView.gameObject.activeSelf; }
         set { m_inventoryView.gameObject.SetActive(value); }
     }
 
@@ -26,11 +27,11 @@ public class InventoryController : MonoBehaviour
     public void add(GameObject obj)
     {
         m_inventoryModel.add(obj.name, obj);
-        obj.transform.parent = transform;
+        obj.transform.SetParent(transform);
         m_inventoryView.UpdateContent();
     }
 
-    public void remove()
+    void remove()
     {
         m_inventoryView.UpdateContent();
     }
