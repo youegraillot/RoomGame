@@ -98,13 +98,6 @@ public abstract class PlayerController : MonoBehaviour
             {
                 m_inventoryController.visible = value;
                 FPSController.enabled = !value;
-
-                if (value)
-                    Cursor.lockState = CursorLockMode.None;
-                else
-                    Cursor.lockState = CursorLockMode.Locked;
-
-                Cursor.visible = value;
             }
         }
     }
@@ -186,5 +179,7 @@ public abstract class PlayerController : MonoBehaviour
 	public void pickFromInventory()
     {
         DisplayInventory = false;
+
+
     }
 }

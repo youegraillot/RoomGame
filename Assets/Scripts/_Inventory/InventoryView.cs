@@ -31,11 +31,11 @@ public class InventoryView : MonoBehaviour {
         Debug.ClearDeveloperConsole();
 
         // Generate new ones
-        foreach (KeyValuePair<string, GameObject> item in m_inventoryModel.Data)
+        foreach (GameObject item in m_inventoryModel.Data)
         {
             GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
             newItemCard.transform.SetParent(m_content);
-            newItemCard.name = item.Key;
+            newItemCard.name = item.name;
 
             // Place Card and extend Content viewport
             newItemCard.GetComponent<RectTransform>().anchoredPosition = m_inventoryItemPrefab.GetComponent<RectTransform>().anchoredPosition;
@@ -45,18 +45,18 @@ public class InventoryView : MonoBehaviour {
             m_content.sizeDelta += newItemCard.GetComponent<RectTransform>().sizeDelta;
 
             // Set the card Name
-            newItemCard.GetComponentInChildren<Text>().text = item.Key;
+            newItemCard.GetComponentInChildren<Text>().text = item.name;
 
             // Define OnClick() callback
-            GameObject tmp = item.Value;
+            GameObject tmp = item;
             newItemCard.GetComponent<Button>().onClick.AddListener(() => SelectPreview(tmp, true));
 
             // Generate scaled Preview Image
-            PlaceForPreview(item.Value.transform);
+            PlaceForPreview(item.transform);
 
-            item.Value.SetActive(true);
+            item.SetActive(true);
             m_cameraPreview.Render();
-            item.Value.SetActive(false);
+            item.SetActive(false);
 
             RenderTexture.active = m_previewTexture;
 
@@ -70,7 +70,7 @@ public class InventoryView : MonoBehaviour {
 
     public void SelectPreview(GameObject obj, bool active)
     {
-        if (active)
+        if (active && m_selected != obj)
         {
             SelectPreview(m_selected, false);
             PlaceForPreview(obj.transform);
@@ -80,7 +80,7 @@ public class InventoryView : MonoBehaviour {
 
             m_selected = obj;
         }
-        else if (m_selected != null)
+        else if ( !active && m_selected != null)
         {
             m_selected.SetActive(false);
             m_selected.GetComponent<Rigidbody>().isKinematic = false;

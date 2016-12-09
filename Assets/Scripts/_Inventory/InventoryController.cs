@@ -10,7 +10,17 @@ public class InventoryController : MonoBehaviour
     public bool visible
     {
         get { return m_inventoryView.gameObject.activeSelf; }
-        set { m_inventoryView.gameObject.SetActive(value); }
+        set
+        {
+            m_inventoryView.gameObject.SetActive(value);
+
+            if (value)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+
+            Cursor.visible = value;
+        }
     }
 
     void Start()
@@ -26,7 +36,7 @@ public class InventoryController : MonoBehaviour
 
     public void add(GameObject obj)
     {
-        m_inventoryModel.add(obj.name, obj);
+        m_inventoryModel.add(obj);
         obj.transform.SetParent(transform);
         m_inventoryView.UpdateContent();
     }
