@@ -64,6 +64,7 @@ GameObject:
   - 4: {fileID: 450736}
   - 108: {fileID: 10880026}
   - 135: {fileID: 13500584}
+  - 122: {fileID: 12283958}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418084}
@@ -115,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.451088, y: 0.965, z: 4.37}
+  m_LocalPosition: {x: 2.7852879, y: -0.26768404, z: 2.7196498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 449904}
@@ -272,6 +273,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59754d5193a63f47b06a62c831e0872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!122 &12283958
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149072}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4287803647
+  m_Size: 0.045
 --- !u!135 &13500584
 SphereCollider:
   m_ObjectHideFlags: 1
