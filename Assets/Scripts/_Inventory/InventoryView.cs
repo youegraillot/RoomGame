@@ -72,7 +72,7 @@ public class InventoryView : MonoBehaviour {
             texture.ReadPixels(new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), 0, 0);
             texture.Apply();
 
-            newItemCard.GetComponentInChildren<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
+            newItemCard.GetComponentsInChildren<Image>()[1].sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
         }
     }
 
