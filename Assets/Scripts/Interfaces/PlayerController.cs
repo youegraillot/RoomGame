@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class PlayerController : MonoBehaviour
 {
@@ -141,15 +142,20 @@ public abstract class PlayerController : MonoBehaviour
 	/// </summary>
 	public abstract void drawObject();
 
-	/// <summary>
-	/// Handle various events.
+    /// <summary>
+	/// Call pickFromInventory()
 	/// </summary>
-	protected abstract void eventHandler();
+    public abstract void pickFromInventoryCallBack();
 
-	/// <summary>
-	/// Define if the object needs to be freezed. Acts like a switch.
-	/// </summary>
-	protected void freezeObject()
+    /// <summary>
+    /// Handle various events.
+    /// </summary>
+    protected abstract void eventHandler();
+
+    /// <summary>
+    /// Define if the object needs to be freezed. Acts like a switch.
+    /// </summary>
+    protected void freezeObject()
     {
         if (m_currentObject != null)
 			((MovableObject)m_currentObject).isFreezed = !(m_currentObject as MovableObject).isFreezed;
@@ -174,12 +180,17 @@ public abstract class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-	/// Pick from inventory.
+	/// Pick from inventory and hold the item.
 	/// </summary>
-	public void pickFromInventory()
+	protected void pickFromInventory()
     {
-        DisplayInventory = false;
+        GameObject picked = m_inventoryController.pick();
 
-
+        if(picked != null)
+        {
+            DisplayInventory = false;
+            m_isHolding = true;
+            m_currentObject = picked.GetComponent<InteractiveObject>();
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class InventoryView : MonoBehaviour {
 
@@ -13,16 +12,25 @@ public class InventoryView : MonoBehaviour {
     [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
     InventoryModel m_inventoryModel;
-    GameObject m_selected;
+
+    GameObject m_selectedItem;
+    public GameObject SelectedItem
+    {
+        get { return m_selectedItem; }
+    }
 
     public void Init (InventoryModel model)
     {
         m_inventoryModel = model;
     }
 
-    public void UpdateContent()
+    /// <summary>
+	/// Regenerate cards.
+	/// </summary>
+    public void updateContent()
     {
         m_content.sizeDelta = Vector2.zero;
+        selectPreview(m_selectedItem, false);
 
         // Clear old cards
         foreach (Transform item in m_content.transform)
@@ -49,10 +57,10 @@ public class InventoryView : MonoBehaviour {
 
             // Define OnClick() callback
             GameObject tmp = item;
-            newItemCard.GetComponent<Button>().onClick.AddListener(() => SelectPreview(tmp, true));
+            newItemCard.GetComponent<Button>().onClick.AddListener(() => selectPreview(tmp, true));
 
             // Generate scaled Preview Image
-            PlaceForPreview(item.transform);
+            placeForPreview(item.transform);
 
             item.SetActive(true);
             m_cameraPreview.Render();
@@ -68,27 +76,33 @@ public class InventoryView : MonoBehaviour {
         }
     }
 
-    public void SelectPreview(GameObject obj, bool active)
+    /// <summary>
+	/// Set an item to display in the animated preview.
+	/// </summary>
+    public void selectPreview(GameObject obj, bool active)
     {
-        if (active && m_selected != obj)
+        if (active && m_selectedItem != obj)
         {
-            SelectPreview(m_selected, false);
-            PlaceForPreview(obj.transform);
+            selectPreview(m_selectedItem, false);
+            placeForPreview(obj.transform);
             
             obj.SetActive(true);
             obj.GetComponent<Rigidbody>().isKinematic = true;
 
-            m_selected = obj;
+            m_selectedItem = obj;
         }
-        else if ( !active && m_selected != null)
+        else if ( !active && obj != null)
         {
-            m_selected.SetActive(false);
-            m_selected.GetComponent<Rigidbody>().isKinematic = false;
-            m_selected = null;
+            obj.SetActive(false);
+            obj.GetComponent<Rigidbody>().isKinematic = false;
+            m_selectedItem = null;
         }
     }
 
-    void PlaceForPreview(Transform item)
+    /// <summary>
+	/// Place the item in front of camera.
+	/// </summary>
+    void placeForPreview(Transform item)
     {
         m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
         item.position = m_originPreviewTransform.position;

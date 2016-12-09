@@ -69,7 +69,6 @@ public class KeyboardController : PlayerController
     /// </summary>
     public override void moveObject()
     {
-        
         if (Target.GetType() == typeof(MovableObject))
         {
 			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
@@ -111,6 +110,18 @@ public class KeyboardController : PlayerController
         }
     }
 
+    /// <summary>
+	/// Verify that we use right click to pick from inventory and display reticle.
+	/// </summary>
+    public override void pickFromInventoryCallBack()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            pickFromInventory();
+            m_displayReticle = true;
+        }
+    }
+
 
     /// <summary>
     /// Handle mouse and keyboard events.
@@ -146,6 +157,9 @@ public class KeyboardController : PlayerController
             m_displayReticle = !DisplayInventory;
         }
         if (Input.GetKeyDown(KeyCode.E) && Target is MovableObject)
+        {
+            m_isHolding = false;
             addToInventory();
+        }
 	}
 }

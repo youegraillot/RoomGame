@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class InventoryController : MonoBehaviour
 {
     [SerializeField]
     InventoryView m_inventoryView;
     InventoryModel m_inventoryModel;
+
+    [SerializeField]
+    Transform m_Objects;
     
     public bool visible
     {
@@ -29,20 +31,34 @@ public class InventoryController : MonoBehaviour
         m_inventoryView.Init(m_inventoryModel);
     }
 
-    public void pick()
+    /// <summary>
+	/// Return the selected item.
+	/// </summary>
+    public GameObject pick()
     {
-        m_inventoryView.UpdateContent();
+        GameObject picked = m_inventoryView.SelectedItem;
+
+        if (picked != null)
+        {
+            remove(picked);
+            picked.SetActive(true);
+            picked.transform.SetParent(m_Objects);
+            return picked;
+        }
+
+        return null;        
     }
 
     public void add(GameObject obj)
     {
         m_inventoryModel.add(obj);
         obj.transform.SetParent(transform);
-        m_inventoryView.UpdateContent();
+        m_inventoryView.updateContent();
     }
 
-    void remove()
+    void remove(GameObject obj)
     {
-        m_inventoryView.UpdateContent();
+        m_inventoryModel.remove(obj);
+        m_inventoryView.updateContent();
     }
 }
