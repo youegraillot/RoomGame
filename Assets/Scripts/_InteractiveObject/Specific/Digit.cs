@@ -5,6 +5,9 @@ public class Digit : ActivableObject
 {
     Animator m_animator;
     int m_value = 0;
+
+    Vector3 m_rotationAxis;
+
     public int Value
     {
         get { return m_value; }
@@ -12,6 +15,7 @@ public class Digit : ActivableObject
 
     void Start()
     {
+        m_rotationAxis = transform.right;
         m_animator = GetComponent<Animator>();
     }
 
@@ -22,7 +26,7 @@ public class Digit : ActivableObject
 
     protected override void specificDeactivation()
     {
-		transform.Rotate(transform.right, -36);
+		transform.Rotate(m_rotationAxis, -36);
         m_value = (m_value+1) % 10;
     }
 }
