@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class PlayerController : MonoBehaviour
 {
@@ -6,10 +7,12 @@ public abstract class PlayerController : MonoBehaviour
     
     private bool m_isRotating;
 	private bool m_isDrawing;
-	InteractiveObject m_currentObject;
+    InteractiveObject m_currentObject;
 
     [SerializeField]
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
+    [SerializeField]
+    InventoryController m_inventoryController;
 
     /// <summary>
     /// Targeted object
@@ -81,7 +84,26 @@ public abstract class PlayerController : MonoBehaviour
 		}
 	}
 
-	public virtual void Update()
+    /// <summary>
+	/// 
+	/// </summary>
+	protected bool DisplayInventory
+    {
+        get
+        {
+            return m_inventoryController.visible;
+        }
+        set
+        {
+            if (m_inventoryController.visible != value)
+            {
+                m_inventoryController.visible = value;
+                FPSController.enabled = !value;
+            }
+        }
+    }
+
+    public virtual void Update()
     {
         updateTarget();
 
@@ -120,15 +142,20 @@ public abstract class PlayerController : MonoBehaviour
 	/// </summary>
 	public abstract void drawObject();
 
-	/// <summary>
-	/// Handle various events.
+    /// <summary>
+	/// Call pickFromInventory()
 	/// </summary>
-	protected abstract void eventHandler();
+    public abstract void pickFromInventoryCallBack();
 
-	/// <summary>
-	/// Define if the object needs to be freezed. Acts like a switch.
-	/// </summary>
-	protected void freezeObject()
+    /// <summary>
+    /// Handle various events.
+    /// </summary>
+    protected abstract void eventHandler();
+
+    /// <summary>
+    /// Define if the object needs to be freezed. Acts like a switch.
+    /// </summary>
+    protected void freezeObject()
     {
         if (m_currentObject != null)
 			((MovableObject)m_currentObject).isFreezed = !(m_currentObject as MovableObject).isFreezed;
@@ -142,4 +169,28 @@ public abstract class PlayerController : MonoBehaviour
 		if (m_currentObject != null)
 			((ActivableObject)m_currentObject).activate();
 	}
+
+    /// <summary>
+	/// Add to inventory the MovableObject.
+	/// </summary>
+	protected void addToInventory()
+    {
+        if (m_currentObject != null)
+            m_inventoryController.add(m_currentObject.gameObject);
+    }
+
+    /// <summary>
+	/// Pick from inventory and hold the item.
+	/// </summary>
+	protected void pickFromInventory()
+    {
+        GameObject picked = m_inventoryController.pick();
+
+        if(picked != null)
+        {
+            DisplayInventory = false;
+            m_isHolding = true;
+            m_currentObject = picked.GetComponent<InteractiveObject>();
+        }
+    }
 }

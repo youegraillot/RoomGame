@@ -69,7 +69,6 @@ public class KeyboardController : PlayerController
     /// </summary>
     public override void moveObject()
     {
-        
         if (Target.GetType() == typeof(MovableObject))
         {
 			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
@@ -111,14 +110,28 @@ public class KeyboardController : PlayerController
         }
     }
 
-
-	/// <summary>
-	/// Handle mouse and keyboard events.
+    /// <summary>
+	/// Verify that we use right click to pick from inventory and display reticle.
 	/// </summary>
-	// Left Click : Freeze(MoveableObject) | Draw(Drawer)
-	// Right Click : Hold(MoveableObject) | Activate(ActivableObject)
-	// CTRL Left : Rotate(MoveableObject)
-	protected override void eventHandler()
+    public override void pickFromInventoryCallBack()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            pickFromInventory();
+            m_displayReticle = true;
+        }
+    }
+
+
+    /// <summary>
+    /// Handle mouse and keyboard events.
+    /// </summary>
+    // Left Click : Freeze(MoveableObject) | Draw(Drawer)
+    // Right Click : Hold(MoveableObject) | Activate(ActivableObject)
+    // CTRL Left : Rotate(MoveableObject)
+    // Tab : DisplayInventory
+    // E : addToInventory(MoveableObject)
+    protected override void eventHandler()
     {
 		// Trigger events
 		if (Target)
@@ -136,5 +149,17 @@ public class KeyboardController : PlayerController
 		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
+
+        // Inventory events
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            DisplayInventory = !DisplayInventory;
+            m_displayReticle = !DisplayInventory;
+        }
+        if (Input.GetKeyDown(KeyCode.E) && Target is MovableObject)
+        {
+            m_isHolding = false;
+            addToInventory();
+        }
 	}
 }

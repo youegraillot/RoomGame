@@ -5,7 +5,7 @@ public class MovableObject : InteractiveObject
 {
 	Quaternion m_initialRotation;
 	protected Rigidbody m_rigidbody;
-
+    
     public bool isFreezed
     {
         get
