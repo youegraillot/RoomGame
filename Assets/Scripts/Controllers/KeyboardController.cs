@@ -72,7 +72,7 @@ public class KeyboardController : PlayerController
         if (Target.GetType() == typeof(MovableObject))
         {
 			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
-        }        
+		}        
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public class KeyboardController : PlayerController
 		}
 
 		// Holding events
-		m_isHolding = Input.GetMouseButton(1) && Target is MovableObject;
+		HoldState = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
 
@@ -158,7 +158,7 @@ public class KeyboardController : PlayerController
         }
         if (Input.GetKeyDown(KeyCode.E) && Target is MovableObject)
         {
-            m_isHolding = false;
+            HoldState = false;
             addToInventory();
         }
 	}
