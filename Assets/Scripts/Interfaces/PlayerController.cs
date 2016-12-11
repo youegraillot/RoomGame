@@ -25,7 +25,7 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!m_isHolding)
+            if (!m_isHolding && !m_isDrawing)
                 m_currentObject = value;
         }
     }
