@@ -12,12 +12,33 @@ public class InventoryView : MonoBehaviour {
     [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
     InventoryModel m_inventoryModel;
+	Animator m_animator;
 
-    GameObject m_selectedItem;
+	bool m_isVisible;
+	public bool visible
+	{
+		get { return m_isVisible; }
+		set
+		{
+			m_isVisible = value;
+
+			if (value)
+				m_animator.Play("Inventory_IN");
+			else
+				m_animator.Play("Inventory_OUT");
+		}
+	}
+
+	GameObject m_selectedItem;
     public GameObject SelectedItem
     {
         get { return m_selectedItem; }
     }
+
+	public void Start()
+	{
+		m_animator = GetComponent<Animator>();
+	}
 
     public void Init (InventoryModel model)
     {
@@ -41,16 +62,13 @@ public class InventoryView : MonoBehaviour {
         // Generate new ones
         foreach (GameObject item in m_inventoryModel.Data)
         {
-            GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
+			// Instantiate new ItemCard
+			GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
             newItemCard.transform.SetParent(m_content);
             newItemCard.name = item.name;
 
-            // Place Card and extend Content viewport
-            newItemCard.GetComponent<RectTransform>().anchoredPosition = m_inventoryItemPrefab.GetComponent<RectTransform>().anchoredPosition;
-            newItemCard.GetComponent<RectTransform>().sizeDelta = m_inventoryItemPrefab.GetComponent<RectTransform>().sizeDelta;
-            newItemCard.GetComponent<RectTransform>().localPosition -= Vector3.up * m_content.sizeDelta.y;
-
-            m_content.sizeDelta += newItemCard.GetComponent<RectTransform>().sizeDelta;
+			// Extend Content viewport
+			m_content.sizeDelta += m_inventoryItemPrefab.GetComponent<RectTransform>().sizeDelta;
 
             // Set the card Name
             newItemCard.GetComponentInChildren<Text>().text = item.name;
@@ -72,7 +90,7 @@ public class InventoryView : MonoBehaviour {
             texture.ReadPixels(new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), 0, 0);
             texture.Apply();
 
-            newItemCard.GetComponentInChildren<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
+            newItemCard.GetComponentsInChildren<Image>()[1].sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
         }
     }
 
