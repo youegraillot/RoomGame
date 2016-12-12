@@ -3,8 +3,7 @@ using UnityEngine.EventSystems;
 
 public abstract class PlayerController : MonoBehaviour
 {
-    protected bool m_isHolding;
-    
+    private bool m_isHolding;
     private bool m_isRotating;
 	private bool m_isDrawing;
     InteractiveObject m_currentObject;
@@ -25,17 +24,38 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!m_isHolding)
+            if (!m_isHolding && !m_isDrawing)
                 m_currentObject = value;
         }
     }
+
+	/// <summary>
+	/// Hold if true
+	/// </summary>
+	protected bool HoldState
+	{
+		get
+		{
+			return m_isHolding;
+		}
+		set
+		{
+			if (m_isHolding != value)
+			{
+				m_isHolding = value;
+
+				if (value)
+					((MovableObject)m_currentObject).isFreezed = false;
+			}
+		}
+	}
 
 	/// <summary>
 	/// Rotate if true
 	/// </summary>
 	protected bool RotateState
     {
-        get
+		get
         {
             return m_isRotating;
         }
@@ -58,7 +78,7 @@ public abstract class PlayerController : MonoBehaviour
     }
 
 	/// <summary>
-	/// Rotate if true
+	/// Draw if true
 	/// </summary>
 	protected bool DrawState
 	{
@@ -158,7 +178,9 @@ public abstract class PlayerController : MonoBehaviour
     protected void freezeObject()
     {
         if (m_currentObject != null)
+		{
 			((MovableObject)m_currentObject).isFreezed = !(m_currentObject as MovableObject).isFreezed;
+		}
     }
 
 	/// <summary>

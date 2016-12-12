@@ -11,10 +11,10 @@ public class InventoryController : MonoBehaviour
     
     public bool visible
     {
-        get { return m_inventoryView.gameObject.activeSelf; }
+        get { return m_inventoryView.visible; }
         set
         {
-            m_inventoryView.gameObject.SetActive(value);
+			m_inventoryView.visible = value;
 
             if (value)
                 Cursor.lockState = CursorLockMode.None;
