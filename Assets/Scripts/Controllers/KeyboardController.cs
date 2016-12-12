@@ -115,11 +115,8 @@ public class KeyboardController : PlayerController
 	/// </summary>
     public override void pickFromInventoryCallBack()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            pickFromInventory();
+        if (Input.GetMouseButtonDown(1) && pickFromInventory())
             m_displayReticle = true;
-        }
     }
 
 

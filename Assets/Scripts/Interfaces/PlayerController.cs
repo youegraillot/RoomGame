@@ -127,7 +127,7 @@ public abstract class PlayerController : MonoBehaviour
     {
         updateTarget();
 
-        if (m_currentObject)
+        if (m_currentObject && !m_inventoryController.visible)
         {
 			if(m_isHolding)
 				moveObject();
@@ -204,15 +204,22 @@ public abstract class PlayerController : MonoBehaviour
     /// <summary>
 	/// Pick from inventory and hold the item.
 	/// </summary>
-	protected void pickFromInventory()
+	protected bool pickFromInventory()
     {
-        GameObject picked = m_inventoryController.pick();
-
-        if(picked != null)
+        if(m_inventoryController.visible)
         {
-            DisplayInventory = false;
-            m_isHolding = true;
-            m_currentObject = picked.GetComponent<InteractiveObject>();
+            GameObject picked = m_inventoryController.pick();
+
+            if (picked != null)
+            {
+                DisplayInventory = false;
+                m_isHolding = true;
+                m_currentObject = picked.GetComponent<InteractiveObject>();
+
+                return true;
+            }
         }
+
+        return false;
     }
 }
