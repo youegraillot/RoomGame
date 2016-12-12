@@ -79,8 +79,6 @@ public class InventoryView : MonoBehaviour {
 
             // Generate scaled Preview Image
             placeForPreview(item.transform);
-
-            item.SetActive(true);
             m_cameraPreview.Render();
             item.SetActive(false);
 
@@ -103,8 +101,6 @@ public class InventoryView : MonoBehaviour {
         {
             selectPreview(m_selectedItem, false);
             placeForPreview(obj.transform);
-            
-            obj.SetActive(true);
             obj.GetComponent<Rigidbody>().isKinematic = true;
 
             m_selectedItem = obj;
@@ -122,7 +118,8 @@ public class InventoryView : MonoBehaviour {
 	/// </summary>
     void placeForPreview(Transform item)
     {
-        m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<MeshRenderer>().bounds.extents.magnitude;
+        item.gameObject.SetActive(true);
+        m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<Collider>().bounds.extents.magnitude;
         item.position = m_originPreviewTransform.position;
         item.rotation = Quaternion.Euler(-30, 140, 0);
     }

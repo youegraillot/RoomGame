@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: lamp_3_mat_a
+  m_Name: Candle Glass
   m_Shader: {fileID: 4800000, guid: 1053338de864a32459026a19029bf6d4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -49,4 +49,4 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+        second: {r: 1, g: 1, b: 1, a: 0}
