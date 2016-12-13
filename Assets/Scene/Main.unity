@@ -1864,11 +1864,11 @@ MonoBehaviour:
   m_holdingDistance: 0.6
   m_raycastRange: 1.4
   m_displayReticle: 1
-  m_reticleTextureIdle: {fileID: 2800000, guid: 5b1a64ea234fb2343b8d0686c51280de,
+  m_reticleTextureIdle: {fileID: 2800000, guid: 5953cf50aa5f713489023bb0e1b62b25,
     type: 3}
-  m_reticleTextureActive: {fileID: 2800000, guid: 5485e2f56028a3c4cb54f5caa167377e,
+  m_reticleTextureActive: {fileID: 2800000, guid: 81d56bf6013f51e4bbae3bae766a5931,
     type: 3}
-  m_reticleSize: 24
+  m_reticleSize: 64
 --- !u!81 &781033560
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3176,15 +3176,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.2952
+      value: 1.911
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.288
+      value: -0.323
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.82365
+      value: 2.946
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3192,7 +3192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.9866007
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalRotation.z
@@ -3200,7 +3200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.00000016292068
+      value: 0.16315362
       objectReference: {fileID: 0}
     - target: {fileID: 415716, guid: 7f02fe119f9bf7045bda66be171e2758, type: 2}
       propertyPath: m_RootOrder

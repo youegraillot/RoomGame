@@ -16,7 +16,7 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureIdle;
     [SerializeField]
     Texture m_reticleTextureActive;
-    [SerializeField, Range(1, 32)]
+    [SerializeField, Range(1, 128)]
     int m_reticleSize = 24;
     Vector3 m_controllerPosition;
 
