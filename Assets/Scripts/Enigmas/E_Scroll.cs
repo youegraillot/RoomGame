@@ -28,11 +28,10 @@ public class E_Scroll : MonoBehaviour
     void setLitState(bool state) { m_isLit = state; }
     void OnTriggerEnter(Collider other)
     {
-        if (m_LightProperty = other.gameObject.GetComponent<Light>())
-        {
-            m_isLit = true;
+        m_LightProperty = other.gameObject.GetComponent<Light>();
 
-        }
+        if (m_LightProperty)
+            m_isLit = true;
     }
     void OnTriggerExit(Collider other)
     {
