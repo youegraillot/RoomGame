@@ -18,7 +18,6 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureActive;
     [SerializeField, Range(1, 128)]
     int m_reticleSize = 24;
-    Vector3 m_controllerPosition;
 
     void Start ()
     {
@@ -26,13 +25,13 @@ public class KeyboardController : PlayerController
             Debug.LogError("Please assign a texture to ReticleTextureIdle");
         if (!m_reticleTextureActive)
             Debug.LogError("Please assign a texture to ReticleTextureActive");
+
+        m_holdPoint.transform.localPosition = transform.forward * m_holdingDistance;
     }
 	
 	public override void Update ()
     {
-        m_controllerPosition = Input.mousePosition;
-
-		// Calls moveObject, updateTarget, eventHandler
+		// Calls updateTarget, eventHandler
 		base.Update();
     }
 
@@ -62,17 +61,6 @@ public class KeyboardController : PlayerController
 #if UNITY_EDITOR
         Debug.DrawRay(m_ray.origin, m_ray.direction * m_raycastRange, Color.blue);
 #endif
-    }
-
-    /// <summary>
-    /// Override to define how the object should move.
-    /// </summary>
-    public override void moveObject()
-    {
-        if (Target.GetType() == typeof(MovableObject))
-        {
-			((MovableObject)Target).moveTo(transform.position + transform.forward * m_holdingDistance);
-		}        
     }
 
     /// <summary>
