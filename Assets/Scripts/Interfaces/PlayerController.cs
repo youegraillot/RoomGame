@@ -14,7 +14,7 @@ public abstract class PlayerController : MonoBehaviour
     InventoryController m_inventoryController;
 
     [SerializeField]
-    protected FixedJoint m_holdPoint;
+    protected Joint m_holdPoint;
 
     /// <summary>
     /// Targeted object
