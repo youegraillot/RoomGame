@@ -27,7 +27,7 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!HoldState && !DrawState)
+            if (!HoldState && !DrawState && !RotateState)
                 m_currentObject = value;
         }
     }

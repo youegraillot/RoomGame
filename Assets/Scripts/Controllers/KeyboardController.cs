@@ -75,7 +75,7 @@ public class KeyboardController : PlayerController
     }
 
 	/// <summary>
-	/// Override to define how the object should be drawed.
+	/// Override to define how the object should be drawn.
 	/// </summary>
 	public override void drawObject()
 	{
