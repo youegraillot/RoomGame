@@ -7,7 +7,6 @@ public abstract class PlayerController : MonoBehaviour
     bool m_isRotating;
 	bool m_isDrawing;
     InteractiveObject m_currentObject;
-    Transform m_currentObjectParent;
 
     [SerializeField]
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
@@ -50,16 +49,13 @@ public abstract class PlayerController : MonoBehaviour
 
 				if (value)
                 {
-                    m_currentObjectParent = Target.transform.parent;
-                    Target.transform.parent = m_holdPoint.transform;
-                    Target.transform.localPosition = Vector3.zero;
+                    Target.transform.position = m_holdPoint.transform.position;
 
                     m_holdPoint.connectedBody = Target.GetComponent<Rigidbody>();
                     ((MovableObject)m_currentObject).isFreezed = false;
                 }
                 else
                 {
-                    Target.transform.parent = m_currentObjectParent;
                     m_holdPoint.connectedBody = null;
                 }
             }
