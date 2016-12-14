@@ -3,15 +3,19 @@ using UnityEngine.EventSystems;
 
 public abstract class PlayerController : MonoBehaviour
 {
-    private bool m_isHolding;
-    private bool m_isRotating;
-	private bool m_isDrawing;
+    bool m_isHolding;
+    bool m_isRotating;
+	bool m_isDrawing;
     InteractiveObject m_currentObject;
+    Transform m_currentObjectParent;
 
     [SerializeField]
     UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
     [SerializeField]
     InventoryController m_inventoryController;
+
+    [SerializeField]
+    protected FixedJoint m_holdPoint;
 
     /// <summary>
     /// Targeted object
@@ -24,7 +28,7 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!m_isHolding && !m_isDrawing)
+            if (!HoldState && !DrawState)
                 m_currentObject = value;
         }
     }
@@ -45,8 +49,20 @@ public abstract class PlayerController : MonoBehaviour
 				m_isHolding = value;
 
 				if (value)
-					((MovableObject)m_currentObject).isFreezed = false;
-			}
+                {
+                    m_currentObjectParent = Target.transform.parent;
+                    Target.transform.parent = m_holdPoint.transform;
+                    Target.transform.localPosition = Vector3.zero;
+
+                    m_holdPoint.connectedBody = Target.GetComponent<Rigidbody>();
+                    ((MovableObject)m_currentObject).isFreezed = false;
+                }
+                else
+                {
+                    Target.transform.parent = m_currentObjectParent;
+                    m_holdPoint.connectedBody = null;
+                }
+            }
 		}
 	}
 
@@ -129,13 +145,10 @@ public abstract class PlayerController : MonoBehaviour
 
         if (m_currentObject && !m_inventoryController.visible)
         {
-			if(m_isHolding)
-				moveObject();
-
-            if (m_isRotating)
+            if (RotateState)
                 rotateObject();
 
-			if (m_isDrawing)
+			if (DrawState)
 				drawObject();
 		}
 
@@ -146,11 +159,6 @@ public abstract class PlayerController : MonoBehaviour
     /// Called by update in order to set the target object.
     /// </summary>
     public abstract void updateTarget();
-
-    /// <summary>
-    /// Called by update in order to move the target object.
-    /// </summary>
-    public abstract void moveObject();
 
     /// <summary>
     /// Called by update in order to rotate the target object.
@@ -213,8 +221,8 @@ public abstract class PlayerController : MonoBehaviour
             if (picked != null)
             {
                 DisplayInventory = false;
-                m_isHolding = true;
                 m_currentObject = picked.GetComponent<InteractiveObject>();
+                HoldState = true;
 
                 return true;
             }

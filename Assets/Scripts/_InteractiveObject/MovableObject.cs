@@ -30,12 +30,6 @@ public class MovableObject : InteractiveObject
     {
 		m_initialRotation = transform.localRotation;
 	}
-
-    public virtual void moveTo(Vector3 newPositon)
-    {
-        transform.position = newPositon;
-        m_rigidbody.velocity = Vector3.zero;
-    }
     
     public virtual void rotate(Quaternion newRotation)
     {
