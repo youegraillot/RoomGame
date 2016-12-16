@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Digit : ActivableObject
 {
-    Animator m_animator;
+    Animation m_animation;
     int m_value = 0;
 
     Vector3 m_rotationAxis;
@@ -16,17 +16,17 @@ public class Digit : ActivableObject
     void Start()
     {
         m_rotationAxis = transform.right;
-        m_animator = GetComponent<Animator>();
+        m_animation = GetComponent<Animation>();
     }
 
     protected override void specificActivation()
     {
-        m_animator.Play("Rotate 36");
+        transform.Rotate(m_rotationAxis, -36);
+        m_animation.Play();
     }
 
     protected override void specificDeactivation()
     {
-		transform.Rotate(m_rotationAxis, -36);
         m_value = (m_value+1) % 10;
     }
 }
