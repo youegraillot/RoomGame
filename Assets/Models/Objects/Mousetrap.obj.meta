@@ -1,0 +1,118 @@
+fileFormatVersion: 2
+guid: 2d4b11bf674d8c640adea4948c3e8007
+timeCreated: 1479312047
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bois
+    100002: Fromage
+    100004: Tapette
+    100006: //RootNode
+    100008: TigeAttach_
+    100010: TigeMilieu
+    100012: Attach
+    100014: Base
+    100016: Cheese
+    100018: Pivot
+    400000: Bois
+    400002: Fromage
+    400004: Tapette
+    400006: //RootNode
+    400008: TigeAttach_
+    400010: TigeMilieu
+    400012: Attach
+    400014: Base
+    400016: Cheese
+    400018: Pivot
+    2300000: Bois
+    2300002: Fromage
+    2300004: Tapette
+    2300006: TigeAttach_
+    2300008: TigeMilieu
+    2300010: Attach
+    2300012: Base
+    2300014: Cheese
+    2300016: Pivot
+    3300000: Bois
+    3300002: Fromage
+    3300004: Tapette
+    3300006: TigeAttach_
+    3300008: TigeMilieu
+    3300010: Attach
+    3300012: Base
+    3300014: Cheese
+    3300016: Pivot
+    4300000: Bois
+    4300002: Fromage
+    4300004: Tapette
+    4300006: TigeAttach_
+    4300008: TigeMilieu
+    4300010: Attach
+    4300012: Base
+    4300014: Cheese
+    4300016: Pivot
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.8
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 72
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

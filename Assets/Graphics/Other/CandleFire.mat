@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: flame
+  m_Name: CandleFire
   m_Shader: {fileID: 4800000, guid: bca087a5799ea6548a17e92c77694fdc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
