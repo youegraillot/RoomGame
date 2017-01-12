@@ -267,7 +267,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &65186684
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ Transform:
   m_Children:
   - {fileID: 781033561}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &84834518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ed3f09d929a7f2b4b927458555c7d7e7, type: 3}
@@ -1819,7 +1819,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1291841533}
     m_Modifications:
     - target: {fileID: 400002, guid: 1cae4cbbccc65b34cacaae5104f4292e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1851,7 +1851,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1cae4cbbccc65b34cacaae5104f4292e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 1cae4cbbccc65b34cacaae5104f4292e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3216,7 +3216,7 @@ Transform:
   - {fileID: 810637301}
   - {fileID: 2091573745}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &1288042914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3343,6 +3343,8 @@ Transform:
   - {fileID: 1204777656}
   - {fileID: 1437720875}
   - {fileID: 923624345}
+  - {fileID: 2023739553}
+  - {fileID: 2025903860}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 1
 --- !u!4 &1341900666 stripped
@@ -4693,6 +4695,87 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.050338328, y: 0.5341854, z: 0.08571924}
   m_Center: {x: 0.28989428, y: 0.2329073, z: -0.18491429}
+--- !u!4 &2023739553 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 1cae4cbbccc65b34cacaae5104f4292e, type: 3}
+  m_PrefabInternal: {fileID: 718341141}
+--- !u!1 &2025903857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 072e14feadc583a43bdaedfe7487e8f5, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2025903860}
+  - 33: {fileID: 2025903859}
+  - 23: {fileID: 2025903858}
+  - 64: {fileID: 2025903861}
+  m_Layer: 0
+  m_Name: Chair
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &2025903858
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 072e14feadc583a43bdaedfe7487e8f5,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025903857}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ab9a4a3c4423e5c49b5b7f0ee2de6625, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &2025903859
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 072e14feadc583a43bdaedfe7487e8f5,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025903857}
+  m_Mesh: {fileID: 4300000, guid: 072e14feadc583a43bdaedfe7487e8f5, type: 3}
+--- !u!4 &2025903860
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 072e14feadc583a43bdaedfe7487e8f5, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025903857}
+  m_LocalRotation: {x: 0, y: -0.3098472, z: 0, w: -0.95078635}
+  m_LocalPosition: {x: 0.962, y: 0, z: 4.004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1291841533}
+  m_RootOrder: 10
+--- !u!64 &2025903861
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2025903857}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 072e14feadc583a43bdaedfe7487e8f5, type: 3}
 --- !u!1 &2038542653
 GameObject:
   m_ObjectHideFlags: 0
