@@ -107,15 +107,18 @@ public class KeyboardController : PlayerController
             m_displayReticle = true;
     }
 
-
     /// <summary>
     /// Handle mouse and keyboard events.
     /// </summary>
     // Left Click : Freeze(MoveableObject) | Draw(Drawer)
     // Right Click : Hold(MoveableObject) | Activate(ActivableObject)
-    // CTRL Left : Rotate(MoveableObject)
-    // Tab : DisplayInventory
-    // E : addToInventory(MoveableObject)
+    [Header("Controls")]
+    [SerializeField]
+    KeyCode m_rotateObjectKey;
+    [SerializeField]
+    KeyCode m_openInventoryKey;
+    [SerializeField]
+    KeyCode m_takeObjectKey;
     protected override void eventHandler()
     {
 		// Trigger events
@@ -133,15 +136,15 @@ public class KeyboardController : PlayerController
 		// Holding events
 		HoldState = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
-		RotateState = Input.GetKey(KeyCode.LeftControl) && Target is MovableObject;
+		RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
 
         // Inventory events
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(m_openInventoryKey))
         {
             DisplayInventory = !DisplayInventory;
             m_displayReticle = !DisplayInventory;
         }
-        if (Input.GetKeyDown(KeyCode.E) && Target is MovableObject)
+        if (Input.GetKeyDown(m_takeObjectKey) && Target is MovableObject)
         {
             HoldState = false;
             addToInventory();
