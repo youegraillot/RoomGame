@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0ffca0274db41534c96654d31dabf413
-timeCreated: 1485160411
+timeCreated: 1485162686
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -12,7 +12,7 @@ SubstanceImporter:
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
     renderQueue: -1
-    lightmapFlags: 1
+    lightmapFlags: 2
     inputs:
     - name: $outputsize
       value:
@@ -1090,7 +1090,7 @@ SubstanceImporter:
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
     shaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
     renderQueue: -1
-    lightmapFlags: 1
+    lightmapFlags: 2
     inputs:
     - name: $outputsize
       value:
