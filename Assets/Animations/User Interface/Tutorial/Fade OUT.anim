@@ -21,14 +21,14 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 1
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
-      - time: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
         value: 0
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
+        inSlope: -4.8740597
+        outSlope: -4.8740597
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -41,14 +41,14 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 1
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
-      - time: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
         value: 0
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
+        inSlope: -4.731959
+        outSlope: -4.731959
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -82,7 +82,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -103,14 +103,14 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 1
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
-      - time: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
         value: 0
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
+        inSlope: -4.8740597
+        outSlope: -4.8740597
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -123,14 +123,14 @@ AnimationClip:
       m_Curve:
       - time: 0
         value: 1
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
-      - time: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      - time: 0.5
         value: 0
-        inSlope: -1
-        outSlope: -1
-        tangentMode: 10
+        inSlope: -4.731959
+        outSlope: -4.731959
+        tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -143,7 +143,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 1
+  - time: 0.5
     functionName: playNext
     data: 
     objectReferenceParameter: {fileID: 0}

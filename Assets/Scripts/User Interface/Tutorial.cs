@@ -14,7 +14,7 @@ public class Tutorial : MonoBehaviour {
 
     Animator m_animator;
 
-    Action m_action = Action.None;
+    Action m_pendingAction = Action.None;
     RawImage m_illustration;
     Text m_caption;
 
@@ -39,7 +39,7 @@ public class Tutorial : MonoBehaviour {
 	
 	void Update ()
     {
-        switch (m_action)
+        switch (m_pendingAction)
         {
             case Action.Move:
                 if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
@@ -60,7 +60,7 @@ public class Tutorial : MonoBehaviour {
 
             m_animator.Play("Fade IN");
 
-            m_action = m_actionList[m_index];
+            m_pendingAction = m_actionList[m_index];
             m_illustration.texture = m_illustrationList[m_index];
             m_caption.text = m_captionList[m_index];
         }
@@ -74,6 +74,6 @@ public class Tutorial : MonoBehaviour {
     void end()
     {
         m_animator.Play("Fade OUT");
-        m_action = Action.None;
+        m_pendingAction = Action.None;
     }
 }
