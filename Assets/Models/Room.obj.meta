@@ -10,23 +10,28 @@ ModelImporter:
     100004: Ceilling
     100006: Floor
     100008: Ceiling
+    100010: Bound
     400000: //RootNode
     400002: Wall
     400004: Ceilling
     400006: Floor
     400008: Ceiling
+    400010: Bound
     2300000: Wall
     2300002: Ceilling
     2300004: Floor
     2300006: Ceiling
+    2300008: Bound
     3300000: Wall
     3300002: Ceilling
     3300004: Floor
     3300006: Ceiling
+    3300008: Bound
     4300000: Wall
     4300002: Ceilling
     4300004: Floor
     4300006: Ceiling
+    4300008: Bound
   materials:
     importMaterials: 0
     materialName: 0
