@@ -12,16 +12,18 @@ public class LightFlicker : MonoBehaviour
 
     Light m_light;
     float m_randomSeed;
+    float m_initIntensity;
 
     void Start()
     {
         m_light = GetComponent<Light>();
         m_randomSeed = Random.Range(0.0f, 65535.0f);
+        m_initIntensity = m_light.intensity;
     }
 
     void Update()
     {
         float noise = Mathf.PerlinNoise(m_randomSeed, Time.time* m_speed);
-        m_light.intensity = Mathf.Lerp(m_minIntensity, m_maxIntensity, noise);
+        m_light.intensity = m_initIntensity * Mathf.Lerp(m_minIntensity, m_maxIntensity, noise);
     }
 }

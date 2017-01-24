@@ -30,6 +30,7 @@ GameObject:
   - 135: {fileID: 13576560}
   - 122: {fileID: 12270710}
   - 108: {fileID: 10874364}
+  - 114: {fileID: 11478672}
   m_Layer: 8
   m_Name: Fire
   m_TagString: Untagged
@@ -260,7 +261,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.99264705, g: 0.6648521, b: 0.4525303, a: 1}
   m_Intensity: 2
-  m_Range: 1
+  m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -293,6 +294,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59754d5193a63f47b06a62c831e0872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11478672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a2ba3118879374da205849edbd6fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minIntensity: 0.8
+  m_maxIntensity: 1
+  m_speed: 2
 --- !u!122 &12270710
 Halo:
   m_ObjectHideFlags: 1
