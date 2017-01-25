@@ -27,7 +27,6 @@ GameObject:
   - 4: {fileID: 418084}
   - 33: {fileID: 3313360}
   - 23: {fileID: 2387878}
-  - 135: {fileID: 13576560}
   - 122: {fileID: 12270710}
   m_Layer: 8
   m_Name: Fire
@@ -81,6 +80,7 @@ GameObject:
   - 4: {fileID: 428948}
   - 108: {fileID: 10888032}
   - 114: {fileID: 11454136}
+  - 135: {fileID: 13580054}
   m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1428, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 455236}
@@ -349,18 +349,18 @@ Halo:
     serializedVersion: 2
     rgba: 4287803647
   m_Size: 0.045
---- !u!135 &13576560
+--- !u!135 &13580054
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 123460}
+  m_GameObject: {fileID: 195440}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.3894444
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.3
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
