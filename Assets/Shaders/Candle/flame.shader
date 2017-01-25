@@ -41,7 +41,6 @@
 		{
 			Name "OUTLINE"
 			
-			ZWrite Off
 			Blend SrcAlpha OneMinusSrcAlpha
 			Cull Front
 			CGPROGRAM
@@ -70,7 +69,7 @@
 		Pass
 		{
 			Name "DISPLACEMENT"
-			ZWrite Off
+			
 			Blend SrcAlpha OneMinusSrcAlpha
 			Cull Off
 			CGPROGRAM
