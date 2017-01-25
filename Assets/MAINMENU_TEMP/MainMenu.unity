@@ -8888,10 +8888,10 @@ RectTransform:
   - {fileID: 882810133}
   m_Father: {fileID: 1736474143}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000038146973, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1668572571
 GameObject:
@@ -9942,7 +9942,7 @@ Canvas:
   m_GameObject: {fileID: 1736474139}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 318582013}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
