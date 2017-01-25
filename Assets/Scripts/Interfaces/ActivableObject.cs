@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
 
 public abstract class ActivableObject : InteractiveObject
 {
@@ -56,16 +55,13 @@ public abstract class ActivableObject : InteractiveObject
     /// <summary>
     /// Called by activate().
     /// </summary>
-    protected virtual void specificActivation()
-    {
-        Debug.LogWarning("You have to specify child specificActivation() method.");
-    }
+    protected abstract void specificActivation();
 
     /// <summary>
     /// Called by deactivate().
     /// </summary>
     protected virtual void specificDeactivation()
     {
-        Debug.LogWarning("You have to specify child specificDeactivation() method.");
+        throw new NotImplementedException();
     }
 }
