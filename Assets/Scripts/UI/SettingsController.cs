@@ -5,9 +5,6 @@ using System;
 using System.Collections.Generic;
 public class SettingsController : MonoBehaviour
 {
-
-
-
     enum UICompName
     {
         GraphicsQual,
@@ -82,17 +79,17 @@ public class SettingsController : MonoBehaviour
     }
 
 
-    public void ApplyChange()
+    public void applyChange()
     {
-        Settings.Instance.ApplySettings(m_settings);
+        Settings.Instance.applySettings(m_settings);
     }
     void OnEnable()
     {
-        ResetSettings();
+        resetSettings();
     }
-    public void ResetSettings()
+    public void resetSettings()
     {
-        m_settings = Settings.Instance.ResetSettings();
+        m_settings = Settings.Instance.resetSettings();
         antiAliasing.value = m_settings.m_aa;
         graphicsQuality.value = m_settings.m_qGraphic;
         resolution.value = m_settings.m_resolution;

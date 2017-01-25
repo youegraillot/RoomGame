@@ -34,7 +34,7 @@ public class Settings : MonoBehaviour
         m_resArray[2] = new Vector2(1920, 1080);
     }
 
-    string filename = Application.persistentDataPath + "/Player.settings";
+    string m_filename = Application.persistentDataPath + "/Player.settings";
     private static Settings _instance;
     public static Settings Instance
     {
@@ -53,25 +53,25 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public SettingsData ResetSettings()
+    public SettingsData resetSettings()
     {
         m_settingsData = null;
         m_settingsData = new SettingsData();
         return m_settingsData;
     }
-    void LoadSettings()
+    void loadSettings()
     {
-        if(File.Exists(filename))
+        if(File.Exists(m_filename))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(filename, FileMode.Open);
+            FileStream file = File.Open(m_filename, FileMode.Open);
             SettingsData sData =(SettingsData) bf.Deserialize(file);
             file.Close();
-            ApplySettings(sData,false);
+            applySettings(sData,false);
         }
     }
 
-    public void ApplySettings(SettingsData settings, bool save=true)
+    public void applySettings(SettingsData settings, bool save=true)
     {
         if(m_settingsData.m_aa != settings.m_aa)
         {
@@ -136,13 +136,13 @@ public class Settings : MonoBehaviour
         }
         m_settingsData = settings;
         if (save)
-            SaveSettings();
+            saveSettings();
     }
 
-    void SaveSettings()
+    void saveSettings()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(filename);
+        FileStream file = File.Create(m_filename);
         bf.Serialize(file, m_settingsData);
         file.Close();
     }
