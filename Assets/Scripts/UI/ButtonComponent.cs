@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.EventSystems;
 public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public float alphaVal = 90f;
     GameObject m_children;
     void Start()
     {
