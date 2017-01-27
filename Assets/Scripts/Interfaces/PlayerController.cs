@@ -52,7 +52,9 @@ public abstract class PlayerController : MonoBehaviour
                     Target.transform.position = m_holdPoint.transform.position;
 
                     m_holdPoint.connectedBody = Target.GetComponent<Rigidbody>();
-                    ((MovableObject)m_currentObject).isFreezed = false;
+                    MovableObject obj = m_currentObject as MovableObject;
+                    if(obj)
+                        obj.isFreezed = false;
                 }
                 else
                 {
@@ -76,15 +78,27 @@ public abstract class PlayerController : MonoBehaviour
             if(m_isRotating != value)
             {
                 m_isRotating = value;
-                FPSController.enabled = !value;
-
-                if (value)
+                //à changer
+                if(FPSController)
                 {
-					((MovableObject)m_currentObject).initRotation();
-                    Cursor.lockState = CursorLockMode.None;
+                    FPSController.enabled = !value;
+                    if (value)
+                    {
+                        ((MovableObject)m_currentObject).initRotation();
+                        Cursor.lockState = CursorLockMode.None;
+                    }
+                    else
+                        Cursor.lockState = CursorLockMode.Locked;
+                }else
+                {
+                    if(value)
+                    {
+                        var obj = m_currentObject as MovableObject;
+                        if (obj)
+                            obj.initRotation();
+                    }
                 }
-                else
-                    Cursor.lockState = CursorLockMode.Locked;
+
             }
         }
     }
