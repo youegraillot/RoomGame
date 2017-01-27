@@ -11,29 +11,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class ViveNavMesh : MonoBehaviour
 {
-    /// Material used for the floor mesh when the user is selecting a point to teleport to
-    public Material GroundMaterial
-    {
-        get { return _GroundMaterial; }
-        set
-        {
-            Material old = _GroundMaterial;
-            _GroundMaterial = value;
-            if(_GroundMaterial != null)
-                _GroundMaterial.SetFloat(AlphaShaderID, GroundAlpha);
-            if (old != _GroundMaterial)
-                Cleanup();
-        }
-    }
-    [SerializeField]
-    private Material _GroundMaterial;
-
-    /// \brief The alpha (transparency) value of the rendered ground mesh)
-    /// \sa GroundMaterial
-    [Range(0,1)]
-    public float GroundAlpha = 1.0f;
-    private float LastGroundAlpha = 1.0f;
-    private int AlphaShaderID = -1;
+    
 
     /// A Mesh that represents the "Selectable" area of the world.  This is converted from Unity's NavMesh in ViveNavMeshEditor
     public Mesh SelectableMesh
@@ -73,23 +51,13 @@ public class ViveNavMesh : MonoBehaviour
         Border = GetComponent<BorderRenderer>();
         Border.Points = SelectableMeshBorder;
 
-        AlphaShaderID = Shader.PropertyToID("_Alpha");
 #if UNITY_EDITOR
         UnityEditor.SceneView.RepaintAll();
 #endif
     }
 
-    void Update ()
-    {
-        // We have to detect changes this way instead of using properties because
-        // we want to be able to animate the alpha value with a Unity animator.
-        if (GroundAlpha != LastGroundAlpha && GroundMaterial != null)
-        {
-            GroundMaterial.SetFloat(AlphaShaderID, GroundAlpha);
-            LastGroundAlpha = GroundAlpha;
-        }
-    }
-
+ 
+    
     private void Cleanup()
     {
         foreach (var cam in cameras)
@@ -112,7 +80,7 @@ public class ViveNavMesh : MonoBehaviour
         Cleanup();
     }
 
-    void OnRenderObject()
+   /* void OnRenderObject()
     {
         // We have to use command buffers instead of Graphics.DrawMesh because of strange depth issues that I am experiencing
         // with Graphics.Drawmesh (perhaps Graphics.DrawMesh is called before all opaque objects are rendered?)
@@ -124,7 +92,7 @@ public class ViveNavMesh : MonoBehaviour
         }
 
         // If _SelectableMesh == null there is a crash in Unity 5.4 beta (apparently you can't pass null to CommandBuffer::DrawMesh now).
-        if (!_SelectableMesh || !GroundMaterial)
+        if (!_SelectableMesh)
             return;
 
         var cam = Camera.current;
@@ -140,15 +108,12 @@ public class ViveNavMesh : MonoBehaviour
         buf.DrawMesh(_SelectableMesh, Matrix4x4.TRS(Vector3.up * 0.005f, Quaternion.identity, Vector3.one), GroundMaterial, 0);
         cameras[cam] = buf;
         cam.AddCommandBuffer(CameraEvent.AfterForwardOpaque, buf);
-    }
+    }*/
 
     void OnValidate()
     {
         Border = GetComponent<BorderRenderer>();
         Border.Points = SelectableMeshBorder;
-
-        if(AlphaShaderID == -1)
-            AlphaShaderID = Shader.PropertyToID("_Alpha");
     }
 
     /// \brief Casts a ray against the Navmesh and attempts to calculate the ray's worldspace intersection with it.

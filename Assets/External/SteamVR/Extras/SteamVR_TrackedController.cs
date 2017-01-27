@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Valve.VR;
+using UnityEngine.Events;
 
 public struct ClickedEventArgs
 {
@@ -9,6 +10,8 @@ public struct ClickedEventArgs
 }
 
 public delegate void ClickedEventHandler(object sender, ClickedEventArgs e);
+public delegate void onTriggerEvent(InteractiveObject newObj);
+
 
 public class SteamVR_TrackedController : MonoBehaviour
 {
@@ -20,6 +23,9 @@ public class SteamVR_TrackedController : MonoBehaviour
     public bool padPressed = false;
     public bool padTouched = false;
     public bool gripped = false;
+
+    [SerializeField]
+    ViveController m_viveController;
 
     public event ClickedEventHandler MenuButtonClicked;
     public event ClickedEventHandler MenuButtonUnclicked;
@@ -41,26 +47,40 @@ public class SteamVR_TrackedController : MonoBehaviour
             gameObject.AddComponent<SteamVR_TrackedObject>();
         }
 
-		if (controllerIndex != 0)
-		{
-			this.GetComponent<SteamVR_TrackedObject>().index = (SteamVR_TrackedObject.EIndex)controllerIndex;
-			if (this.GetComponent<SteamVR_RenderModel>() != null)
-			{
-				this.GetComponent<SteamVR_RenderModel>().index = (SteamVR_TrackedObject.EIndex)controllerIndex;
-			}
-		}
-		else
-		{
-			controllerIndex = (uint) this.GetComponent<SteamVR_TrackedObject>().index;
+        if (controllerIndex != 0)
+        {
+            this.GetComponent<SteamVR_TrackedObject>().index = (SteamVR_TrackedObject.EIndex)controllerIndex;
+            if (this.GetComponent<SteamVR_RenderModel>() != null)
+            {
+                this.GetComponent<SteamVR_RenderModel>().index = (SteamVR_TrackedObject.EIndex)controllerIndex;
+            }
+        }
+        else
+        {
+            controllerIndex = (uint)this.GetComponent<SteamVR_TrackedObject>().index;
         }
     }
 
-	public void SetDeviceIndex(int index)
-	{
-			this.controllerIndex = (uint) index;
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        InteractiveObject tmp = other.GetComponent<InteractiveObject>();
 
-	public virtual void OnTriggerClicked(ClickedEventArgs e)
+        if (tmp)
+            m_viveController.Target = tmp;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<InteractiveObject>() == m_viveController.Target)
+            m_viveController.Target = null;
+    }
+
+    public void SetDeviceIndex(int index)
+    {
+        this.controllerIndex = (uint)index;
+    }
+
+    public virtual void OnTriggerClicked(ClickedEventArgs e)
     {
         if (TriggerClicked != null)
             TriggerClicked(this, e);
@@ -129,10 +149,10 @@ public class SteamVR_TrackedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		var system = OpenVR.System;
-		if (system != null && system.GetControllerState(controllerIndex, ref controllerState))
-		{
-			ulong trigger = controllerState.ulButtonPressed & (1UL << ((int)EVRButtonId.k_EButton_SteamVR_Trigger));
+        var system = OpenVR.System;
+        if (system != null && system.GetControllerState(controllerIndex, ref controllerState))
+        {
+            ulong trigger = controllerState.ulButtonPressed & (1UL << ((int)EVRButtonId.k_EButton_SteamVR_Trigger));
             if (trigger > 0L && !triggerPressed)
             {
                 triggerPressed = true;

@@ -126,15 +126,7 @@ public class ViveNavMeshEditor : Editor {
         EditorGUILayout.LabelField("Render Settings", EditorStyles.boldLabel);
 
         EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(p_material);
-        if (EditorGUI.EndChangeCheck())
-        {
-            Undo.RecordObject(mesh, "Change Ground Material");
-            serializedObject.ApplyModifiedPropertiesWithoutUndo();
-            mesh.GroundMaterial = mesh.GroundMaterial; // Reload material
-        }
-
-        EditorGUILayout.PropertyField(p_alpha);
+   
         serializedObject.ApplyModifiedProperties();
     }
 

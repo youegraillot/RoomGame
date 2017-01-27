@@ -19,7 +19,7 @@ public abstract class PlayerController : MonoBehaviour
     /// <summary>
     /// Targeted object
     /// </summary>
-    protected InteractiveObject Target
+    public InteractiveObject Target
     {
         get
         {

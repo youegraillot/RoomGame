@@ -1,76 +1,57 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
-using Valve.VR;
 
-
-[RequireComponent(typeof(SteamVR_TrackedController))]
-[RequireComponent(typeof(CapsuleCollider))]
 public class ViveController : PlayerController
 {
-    void OnCollisionEnter(Collision other)
-    {
-      /*  if(other.gameObject.layer == LayerMask.NameToLayer(""))
-        {
-            Target = other.gameObject.GetComponent<InteractiveObject>();
-        }*/
-        if(other.gameObject.GetComponent<InteractiveObject>())
-        {
-            Target = other.gameObject.GetComponent<InteractiveObject>();
-        }
-    }
-    void OnCollisionExit(Collision other)
-    {
-      /*  if(other.gameObject.layer == LayerMask.NameToLayer(""))
-        {
-            Target = null;
-        }*/
+    SteamVR_TrackedController m_controllerLeft;     // ID = 0
+    SteamVR_TrackedController m_controllerRight;    // ID = 1
 
-        if (other.gameObject.GetComponent<InteractiveObject>() && Target)
-        {
-            Target = null;
+    void Start()
+    {
+        m_controllerLeft = transform.FindChild("Controller (left)").GetComponent<SteamVR_TrackedController>();
+        m_controllerRight = transform.FindChild("Controller (right)").GetComponent<SteamVR_TrackedController>();
 
-        }
+        m_controllerLeft.PadClicked += onPadClickedLeft;            // TP init
+        m_controllerLeft.PadUnclicked += onPadUnClickedLeft;        // TP launch
+        m_controllerRight.PadClicked += onPadClickedRight;          // Take obj
+        m_controllerRight.PadUnclicked += onPadUnClickedRight;      // Drop obj
+
+        m_controllerLeft.TriggerClicked += onTriggerClicked;        // interract
+        //m_controllerRight.TriggerClicked += onTriggerClicked;
+
+        m_controllerLeft.MenuButtonClicked += onMenuClickLeft;      // Main menu
+        m_controllerRight.MenuButtonClicked += onMenuClickRight;    // Inventory menu
     }
     
-    private SteamVR_TrackedController m_stickController;
-    void OnEnable()
+    void onPadClickedLeft(object sender, ClickedEventArgs e)
     {
-        m_stickController = this.GetComponent<SteamVR_TrackedController>();
-
-        m_stickController.MenuButtonUnclicked += onMenuUnclick;
-        m_stickController.TriggerClicked += onTriggerClicked;
-        m_stickController.TriggerUnclicked += onTriggerUnClicked;
-        m_stickController.PadClicked += onPadClicked;
+    }
+    void onPadUnClickedLeft(object sender, ClickedEventArgs e)
+    {
     }
 
-    void OnDisable()
-    {
-        m_stickController.MenuButtonUnclicked -= onMenuUnclick;
-        m_stickController.TriggerClicked -= onTriggerClicked;
-        m_stickController.TriggerUnclicked -= onTriggerUnClicked;
-        m_stickController.PadClicked -= onPadClicked;
-    }
 
-    void onPadClicked(object sender, ClickedEventArgs e)
+    void onPadClickedRight(object sender, ClickedEventArgs e)
     {
-
+        if(Target)
+        HoldState = true;
     }
-    void onTriggerUnClicked(object sender, ClickedEventArgs e)
+    void onPadUnClickedRight(object sender, ClickedEventArgs e)
     {
-        m_isTrigger = false;
-        if (Target)
-        {
-            Target = null;
-        }
+        HoldState = false;
     }
+    
     void onTriggerClicked(object sender, ClickedEventArgs e)
     {
         m_isTrigger = true;
     }
-    void onMenuUnclick(object sender, ClickedEventArgs e)
+
+    void onMenuClickLeft(object sender, ClickedEventArgs e)
     {
         
+    }
+    void onMenuClickRight(object sender, ClickedEventArgs e)
+    {
+
     }
 
     public override void drawObject()
@@ -83,24 +64,10 @@ public class ViveController : PlayerController
 
     public override void rotateObject()
     {
-        Quaternion newAngle = m_stickController.transform.rotation;
-        //newAngle = Quaternion.Inverse(newAngle);
-        Target.transform.rotation = newAngle;
-        //((MovableObject)Target).rotate(newAngle);
     }
 
     public override void updateTarget()
     {
-        if(m_isTrigger && Target)
-        {
-            HoldState = true;
-            RotateState = true;
-        }
-        else
-        {
-            HoldState = false;
-            RotateState = false;
-        }
     }
 
     private bool m_isTrigger = false;

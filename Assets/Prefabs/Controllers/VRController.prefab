@@ -14,7 +14,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &113058
 GameObject:
   m_ObjectHideFlags: 1
@@ -26,7 +26,6 @@ GameObject:
   - 114: {fileID: 11473474}
   - 54: {fileID: 5414286}
   - 136: {fileID: 13618714}
-  - 114: {fileID: 11432140}
   - 114: {fileID: 11421364}
   m_Layer: 0
   m_Name: Controller (right)
@@ -61,6 +60,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 483770}
   - 114: {fileID: 11473574}
+  - 114: {fileID: 11458354}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -149,7 +149,6 @@ GameObject:
   - 114: {fileID: 11444028}
   - 54: {fileID: 5475970}
   - 136: {fileID: 13620462}
-  - 114: {fileID: 11428210}
   - 114: {fileID: 11454390}
   m_Layer: 0
   m_Name: Controller (left)
@@ -287,7 +286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.70564, y: 1.9724092, z: 3.14042}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 483770}
@@ -362,7 +361,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 125872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.29564, y: -0.8824092, z: -0.63541985}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 484344}
@@ -561,7 +560,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8feef0f746cf91a46b8fac4e2b747347, type: 3}
   m_Name: 
@@ -580,41 +579,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7346a42905a29b347b1f492e8ad7b49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerIndex: 0
+  controllerIndex: 1
   triggerPressed: 0
   steamPressed: 0
   menuPressed: 0
   padPressed: 0
   padTouched: 0
   gripped: 0
---- !u!114 &11428210
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97567712aab88dc42a84c7462d1b22b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FPSController: {fileID: 0}
-  m_inventoryController: {fileID: 0}
-  m_holdPoint: {fileID: 15334762}
---- !u!114 &11432140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97567712aab88dc42a84c7462d1b22b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FPSController: {fileID: 0}
-  m_inventoryController: {fileID: 0}
-  m_holdPoint: {fileID: 15309822}
 --- !u!114 &11433166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -762,6 +733,20 @@ MonoBehaviour:
   padPressed: 0
   padTouched: 0
   gripped: 0
+--- !u!114 &11458354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 125872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97567712aab88dc42a84c7462d1b22b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FPSController: {fileID: 0}
+  m_inventoryController: {fileID: 0}
+  m_holdPoint: {fileID: 0}
 --- !u!114 &11461236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -845,8 +830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6771e1245a80f4bb4d74aa5af717bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GroundMaterial: {fileID: 2100000, guid: 61ccb656016c9b44b8a49c327ee084a4, type: 2}
-  GroundAlpha: 1
   _SelectableMesh: {fileID: 0}
   _SelectableMeshBorder:
   - Points:
