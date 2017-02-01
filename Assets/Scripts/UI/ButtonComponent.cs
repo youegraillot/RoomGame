@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+using System;
+
+public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     GameObject m_children;
     void Start()
@@ -16,6 +18,11 @@ public class ButtonComponent : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
 
     public void OnPointerExit(PointerEventData eventData)
+    {
+        m_children.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
     {
         m_children.SetActive(false);
     }
