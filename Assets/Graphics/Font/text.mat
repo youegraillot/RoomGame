@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: text
-  m_Shader: {fileID: 4800000, guid: 79d1f78c0f4fb54489441cddc4fab294, type: 3}
-  m_ShaderKeywords: 
+  m_Shader: {fileID: 4800000, guid: dca26082f9cb439469295791d9f76fe5, type: 3}
+  m_ShaderKeywords: UNITY_UI_ALPHACLIP
   m_LightmapFlags: 5
   m_CustomRenderQueue: 3000
   stringTagMap: {}
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: c8e9772369130be4c9df73e9828f72af, type: 3}
+          m_Texture: {fileID: 2800000, guid: d56b1624feefa534280476f027e65dc6, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -31,7 +31,21 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _NormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DecalTex
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -82,6 +96,62 @@ Material:
         first:
           name: _DiffuseMap
         second:
+          m_Texture: {fileID: 2800000, guid: d56b1624feefa534280476f027e65dc6, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DiffuseMapSpecA
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MainBump
+        second:
+          m_Texture: {fileID: 2800000, guid: d2fb577a7e8ff7448adb20c854960285, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DetailTex
+        second:
+          m_Texture: {fileID: 2800000, guid: d56b1624feefa534280476f027e65dc6, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FaceTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OutlineTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
@@ -97,7 +167,39 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.5
+        second: 0.68
+      data:
+        first:
+          name: _Shininess
+        second: 0.1
+      data:
+        first:
+          name: _Stencil
+        second: 11.08
+      data:
+        first:
+          name: _StencilComp
+        second: 8.93
+      data:
+        first:
+          name: _StencilOp
+        second: -3
+      data:
+        first:
+          name: _StencilReadMask
+        second: 250.46
+      data:
+        first:
+          name: _StencilWriteMask
+        second: 208.6
+      data:
+        first:
+          name: _ColorMask
+        second: 61
+      data:
+        first:
+          name: _UseUIAlphaClip
+        second: 1
       data:
         first:
           name: _Parallax
@@ -136,8 +238,200 @@ Material:
         second: 0
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _EmissiveIntensity
         second: 1
+      data:
+        first:
+          name: _NormalIntensity
+        second: 1
+      data:
+        first:
+          name: _SpecIntensity
+        second: 0.5
+      data:
+        first:
+          name: _Strength
+        second: 0.4
+      data:
+        first:
+          name: _Focus
+        second: -100
+      data:
+        first:
+          name: _FaceDilate
+        second: -0.81
+      data:
+        first:
+          name: _OutlineWidth
+        second: 0
+      data:
+        first:
+          name: _OutlineSoftness
+        second: 0.24
+      data:
+        first:
+          name: _GlowOffset
+        second: 0
+      data:
+        first:
+          name: _GlowInner
+        second: 0.05
+      data:
+        first:
+          name: _GlowOuter
+        second: 0.05
+      data:
+        first:
+          name: _GlowPower
+        second: 0.75
+      data:
+        first:
+          name: _WeightNormal
+        second: 0
+      data:
+        first:
+          name: _WeightBold
+        second: 0.5
+      data:
+        first:
+          name: _ShaderFlags
+        second: 0
+      data:
+        first:
+          name: _ScaleRatioA
+        second: 1
+      data:
+        first:
+          name: _ScaleRatioB
+        second: 1
+      data:
+        first:
+          name: _ScaleRatioC
+        second: 1
+      data:
+        first:
+          name: _TextureWidth
+        second: 512
+      data:
+        first:
+          name: _TextureHeight
+        second: 512
+      data:
+        first:
+          name: _GradientScale
+        second: 5
+      data:
+        first:
+          name: _ScaleX
+        second: 1
+      data:
+        first:
+          name: _ScaleY
+        second: 1
+      data:
+        first:
+          name: _PerspectiveFilter
+        second: 0.875
+      data:
+        first:
+          name: _VertexOffsetX
+        second: 0
+      data:
+        first:
+          name: _VertexOffsetY
+        second: 0
+      data:
+        first:
+          name: _FaceUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _FaceUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _Bevel
+        second: 0.5
+      data:
+        first:
+          name: _BevelOffset
+        second: 0
+      data:
+        first:
+          name: _BevelWidth
+        second: 0
+      data:
+        first:
+          name: _BevelClamp
+        second: 0
+      data:
+        first:
+          name: _BevelRoundness
+        second: 0
+      data:
+        first:
+          name: _LightAngle
+        second: 1.5
+      data:
+        first:
+          name: _SpecularPower
+        second: 1.26
+      data:
+        first:
+          name: _Reflectivity
+        second: 8.9
+      data:
+        first:
+          name: _Diffuse
+        second: 0.72
+      data:
+        first:
+          name: _Ambient
+        second: 0.26
+      data:
+        first:
+          name: _BumpOutline
+        second: 0
+      data:
+        first:
+          name: _BumpFace
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetX
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetY
+        second: 0
+      data:
+        first:
+          name: _UnderlayDilate
+        second: 0
+      data:
+        first:
+          name: _UnderlaySoftness
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessX
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessY
+        second: 0
     m_Colors:
       data:
         first:
@@ -146,8 +440,68 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 1, g: 0.022058845, b: 0.022058845, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+      data:
+        first:
+          name: _ClipRect
+        second: {r: -10000, g: -10000, b: 10000, a: 10000}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
       data:
         first:
           name: _Diffusecolor
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Speccolor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Specular
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _FaceColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _GlowColor
+        second: {r: 0, g: 1, b: 0, a: 0.5}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: 0.16176468, g: 0.042820066, b: 0.042820066, a: 1}
+      data:
+        first:
+          name: _ReflectFaceColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ReflectOutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _EnvMatrixRotation
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _UnderlayColor
+        second: {r: 0, g: 0, b: 0, a: 0.5}
+      data:
+        first:
+          name: _MaskCoord
+        second: {r: 0, g: 0, b: 10000, a: 10000}
+      data:
+        first:
+          name: _OccludeColor
+        second: {r: 0.5588235, g: 0, b: 0, a: 0.5}
