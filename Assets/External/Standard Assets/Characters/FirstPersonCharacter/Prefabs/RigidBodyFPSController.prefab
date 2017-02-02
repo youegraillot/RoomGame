@@ -100,7 +100,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   FPSController: {fileID: 11400004}
   m_inventoryController: {fileID: 0}
   m_holdPoint: {fileID: 15353886}
+  m_collider: {fileID: 13600000}
   m_holdingDistance: 0.6
   m_raycastRange: 1.4
   m_displayReticle: 1
@@ -243,6 +244,7 @@ MonoBehaviour:
   m_rotateObjectKey: 306
   m_openInventoryKey: 9
   m_takeObjectKey: 101
+  m_crouch: 306
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

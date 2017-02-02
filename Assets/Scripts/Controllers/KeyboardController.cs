@@ -3,6 +3,9 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
+    [SerializeField]
+    CapsuleCollider m_collider;
+
     [Header("Controller Settings")]
     [SerializeField, Range(0f, 2f)]
     float m_holdingDistance = 1f;
@@ -119,6 +122,8 @@ public class KeyboardController : PlayerController
     KeyCode m_openInventoryKey;
     [SerializeField]
     KeyCode m_takeObjectKey;
+    [SerializeField]
+    KeyCode m_crouch = KeyCode.LeftControl;
     protected override void eventHandler()
     {
 		// Trigger events
@@ -133,8 +138,14 @@ public class KeyboardController : PlayerController
 			}
 		}
 
-		// Holding events
-		HoldState = Input.GetMouseButton(1) && Target is MovableObject;
+        // Crouch
+        //if (Input.GetKey(m_crouch))
+        //    m_collider.height = 0.8f;
+        //else
+        //    m_collider.height = 1.8f;
+
+        // Holding events
+        HoldState = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
 
