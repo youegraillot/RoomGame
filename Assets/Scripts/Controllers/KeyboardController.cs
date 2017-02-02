@@ -3,9 +3,6 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
-    [SerializeField]
-    CapsuleCollider m_collider;
-
     [Header("Controller Settings")]
     [SerializeField, Range(0f, 2f)]
     float m_holdingDistance = 1f;
@@ -124,6 +121,8 @@ public class KeyboardController : PlayerController
     KeyCode m_takeObjectKey;
     [SerializeField]
     KeyCode m_crouch = KeyCode.LeftControl;
+    [SerializeField, Range(1f,3f)]
+    float m_crouchSpeed = 1;
     protected override void eventHandler()
     {
 		// Trigger events
@@ -139,10 +138,16 @@ public class KeyboardController : PlayerController
 		}
 
         // Crouch
-        //if (Input.GetKey(m_crouch))
-        //    m_collider.height = 0.8f;
-        //else
-        //    m_collider.height = 1.8f;
+        if (Input.GetKey(m_crouch))
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
+        }
+        else
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * 0.6f, Time.deltaTime * m_crouchSpeed);
+        }
+
+        GetComponentInParent<Rigidbody>().WakeUp();
 
         // Holding events
         HoldState = Input.GetMouseButton(1) && Target is MovableObject;

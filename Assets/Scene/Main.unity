@@ -4337,6 +4337,18 @@ Prefab:
       propertyPath: m_inventoryController
       value: 
       objectReference: {fileID: 61211369}
+    - target: {fileID: 11458432, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
+      propertyPath: m_crouchSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458432, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
+      propertyPath: m_crouch
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 2}
   m_IsPrefabParent: 0
@@ -7399,6 +7411,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 975465939}
+--- !u!1 &1004995661 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: bb08a589ff1c1614dbb82ddbdf160385, type: 3}
+  m_PrefabInternal: {fileID: 209357944}
+--- !u!64 &1004995665
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1004995661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300002, guid: bb08a589ff1c1614dbb82ddbdf160385, type: 3}
 --- !u!1 &1012917121
 GameObject:
   m_ObjectHideFlags: 0
