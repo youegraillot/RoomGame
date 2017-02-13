@@ -25,7 +25,7 @@ public class ViveController : PlayerController
         m_controllerRight.PadUnclicked += onPadUnClickedRight;      // Drop obj
 
         m_controllerLeft.TriggerClicked += onTriggerClicked;        // interract
-        //m_controllerRight.TriggerClicked += onTriggerClicked;
+        m_controllerRight.TriggerClicked += onTriggerClicked;
 
         m_controllerLeft.MenuButtonClicked += onMenuClickLeft;      // Main menu
         m_controllerRight.MenuButtonClicked += onMenuClickRight;    // Inventory menu
@@ -55,7 +55,8 @@ public class ViveController : PlayerController
     
     void onTriggerClicked(object sender, ClickedEventArgs e)
     {
-
+        if (Target is ActivableObject)
+            activate();
     }
 
     void onMenuClickLeft(object sender, ClickedEventArgs e)

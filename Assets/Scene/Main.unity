@@ -1187,6 +1187,10 @@ Prefab:
       propertyPath: m_inventoryController
       value: 
       objectReference: {fileID: 61211369}
+    - target: {fileID: 185706, guid: 8148a93b4f9434647b3a4b4ed478beb2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8148a93b4f9434647b3a4b4ed478beb2, type: 2}
   m_IsPrefabParent: 0
@@ -6825,6 +6829,12 @@ BoxCollider:
 GameObject:
   m_PrefabParentObject: {fileID: 185706, guid: 8148a93b4f9434647b3a4b4ed478beb2, type: 2}
   m_PrefabInternal: {fileID: 158695140}
+--- !u!114 &876905870 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11425426, guid: 8148a93b4f9434647b3a4b4ed478beb2,
+    type: 2}
+  m_PrefabInternal: {fileID: 158695140}
+  m_Script: {fileID: 11500000, guid: 81c9795a96c094f4cbde4d65546aa9b2, type: 3}
 --- !u!1 &887404688
 GameObject:
   m_ObjectHideFlags: 0
@@ -8572,6 +8582,66 @@ Prefab:
       propertyPath: _SelectableMesh
       value: 
       objectReference: {fileID: 597195962}
+    - target: {fileID: 11458354, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_detectionRadius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 198250, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 143450, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 168308, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 133606, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 136916, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 162292, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 113058, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 156752, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 178400, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 178834, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 125872, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 110104, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_Layer
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458354, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: FPSController
+      value: 
+      objectReference: {fileID: 876905870}
+    - target: {fileID: 110104, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c609eea6b824960459990d6ea2e1860a, type: 2}
   m_IsPrefabParent: 0
