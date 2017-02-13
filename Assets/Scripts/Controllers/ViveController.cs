@@ -5,13 +5,19 @@ public class ViveController : PlayerController
     SteamVR_TrackedController m_controllerLeft;     // ID = 0
     SteamVR_TrackedController m_controllerRight;    // ID = 1
 
+    TeleportVive m_teleporter;
+
     void Start()
     {
         m_controllerLeft = transform.FindChild("Controller (left)").GetComponent<SteamVR_TrackedController>();
         m_controllerRight = transform.FindChild("Controller (right)").GetComponent<SteamVR_TrackedController>();
 
+        m_teleporter = GetComponentInChildren<TeleportVive>();
+        m_teleporter.SetActiveController(m_controllerLeft.GetComponent<SteamVR_TrackedObject>());
+
         m_controllerLeft.PadClicked += onPadClickedLeft;            // TP init
         m_controllerLeft.PadUnclicked += onPadUnClickedLeft;        // TP launch
+
         m_controllerRight.PadClicked += onPadClickedRight;          // Take obj
         m_controllerRight.PadUnclicked += onPadUnClickedRight;      // Drop obj
 
@@ -24,11 +30,12 @@ public class ViveController : PlayerController
     
     void onPadClickedLeft(object sender, ClickedEventArgs e)
     {
+        m_teleporter.InitTeleport();
     }
     void onPadUnClickedLeft(object sender, ClickedEventArgs e)
     {
+        m_teleporter.Teleport();
     }
-
 
     void onPadClickedRight(object sender, ClickedEventArgs e)
     {
