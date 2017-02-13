@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _Alpha
-        second: 1
+        second: 0
       data:
         first:
           name: _TexScale

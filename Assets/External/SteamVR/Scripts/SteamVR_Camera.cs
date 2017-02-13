@@ -1,4 +1,4 @@
-﻿//========= Copyright 2014, Valve Corporation, All rights reserved. ===========
+﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
 // Purpose: Adds SteamVR render support to existing camera objects
 //
@@ -17,6 +17,8 @@ public class SteamVR_Camera : MonoBehaviour
 	public Transform head { get { return _head; } }
 	public Transform offset { get { return _head; } } // legacy
 	public Transform origin { get { return _head.parent; } }
+
+	public new Camera camera { get; private set; }
 
 	[SerializeField]
 	private Transform _ears;
@@ -188,7 +190,11 @@ public class SteamVR_Camera : MonoBehaviour
 
 	#region Functionality to ensure SteamVR_Camera component is always the last component on an object
 
-	void Awake() { ForceLast(); }
+	void Awake()
+	{
+		camera = GetComponent<Camera>(); // cached to avoid runtime lookup
+		ForceLast();
+    }
 
 	static Hashtable values;
 
@@ -386,7 +392,7 @@ public class SteamVR_Camera : MonoBehaviour
 	void OnPreRender()
 	{
 		if (flip)
-			flip.enabled = (SteamVR_Render.Top() == this && SteamVR.instance.graphicsAPI == EGraphicsAPIConvention.API_DirectX);
+			flip.enabled = (SteamVR_Render.Top() == this && SteamVR.instance.textureType == ETextureType.DirectX);
 
 		var headCam = head.GetComponent<Camera>();
 		if (headCam != null)

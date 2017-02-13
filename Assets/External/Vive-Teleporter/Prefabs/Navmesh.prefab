@@ -72,8 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6771e1245a80f4bb4d74aa5af717bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GroundMaterial: {fileID: 2100000, guid: 61ccb656016c9b44b8a49c327ee084a4, type: 2}
-  GroundAlpha: 1
   _SelectableMesh: {fileID: 0}
   _SelectableMeshBorder:
   - Points:
