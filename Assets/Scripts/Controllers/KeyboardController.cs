@@ -50,7 +50,7 @@ public class KeyboardController : PlayerController
                 if (newTarget != Target)
                     Target = newTarget;
             }
-            // Target is not MoveableObject
+            // Target is not InteractiveObject
             else
                 Target = null;
         }
@@ -82,10 +82,15 @@ public class KeyboardController : PlayerController
 		((DrawableObject)Target).draw(Input.mousePosition);
 	}
 
-	/// <summary>
-	/// Draw the reticle.
-	/// </summary>
-	void OnGUI()
+    public override Vector3 getControllerPos()
+    {
+        return Input.mousePosition;
+    }
+
+    /// <summary>
+    /// Draw the reticle.
+    /// </summary>
+    void OnGUI()
     {
         if (m_displayReticle)
         {

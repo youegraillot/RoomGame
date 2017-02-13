@@ -17,12 +17,16 @@ public class DrawableObject : InteractiveObject
 
 	public void initDraw(Vector3 newStartPoint)
 	{
+        print("init");
 		m_startPoint = newStartPoint;
 	}
 
 	public void draw(Vector3 endPoint)
 	{
-		m_rigidbody.AddForce(m_direction * (m_startPoint.y - endPoint.y) * m_velocity);
-		m_startPoint = endPoint;
-	}
+        // Old method
+        //m_rigidbody.AddForce(m_direction * (m_startPoint.y - endPoint.y) * m_velocity);
+
+        m_rigidbody.velocity = Vector3.Distance(endPoint, m_startPoint) * m_direction * m_velocity;
+        m_startPoint = endPoint;
+    }
 }

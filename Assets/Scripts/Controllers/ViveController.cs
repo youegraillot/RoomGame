@@ -2,6 +2,9 @@
 
 public class ViveController : PlayerController
 {
+    [SerializeField, Range(0,1)]
+    float m_detectionRadius = 0.4f;
+
     SteamVR_TrackedController m_controllerLeft;     // ID = 0
     SteamVR_TrackedController m_controllerRight;    // ID = 1
 
@@ -39,17 +42,20 @@ public class ViveController : PlayerController
 
     void onPadClickedRight(object sender, ClickedEventArgs e)
     {
-        if(Target)
-        HoldState = true;
+        if (Target is MovableObject)
+            HoldState = true;
+        else if (Target is DrawableObject)
+            DrawState = true;
     }
     void onPadUnClickedRight(object sender, ClickedEventArgs e)
     {
         HoldState = false;
+        DrawState = false;
     }
     
     void onTriggerClicked(object sender, ClickedEventArgs e)
     {
-        m_isTrigger = true;
+
     }
 
     void onMenuClickLeft(object sender, ClickedEventArgs e)
@@ -63,6 +69,12 @@ public class ViveController : PlayerController
 
     public override void drawObject()
     {
+        ((DrawableObject)Target).draw(m_controllerRight.transform.position);
+    }
+
+    public override Vector3 getControllerPos()
+    {
+        return m_controllerRight.transform.position;
     }
 
     public override void pickFromInventoryCallBack()
@@ -75,9 +87,22 @@ public class ViveController : PlayerController
 
     public override void updateTarget()
     {
-    }
+        Collider[] nearObjects = Physics.OverlapSphere(m_holdPoint.transform.position, m_detectionRadius);
 
-    private bool m_isTrigger = false;
+        float[] nearObjectsDistance = new float[nearObjects.Length];
+        for (int objID = 0; objID < nearObjectsDistance.Length; objID++)
+            nearObjectsDistance[objID] = Vector3.Distance(m_holdPoint.transform.position, nearObjects[objID].transform.position);
+
+        System.Array.Sort(nearObjectsDistance, nearObjects);
+
+        foreach (var item in nearObjects)
+        {
+            Target = item.GetComponentInParent<InteractiveObject>();
+
+            if (Target != null)
+                break;
+        }
+    }
 
     private bool m_isInventoryOpen = false;
     protected override void eventHandler()

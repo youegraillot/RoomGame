@@ -117,11 +117,13 @@ public abstract class PlayerController : MonoBehaviour
 			if (m_isDrawing != value)
 			{
 				m_isDrawing = value;
-				FPSController.enabled = !value;
+
+                if(FPSController)
+				    FPSController.enabled = !value;
 
 				if (value)
 				{
-					((DrawableObject)m_currentObject).initDraw(Input.mousePosition);
+					((DrawableObject)m_currentObject).initDraw(getControllerPos());
 					Cursor.lockState = CursorLockMode.None;
 				}
 				else
@@ -179,6 +181,8 @@ public abstract class PlayerController : MonoBehaviour
 	/// Called by update in order to draw the target object.
 	/// </summary>
 	public abstract void drawObject();
+    
+    public abstract Vector3 getControllerPos();
 
     /// <summary>
 	/// Call pickFromInventory()
