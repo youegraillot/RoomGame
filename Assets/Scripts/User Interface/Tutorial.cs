@@ -11,6 +11,25 @@ public class Tutorial : MonoBehaviour {
     }
 
     int m_index = 0;
+    public bool Completed
+    {
+        get
+        {
+            return m_index >= m_actionList.Length;
+        }
+        set
+        {
+            if (value)
+            {
+                m_index = m_actionList.Length;
+            }
+            else
+            {
+                m_index = 0;
+                play(m_index);
+            }
+        }
+    }
 
     Animator m_animator;
 
@@ -57,6 +76,7 @@ public class Tutorial : MonoBehaviour {
         if(index < m_actionList.Length)
         {
             m_index = index;
+            GameManager.SaveDatas.Tutorial_Index = m_index;
 
             m_animator.Play("Fade IN");
 

@@ -232,7 +232,6 @@ MonoBehaviour:
   FPSController: {fileID: 11400004}
   m_inventoryController: {fileID: 0}
   m_holdPoint: {fileID: 15353886}
-  m_collider: {fileID: 13600000}
   m_holdingDistance: 0.6
   m_raycastRange: 1.4
   m_displayReticle: 1
@@ -244,7 +243,8 @@ MonoBehaviour:
   m_rotateObjectKey: 306
   m_openInventoryKey: 9
   m_takeObjectKey: 101
-  m_crouch: 306
+  m_crouch: 99
+  m_crouchSpeed: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
