@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class E_Scroll : MonoBehaviour
+public class E_Scroll : Enigma
 {
     public float m_timeToLit = 3.0f;
     private Renderer m_rend;
@@ -39,5 +39,15 @@ public class E_Scroll : MonoBehaviour
         {
             m_isLit = false;
         }
+    }
+
+    protected override void OnSuccess()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void OnFail()
+    {
+        throw new NotImplementedException();
     }
 }

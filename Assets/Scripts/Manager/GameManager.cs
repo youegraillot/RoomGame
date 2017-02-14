@@ -9,6 +9,10 @@ public struct SaveStruct
 
     public float[][] Scene_ObjectsPosition;
     public float[][] Scene_ObjectsRotation;
+
+    public E_Library Enigma_Library;
+    public E_Rat Enigma_Rat;
+    public E_Scroll Enigma_Scroll;
 }
 
 public class GameManager : MonoBehaviour {
@@ -32,7 +36,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-	void Update () {
+    void Start()
+    {
+        SaveDatas.Enigma_Library = FindObjectOfType<E_Library>();
+        SaveDatas.Enigma_Rat = FindObjectOfType<E_Rat>();
+        SaveDatas.Enigma_Scroll = FindObjectOfType<E_Scroll>();
+    }
+
+    void Update () {
         SaveDatas.Game_TotalTime += Time.deltaTime;
     }
 

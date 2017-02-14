@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class E_Rat : MonoBehaviour
+public class E_Rat : Enigma
 {
     public Transform    m_target        = null;
     public NavMeshAgent m_navMeshAgent  = null;
@@ -45,5 +45,15 @@ public class E_Rat : MonoBehaviour
 
             this.enabled = false;
         }
+    }
+
+    protected override void OnSuccess()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void OnFail()
+    {
+        throw new NotImplementedException();
     }
 }
