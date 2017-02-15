@@ -3,11 +3,17 @@
 public abstract class ActivableObject : InteractiveObject
 {
     protected bool m_isActivated;
-
-	bool m_updateState = true;
+	
 	bool m_canBeActivated = true;
+    bool m_updateState = true;
 
-	public bool canBeActivated
+    public bool isActivated
+    {
+        get { return m_isActivated; }
+        set { m_isActivated = value; }
+    }
+
+    public bool canBeActivated
 	{
 		set { m_canBeActivated = value; }
 	}

@@ -1,10 +1,7 @@
-﻿using UnityEngine;
-using System;
-
-public abstract class Enigma : MonoBehaviour
+﻿public abstract class Enigma<AttributeType> : SavedMonoBehaviour<AttributeType>
 {
     public bool Solved = false;
-    
+
     protected virtual void Answer(bool Correct)
     {
         Solved = Correct;

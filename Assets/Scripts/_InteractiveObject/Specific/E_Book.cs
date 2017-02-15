@@ -2,7 +2,6 @@
 
 public class E_Book : ActivableObject
 {
-    [SerializeField]
     int m_index;
     E_Library m_library;
 
@@ -10,6 +9,8 @@ public class E_Book : ActivableObject
 
     void Start()
     {
+        m_index = int.Parse(name[8].ToString());
+
         m_library = FindObjectOfType<E_Library>();
         m_animation = GetComponentInParent<Animation>();
     }

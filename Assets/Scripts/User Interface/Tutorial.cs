@@ -76,7 +76,7 @@ public class Tutorial : MonoBehaviour {
         if(index < m_actionList.Length)
         {
             m_index = index;
-            GameManager.SaveDatas.Tutorial_Index = m_index;
+            //GameManager.SaveDatas.Tutorial_Index = m_index;
 
             m_animator.Play("Fade IN");
 

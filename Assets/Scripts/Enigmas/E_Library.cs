@@ -1,32 +1,39 @@
 ﻿using UnityEngine;
 using System;
 
-public class E_Library : Enigma
+[Serializable]
+public class E_LibraryAttributes : SavedAttributes
+{
+    public int[] answer;
+    public int indiceArray;
+}
+
+public class E_Library : Enigma<E_LibraryAttributes>
 {
     [SerializeField]
-    private int[] m_solution;
-    private int[] m_answer;
-    private int m_indiceArray = 0;
+    public int[] m_solution;
 
     void Start()
     {
-        if(GetComponentsInChildren<E_Book>().Length != m_solution.Length)
+        Attributes = new E_LibraryAttributes();
+
+        if (GetComponentsInChildren<E_Book>().Length != m_solution.Length)
             throw new Exception("Wrong number of E_Book.");
 
-        m_answer = new int[m_solution.Length];
+        Attributes.answer = new int[m_solution.Length];
     }
 
     public void activeBook(int BookID)
     {
         // Update answer
-        m_answer[m_indiceArray] = BookID;
-        m_indiceArray++;
+        Attributes.answer[Attributes.indiceArray] = BookID;
+        Attributes.indiceArray++;
         
         // Check solution
-        if (m_indiceArray == m_answer.Length)
+        if (Attributes.indiceArray == Attributes.answer.Length)
         {
-            for (int i = 0; i < m_answer.Length; i++)
-                if (m_answer[i] != m_solution[i])
+            for (int i = 0; i < Attributes.answer.Length; i++)
+                if (Attributes.answer[i] != m_solution[i])
                 {
                     Answer(false);
                     return;
@@ -46,6 +53,6 @@ public class E_Library : Enigma
         foreach (var book in GetComponentsInChildren<E_Book>())
             book.deactivate();
 
-        m_indiceArray = 0;
+        Attributes.indiceArray = 0;
     }
 }
