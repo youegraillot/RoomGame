@@ -20,20 +20,20 @@ public class E_Library : Enigma<E_LibraryAttributes>
         if (GetComponentsInChildren<E_Book>().Length != m_solution.Length)
             throw new Exception("Wrong number of E_Book.");
 
-        (GetAttributes() as E_LibraryAttributes).answer = new int[m_solution.Length];
+        Attribute.answer = new int[m_solution.Length];
     }
 
     public void activeBook(int BookID)
     {
         // Update answer
-        (GetAttributes() as E_LibraryAttributes).answer[(GetAttributes() as E_LibraryAttributes).indiceArray] = BookID;
-        (GetAttributes() as E_LibraryAttributes).indiceArray++;
+        Attribute.answer[Attribute.indiceArray] = BookID;
+        Attribute.indiceArray++;
         
         // Check solution
-        if ((GetAttributes() as E_LibraryAttributes).indiceArray == (GetAttributes() as E_LibraryAttributes).answer.Length)
+        if (Attribute.indiceArray == Attribute.answer.Length)
         {
-            for (int i = 0; i < (GetAttributes() as E_LibraryAttributes).answer.Length; i++)
-                if ((GetAttributes() as E_LibraryAttributes).answer[i] != m_solution[i])
+            for (int i = 0; i < Attribute.answer.Length; i++)
+                if (Attribute.answer[i] != m_solution[i])
                 {
                     Answer(false);
                     return;

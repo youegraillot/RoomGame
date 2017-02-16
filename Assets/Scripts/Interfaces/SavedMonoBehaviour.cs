@@ -2,13 +2,11 @@
 using System;
 
 [Serializable]
-public class SavedAttributes
-{
-}
+public class SavedAttributes { }
 
-public class SavedMonoBehaviour : MonoBehaviour {
+public abstract class SavedMonoBehaviour : MonoBehaviour {
     
-    SavedAttributes m_;
+    protected SavedAttributes m_;
 
     void Awake()
     {
@@ -17,8 +15,7 @@ public class SavedMonoBehaviour : MonoBehaviour {
 
     public SavedAttributes GetAttributes()
     {
-        return m_ as SavedAttributes;
-        //return (T)Convert.ChangeType(m_, typeof(T));
+        return m_;
     }
 
     public void SetAttributes(SavedAttributes INPUT)

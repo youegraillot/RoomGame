@@ -73,10 +73,7 @@ public class GameManager : MonoBehaviour {
         SaveDatas.Enigma_SavedAttributes = new List<SavedAttributes>();
         
         foreach (var sceneSMB in SavedMonoBehaviours)
-        {
-            print(sceneSMB);
             SaveDatas.Enigma_SavedAttributes.Add(sceneSMB.GetAttributes());
-        }
 
         // Write in file
         BlazeSave.SaveData(m_saveFilename, SaveDatas);

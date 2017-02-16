@@ -1,6 +1,15 @@
-﻿public abstract class Enigma<AttributeType> : SavedMonoBehaviour
+﻿using System;
+
+public abstract class Enigma<AttributeType> :
+    SavedMonoBehaviour
+    where AttributeType : SavedAttributes
 {
     public bool Solved = false;
+
+    public AttributeType Attribute
+    {
+        get { return m_ as AttributeType; }
+    }
 
     protected virtual void Answer(bool Correct)
     {
