@@ -15,25 +15,25 @@ public class E_Library : Enigma<E_LibraryAttributes>
 
     void Start()
     {
-        Attributes = new E_LibraryAttributes();
+        SetAttributes(new E_LibraryAttributes());
 
         if (GetComponentsInChildren<E_Book>().Length != m_solution.Length)
             throw new Exception("Wrong number of E_Book.");
 
-        Attributes.answer = new int[m_solution.Length];
+        (GetAttributes() as E_LibraryAttributes).answer = new int[m_solution.Length];
     }
 
     public void activeBook(int BookID)
     {
         // Update answer
-        Attributes.answer[Attributes.indiceArray] = BookID;
-        Attributes.indiceArray++;
+        (GetAttributes() as E_LibraryAttributes).answer[(GetAttributes() as E_LibraryAttributes).indiceArray] = BookID;
+        (GetAttributes() as E_LibraryAttributes).indiceArray++;
         
         // Check solution
-        if (Attributes.indiceArray == Attributes.answer.Length)
+        if ((GetAttributes() as E_LibraryAttributes).indiceArray == (GetAttributes() as E_LibraryAttributes).answer.Length)
         {
-            for (int i = 0; i < Attributes.answer.Length; i++)
-                if (Attributes.answer[i] != m_solution[i])
+            for (int i = 0; i < (GetAttributes() as E_LibraryAttributes).answer.Length; i++)
+                if ((GetAttributes() as E_LibraryAttributes).answer[i] != m_solution[i])
                 {
                     Answer(false);
                     return;
@@ -53,6 +53,6 @@ public class E_Library : Enigma<E_LibraryAttributes>
         foreach (var book in GetComponentsInChildren<E_Book>())
             book.deactivate();
 
-        Attributes.indiceArray = 0;
+        (GetAttributes() as E_LibraryAttributes).indiceArray = 0;
     }
 }

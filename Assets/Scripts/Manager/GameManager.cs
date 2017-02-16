@@ -19,8 +19,8 @@ public struct SaveStruct
 public class GameManager : MonoBehaviour {
 
     public SaveStruct SaveDatas;
-    static List<SavedAttributes> Enigma_SceneAttributes;
-    string m_saveFilename = "Player.bin";
+    static List<SavedMonoBehaviour> SavedMonoBehaviours = new List<SavedMonoBehaviour>();
+    string m_saveFilename = "Player.save";
 
     public static Type ControllerType
     {
@@ -37,59 +37,14 @@ public class GameManager : MonoBehaviour {
             return SaveDatas.Game_TotalTime;
         }
     }
-
-    public static void Subscribe(SavedAttributes INPUT)
+    
+    internal static void Subscribe(SavedMonoBehaviour savedMonoBehaviour)
     {
-        if(Enigma_SceneAttributes == null)
-            Enigma_SceneAttributes = new List<SavedAttributes>();
-
-        Enigma_SceneAttributes.Add(INPUT as SavedAttributes);
-        print(INPUT);
+        SavedMonoBehaviours.Add(savedMonoBehaviour);
     }
 
     void Update () {
         SaveDatas.Game_TotalTime += Time.deltaTime;
-    }
-
-    public void load()
-    {
-        SaveDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
-
-        // Load position and rotations of all objects
-        Transform[] Scene_ObjectsTransform = GameObject.Find("Room").GetComponentsInChildren<Transform>();
-
-        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Length; sceneObjId++)
-        {
-            Scene_ObjectsTransform[sceneObjId].position = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
-            Scene_ObjectsTransform[sceneObjId].eulerAngles = ArrayToVec3(SaveDatas.Scene_ObjectsRotation[sceneObjId]);
-        }
-
-        // Load state of all ActivableObjects
-        ActivableObject[] Scene_ActivableObjects = GameObject.Find("Room").GetComponentsInChildren<ActivableObject>();
-
-        for (int sceneObjId = 0; sceneObjId < Scene_ActivableObjects.Length; sceneObjId++)
-            Scene_ActivableObjects[sceneObjId].isActivated = SaveDatas.Scene_ActivableObjectsState[sceneObjId];
-
-        // Load enigmas attributes
-        //SavedAttributes.instances = SaveDatas.Enigma_SavedAttributes;
-        //SavedAttributes.Load(SaveDatas.Enigma_SavedAttributes);
-
-        Enigma_SceneAttributes = SaveDatas.Enigma_SavedAttributes;
-
-        string Scene = "", Saved = "", Memory = "";
-
-        foreach (var item in FindObjectOfType<E_Library>().Attributes.answer)
-            Scene += item;
-
-        foreach (var item in (Enigma_SceneAttributes[0] as E_LibraryAttributes).answer)
-            Saved += item;
-
-        foreach (var item in (SaveDatas.Enigma_SavedAttributes[0] as E_LibraryAttributes).answer)
-            Memory += item;
-
-        print("scene : " + Scene);
-        print("saved : " + Saved);
-        print("memory : " + Memory);
     }
 
     public void save()
@@ -115,25 +70,41 @@ public class GameManager : MonoBehaviour {
             SaveDatas.Scene_ActivableObjectsState[sceneObjId] = Scene_ActivableObjects[sceneObjId].isActivated;
 
         // Save enigmas attributes
-        SaveDatas.Enigma_SavedAttributes = Enigma_SceneAttributes;
-
-        string Scene = "", Saved = "", memory = "";
-
-        foreach (var item in FindObjectOfType<E_Library>().Attributes.answer)
-            Scene += item;
-
-        foreach (var item in (SaveDatas.Enigma_SavedAttributes[0] as E_LibraryAttributes).answer)
-            Saved += item;
-
-        foreach (var item in (Enigma_SceneAttributes[0] as E_LibraryAttributes).answer)
-            memory += item;
-
-        print("scene : " + Scene);
-        print("saved : " + Saved);
-        print("memory : " + memory);
+        SaveDatas.Enigma_SavedAttributes = new List<SavedAttributes>();
+        
+        foreach (var sceneSMB in SavedMonoBehaviours)
+        {
+            print(sceneSMB);
+            SaveDatas.Enigma_SavedAttributes.Add(sceneSMB.GetAttributes());
+        }
 
         // Write in file
         BlazeSave.SaveData(m_saveFilename, SaveDatas);
+    }
+
+    public void load()
+    {
+        SaveDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
+
+        // Load position and rotations of all objects
+        Transform[] Scene_ObjectsTransform = GameObject.Find("Room").GetComponentsInChildren<Transform>();
+
+        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Length; sceneObjId++)
+        {
+            Scene_ObjectsTransform[sceneObjId].position = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
+            Scene_ObjectsTransform[sceneObjId].eulerAngles = ArrayToVec3(SaveDatas.Scene_ObjectsRotation[sceneObjId]);
+        }
+
+        // Load state of all ActivableObjects
+        ActivableObject[] Scene_ActivableObjects = GameObject.Find("Room").GetComponentsInChildren<ActivableObject>();
+
+        for (int sceneObjId = 0; sceneObjId < Scene_ActivableObjects.Length; sceneObjId++)
+            Scene_ActivableObjects[sceneObjId].isActivated = SaveDatas.Scene_ActivableObjectsState[sceneObjId];
+
+        // Load enigmas attributes
+        
+        for (int i = 0; i < SavedMonoBehaviours.Count; i++)
+            SavedMonoBehaviours[i].SetAttributes(SaveDatas.Enigma_SavedAttributes[0]);
     }
 
     float[] Vec3ToArray(Vector3 INPUT)

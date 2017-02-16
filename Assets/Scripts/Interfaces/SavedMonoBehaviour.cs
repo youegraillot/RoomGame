@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class SavedAttributes
 {
 }
 
-public class SavedMonoBehaviour<AttributeType> : MonoBehaviour {
+public class SavedMonoBehaviour : MonoBehaviour {
     
-    public AttributeType Attributes;
+    SavedAttributes m_;
 
     void Awake()
     {
-        GameManager.Subscribe(Attributes as SavedAttributes);
+        GameManager.Subscribe(this);
     }
 
-    public void Load(AttributeType newAttributes)
+    public SavedAttributes GetAttributes()
     {
-        Attributes = newAttributes;
+        return m_ as SavedAttributes;
+        //return (T)Convert.ChangeType(m_, typeof(T));
+    }
+
+    public void SetAttributes(SavedAttributes INPUT)
+    {
+        m_ = INPUT;
     }
 }

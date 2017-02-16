@@ -1,4 +1,4 @@
-﻿public abstract class Enigma<AttributeType> : SavedMonoBehaviour<AttributeType>
+﻿public abstract class Enigma<AttributeType> : SavedMonoBehaviour
 {
     public bool Solved = false;
 
