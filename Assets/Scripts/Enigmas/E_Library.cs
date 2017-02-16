@@ -15,8 +15,6 @@ public class E_Library : Enigma<E_LibraryAttributes>
 
     void Start()
     {
-        SetAttributes(new E_LibraryAttributes());
-
         if (GetComponentsInChildren<E_Book>().Length != m_solution.Length)
             throw new Exception("Wrong number of E_Book.");
 

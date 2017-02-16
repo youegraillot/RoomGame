@@ -7,12 +7,7 @@ public class SavedAttributes { }
 public abstract class SavedMonoBehaviour : MonoBehaviour {
     
     protected SavedAttributes m_;
-
-    void Awake()
-    {
-        GameManager.Subscribe(this);
-    }
-
+    
     public SavedAttributes GetAttributes()
     {
         return m_;

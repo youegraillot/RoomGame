@@ -19,7 +19,7 @@ public struct SaveStruct
 public class GameManager : MonoBehaviour {
 
     public SaveStruct SaveDatas;
-    static List<SavedMonoBehaviour> SavedMonoBehaviours = new List<SavedMonoBehaviour>();
+    static SavedMonoBehaviour[] SavedMonoBehaviours;
     string m_saveFilename = "Player.save";
 
     public static Type ControllerType
@@ -37,10 +37,10 @@ public class GameManager : MonoBehaviour {
             return SaveDatas.Game_TotalTime;
         }
     }
-    
-    internal static void Subscribe(SavedMonoBehaviour savedMonoBehaviour)
+
+    void Start()
     {
-        SavedMonoBehaviours.Add(savedMonoBehaviour);
+        SavedMonoBehaviours = GameObject.Find("Room").GetComponentsInChildren<SavedMonoBehaviour>();
     }
 
     void Update () {
@@ -100,8 +100,8 @@ public class GameManager : MonoBehaviour {
 
         // Load enigmas attributes
         
-        for (int i = 0; i < SavedMonoBehaviours.Count; i++)
-            SavedMonoBehaviours[i].SetAttributes(SaveDatas.Enigma_SavedAttributes[0]);
+        for (int i = 0; i < SavedMonoBehaviours.Length; i++)
+            SavedMonoBehaviours[i].SetAttributes(SaveDatas.Enigma_SavedAttributes[i]);
     }
 
     float[] Vec3ToArray(Vector3 INPUT)
