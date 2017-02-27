@@ -7376,6 +7376,76 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1356140047}
+--- !u!1 &1440511120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1440511123}
+  - 114: {fileID: 1440511122}
+  - 114: {fileID: 1440511121}
+  m_Layer: 0
+  m_Name: GameSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1440511121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440511120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8419a2ed2bd20b649869994a6656bab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_controlerProxyData:
+    m_halo: 1
+    m_reticle: 1
+    m_fullscreen: 1
+    m_volume: 100
+    m_resolution: 0
+    m_aa: 0
+    m_qGraphic: 0
+    m_qShadow: 0
+    m_qTexture: 0
+--- !u!114 &1440511122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440511120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365fd9f4a3ee10e4c943984d2ba00f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullScreen: {fileID: 2131211460}
+  halo: {fileID: 621945768}
+  reticle: {fileID: 1742813476}
+  volume: {fileID: 1743270983}
+  graphicsQuality: {fileID: 1688015430}
+  resolution: {fileID: 1787691262}
+  antiAliasing: {fileID: 1674482430}
+  shadowQuality: {fileID: 2090114677}
+  textureQuality: {fileID: 1451910580}
+--- !u!4 &1440511123
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440511120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1442268918
 GameObject:
   m_ObjectHideFlags: 0

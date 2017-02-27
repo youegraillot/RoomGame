@@ -233,7 +233,6 @@ public class Settings : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(m_filename);
         bf.Serialize(file, m_settingsData);
-        Debug.Log(m_settingsData.m_aa);
         file.Close();
     }
 }
