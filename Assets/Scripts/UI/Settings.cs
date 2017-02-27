@@ -2,39 +2,145 @@
 using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class SettingsData
 {
-    public bool m_halo = true;
-    public bool m_reticle = true;
-    public bool m_fullscreen = true;
-    public int m_volume = 100;
-    public int m_resolution = 0;
-    public int m_aa = 3;
-    public int m_qGraphic = 0;
-    public int m_qShadow = 0;
-    public int m_qTexture = 0;
-    public int m_qLanguage = 0;
+    public bool m_halo;
+    public bool m_reticle ;
+    public bool m_fullscreen;
+    public int m_volume = -1;
+    //public int m_resolutionX = Screen.currentResolution.width;
+    //public int m_resolutionY = Screen.currentResolution.height;
+    public int m_resolution;
+    public int m_aa = -1;    //possible value : 0,2,4,8
+    public int m_qGraphic = -1;
+    public int m_qShadow = -1;
+    public int m_qTexture = -1;
 }
 
 
 public class Settings : MonoBehaviour
 {
-    SettingsData m_settingsData;
-
-    Vector2[] m_resArray = new Vector2[3];
-
-    void Awake()
+    public List<string> getResolutions()
     {
-        DontDestroyOnLoad(this.gameObject);
-        m_settingsData = new SettingsData();
-        m_resArray[0] = new Vector2(1280, 720);
-        m_resArray[1] = new Vector2(1366, 768);
-        m_resArray[2] = new Vector2(1920, 1080);
+        List<string> resList = new List<string>();
+        foreach(Resolution res in Screen.resolutions)
+        {
+            resList.Add(res.width.ToString()+"x"+res.height.ToString());
+        }
+        return resList;
     }
 
-    string m_filename = Application.persistentDataPath + "/Player.settings";
+    public float getVolume() {return m_controlerProxyData.m_volume;}
+
+    public bool getHalo(){ return m_controlerProxyData.m_halo; }
+
+    public bool getReticle() { return m_controlerProxyData.m_reticle; }
+
+    public List<string> getTextureQ()
+    {
+        List<string> texQList = new List<string>();
+        texQList.Add("Low");
+        texQList.Add("Medium");
+        texQList.Add("High");
+        return texQList;
+    }
+
+    public List<string> getAAQ()
+    {
+        return new List<string>() { "x0", "x2", "x4", "x8" };
+    }
+
+    public List<string>getPresetQ()
+    {
+        return new List<string>() { "Low", "Medium", "High", "Custom" };
+    }
+
+    public List<string>getShadowQ()
+    {
+        return new List<string>() { "Low", "Medium", "High" };
+    }
+
+    SettingsData m_settingsData;
+
+
+    public SettingsData m_controlerProxyData = new SettingsData();
+    public SettingsData getCurrentSettings() { return m_settingsData; }
+
+    public void PresetLowQ()
+    {
+        m_controlerProxyData.m_qGraphic = 0;
+        m_controlerProxyData.m_qTexture = 0;
+        m_controlerProxyData.m_volume = 100;
+        m_controlerProxyData.m_qShadow = 0;
+        m_controlerProxyData.m_aa = 0;
+    }
+
+    public void PresetMediumQ()
+    {
+        m_controlerProxyData.m_qGraphic = 1;
+        m_controlerProxyData.m_qTexture = 1;
+        m_controlerProxyData.m_volume = 100;
+        m_controlerProxyData.m_qShadow = 1;
+        m_controlerProxyData.m_aa = 2;
+
+    }
+
+
+    public void PresetQ(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                m_controlerProxyData.m_qGraphic = 0;
+                m_controlerProxyData.m_qTexture = 0;
+                m_controlerProxyData.m_volume = 100;
+                m_controlerProxyData.m_qShadow = 0;
+                m_controlerProxyData.m_aa = 0;
+                break;
+            case 1:
+                m_controlerProxyData.m_qGraphic = 1;
+                m_controlerProxyData.m_qTexture = 1;
+                m_controlerProxyData.m_volume = 100;
+                m_controlerProxyData.m_qShadow = 1;
+                m_controlerProxyData.m_aa = 1;
+                break;
+            case 2:
+                m_controlerProxyData.m_qGraphic = 2;
+                m_controlerProxyData.m_qTexture = 2;
+                m_controlerProxyData.m_volume = 100;
+                m_controlerProxyData.m_qShadow = 2;
+                m_controlerProxyData.m_aa = 2;
+                break;
+            default:
+                m_controlerProxyData.m_qGraphic = 3;
+                break;
+        }
+    }
+
+    public void PresetHighQ()
+    {
+        m_controlerProxyData.m_qGraphic = 2;
+        m_controlerProxyData.m_qTexture = 2;
+        m_controlerProxyData.m_volume = 100;
+        m_controlerProxyData.m_qShadow = 2;
+        m_controlerProxyData.m_aa = 3;
+    }
+
+
+    void Start()
+    {
+        m_filename = Application.persistentDataPath + "/Player.settings";
+        DontDestroyOnLoad(this.gameObject);
+        m_settingsData = new SettingsData();
+        loadSettings();
+       // m_controlerProxyData = m_settingsData;
+
+    }
+
+    string m_filename; 
     private static Settings _instance;
     public static Settings Instance
     {
@@ -53,12 +159,7 @@ public class Settings : MonoBehaviour
         }
     }
 
-    public SettingsData resetSettings()
-    {
-        m_settingsData = null;
-        m_settingsData = new SettingsData();
-        return m_settingsData;
-    }
+   
     void loadSettings()
     {
         if(File.Exists(m_filename))
@@ -67,45 +168,64 @@ public class Settings : MonoBehaviour
             FileStream file = File.Open(m_filename, FileMode.Open);
             SettingsData sData =(SettingsData) bf.Deserialize(file);
             file.Close();
-            applySettings(sData,false);
+            m_controlerProxyData = sData;
+
         }
+        else
+        {
+            PresetMediumQ();//default quality
+        }
+        applySettings(false);
     }
 
-    public void applySettings(SettingsData settings, bool save=true)
+    public void applySettings(bool save=true)
     {
-        if(m_settingsData.m_aa != settings.m_aa)
+        if(m_settingsData.m_aa != m_controlerProxyData.m_aa)
         {
-            QualitySettings.antiAliasing = settings.m_aa;
+            QualitySettings.antiAliasing =(int)Mathf.Pow(m_controlerProxyData.m_aa,2f);
         }
-        if(m_settingsData.m_fullscreen != settings.m_fullscreen)
+        if(m_settingsData.m_fullscreen != m_controlerProxyData.m_fullscreen)
         {
-            Screen.fullScreen = settings.m_fullscreen;
+            Screen.fullScreen = m_controlerProxyData.m_fullscreen;
         }
-        if(m_settingsData.m_halo != settings.m_halo)
+        if(m_settingsData.m_halo != m_controlerProxyData.m_halo)
         {
             //change halo
         }
-        if(m_settingsData.m_qGraphic != settings.m_qGraphic)
+        if(m_settingsData.m_qGraphic != m_controlerProxyData.m_qGraphic)
         {
             //preset qualitée graphique
         }
-        if(m_settingsData.m_qLanguage != settings.m_qLanguage)
+      
+        if(m_settingsData.m_qShadow != m_controlerProxyData.m_qShadow)
         {
-            //change language
-        }
-        if(m_settingsData.m_qShadow != settings.m_qShadow)
-        {
-            switch(settings.m_qShadow)
+            switch(m_controlerProxyData.m_qShadow)
             {
                 case 0:
+                    QualitySettings.shadowCascades = 0;
+                    QualitySettings.shadowDistance = 20;
+                    QualitySettings.pixelLightCount = 1;
+                    break;
+                case 1:
+                    QualitySettings.shadowCascades = 2;
+                    QualitySettings.shadowDistance = 70;
+                    QualitySettings.shadowCascade2Split = 33.3f;
+                    QualitySettings.pixelLightCount = 3;
+
+                    break;
+                case 2:
+                    QualitySettings.shadowCascades = 4;
+                    QualitySettings.shadowDistance = 150;
+                    QualitySettings.shadowCascade4Split = new Vector3(6.7f, 13.3f, 26.7f);
+                    QualitySettings.pixelLightCount = 4;
                     break;
                 default:
                     break;
             }
         }
-        if(m_settingsData.m_qTexture != settings.m_qTexture)
+        if(m_settingsData.m_qTexture != m_controlerProxyData.m_qTexture)
         {
-            switch(settings.m_qTexture)
+            switch(m_controlerProxyData.m_qTexture)
             {
                 case 0:
                     QualitySettings.masterTextureLimit = 0;
@@ -121,29 +241,28 @@ public class Settings : MonoBehaviour
                     break;
             }
         }
-        if(m_settingsData.m_reticle != settings.m_reticle)
+        if(m_settingsData.m_reticle != m_controlerProxyData.m_reticle)
         {
             //change reticle
         }
-        if(m_settingsData.m_volume!= settings.m_volume)
+        if(m_settingsData.m_volume!= m_controlerProxyData.m_volume)
         {
             //change volume
         }
-        if(m_settingsData.m_resolution != settings.m_resolution )
-        {
-            Screen.SetResolution((int)m_resArray[settings.m_resolution].x,
-                (int)m_resArray[settings.m_resolution].y, settings.m_fullscreen);
-        }
-        m_settingsData = settings;
-        if (save)
+       
+        m_settingsData = m_controlerProxyData;
+        if(save)
             saveSettings();
     }
 
     void saveSettings()
     {
+        if (File.Exists(m_filename))
+            File.Delete(m_filename);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(m_filename);
         bf.Serialize(file, m_settingsData);
+        Debug.Log(m_settingsData.m_aa);
         file.Close();
     }
 }

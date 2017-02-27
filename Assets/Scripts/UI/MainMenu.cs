@@ -4,7 +4,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class __nhkjh : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
     [SerializeField]
     Image m_ct_img;
 
