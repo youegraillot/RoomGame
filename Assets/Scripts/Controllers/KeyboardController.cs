@@ -119,6 +119,10 @@ public class KeyboardController : PlayerController
     KeyCode m_openInventoryKey;
     [SerializeField]
     KeyCode m_takeObjectKey;
+    [SerializeField]
+    KeyCode m_crouch = KeyCode.LeftControl;
+    [SerializeField, Range(1f,3f)]
+    float m_crouchSpeed = 1;
     protected override void eventHandler()
     {
 		// Trigger events
@@ -133,8 +137,20 @@ public class KeyboardController : PlayerController
 			}
 		}
 
-		// Holding events
-		HoldState = Input.GetMouseButton(1) && Target is MovableObject;
+        // Crouch
+        if (Input.GetKey(m_crouch))
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
+        }
+        else
+        {
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * 0.6f, Time.deltaTime * m_crouchSpeed);
+        }
+
+        GetComponentInParent<Rigidbody>().WakeUp();
+
+        // Holding events
+        HoldState = Input.GetMouseButton(1) && Target is MovableObject;
 		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
 		RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
 

@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.405, z: 0.774}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,9 +75,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a2ba3118879374da205849edbd6fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_amplitude: {x: 1, y: 1, z: 1}
   m_minIntensity: 0.7
   m_maxIntensity: 1
-  m_speed: 1.5
+  m_intensityVariationSpeed: 2
+  m_movementSpeed: 0.05
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
