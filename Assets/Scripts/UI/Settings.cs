@@ -130,13 +130,14 @@ public class Settings : MonoBehaviour
     }
 
 
-    void Start()
+    void Awake()
     {
         m_filename = Application.persistentDataPath + "/Player.settings";
         DontDestroyOnLoad(this.gameObject);
         m_settingsData = new SettingsData();
         loadSettings();
-       // m_controlerProxyData = m_settingsData;
+        m_controlerProxyData = m_settingsData;
+        Debug.Log(QualitySettings.antiAliasing);
 
     }
 
