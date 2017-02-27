@@ -72,9 +72,13 @@ public class MainMenu : MonoBehaviour
     }
     public void backToMain()
     {
-        //m_creditsMenu.SetActive(false);
+        if(m_creditsMenu)
+            m_creditsMenu.SetActive(false);
+
+        if(m_jouerMenu)
+            m_jouerMenu.SetActive(false);
+
         m_optionMenu.SetActive(false);
-        m_jouerMenu.SetActive(false);
         m_baseMenu.SetActive(true);
     }
 
@@ -82,6 +86,8 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+
     #endregion
 
 }

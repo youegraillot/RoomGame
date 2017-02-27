@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 public class SettingsController : MonoBehaviour
 {
-    [SerializeField] MainMenu m_mainMenuBehaviour;
+    [SerializeField] GameObject m_previousMenu;
     enum UICompName
     {
         GraphicsQual,
@@ -79,6 +79,7 @@ public class SettingsController : MonoBehaviour
         volume.value = m_settings.m_controlerProxyData.m_volume;
         halo.isOn = m_settings.m_controlerProxyData.m_halo;
         reticle.isOn = m_settings.m_controlerProxyData.m_reticle;
+        fullScreen.isOn = m_settings.m_controlerProxyData.m_fullscreen;
 
         shadowQuality.value = m_settings.m_controlerProxyData.m_qShadow;
         shadowQuality.RefreshShownValue();
@@ -158,10 +159,8 @@ public class SettingsController : MonoBehaviour
     public void applyChange()
     {
         m_settings.applySettings();
-        if (m_mainMenuBehaviour)
-            m_mainMenuBehaviour.backToMain();
-        else
-            this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
+        m_previousMenu.SetActive(true);
     }
     void OnEnable()
     {
@@ -180,11 +179,11 @@ public class SettingsController : MonoBehaviour
 
     public void Cancel()
     {
+        Debug.Log(m_settings.getCurrentSettings().m_fullscreen);
         m_settings.m_controlerProxyData = m_settings.getCurrentSettings();
-        if (m_mainMenuBehaviour)
-            m_mainMenuBehaviour.backToMain();
-        else
-            this.gameObject.SetActive(false);
+        RefreshView();
+        m_previousMenu.SetActive(true);
+        this.gameObject.SetActive(false);
     }
     #endregion
 }
