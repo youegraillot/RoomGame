@@ -9,9 +9,10 @@ public abstract class PlayerController : MonoBehaviour
     InteractiveObject m_currentObject;
 
     [SerializeField]
-    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
+    protected UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
     [SerializeField]
     InventoryController m_inventoryController;
+
 
     [SerializeField]
     protected Joint m_holdPoint;
@@ -116,6 +117,9 @@ public abstract class PlayerController : MonoBehaviour
 		}
 	}
 
+    
+
+
     /// <summary>
 	/// 
 	/// </summary>
@@ -139,7 +143,7 @@ public abstract class PlayerController : MonoBehaviour
     {
         updateTarget();
 
-        if (m_currentObject && !m_inventoryController.visible)
+        if (m_currentObject && !m_inventoryController.visible && !DisplayInventory)
         {
             if (RotateState)
                 rotateObject();

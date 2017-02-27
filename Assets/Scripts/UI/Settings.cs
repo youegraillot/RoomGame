@@ -5,19 +5,19 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class SettingsData
+public struct SettingsData
 {
     public bool m_halo;
     public bool m_reticle ;
     public bool m_fullscreen;
-    public int m_volume = -1;
+    public int m_volume;
     //public int m_resolutionX = Screen.currentResolution.width;
     //public int m_resolutionY = Screen.currentResolution.height;
     public int m_resolution;
-    public int m_aa = -1;    //possible value : 0,2,4,8
-    public int m_qGraphic = -1;
-    public int m_qShadow = -1;
-    public int m_qTexture = -1;
+    public int m_aa;    //possible value : 0,2,4,8
+    public int m_qGraphic;
+    public int m_qShadow;
+    public int m_qTexture;
 }
 
 
@@ -107,8 +107,15 @@ public class Settings : MonoBehaviour
         m_filename = Application.persistentDataPath + "/Player.settings";
         DontDestroyOnLoad(this.gameObject);
         m_settingsData = new SettingsData();
+        m_settingsData.m_aa = -1;
+        m_settingsData.m_qTexture = -1;
+        m_settingsData.m_volume = -1;
+        m_settingsData.m_qShadow = -1;
+        m_settingsData.m_qGraphic = -1;
+        //m_controlerProxyData = new SettingsData();
         loadSettings();
         m_controlerProxyData = m_settingsData;
+
     }
 
     string m_filename; 
@@ -200,15 +207,13 @@ public class Settings : MonoBehaviour
             {
                 case 0:
                     QualitySettings.masterTextureLimit = 2;
+
                     break;
                 case 1:
                     QualitySettings.masterTextureLimit = 1;
                     break;
                 case 2:
                     QualitySettings.masterTextureLimit = 0;
-                    break;
-                default:
-                    QualitySettings.masterTextureLimit = 1;
                     break;
             }
         }
@@ -220,9 +225,9 @@ public class Settings : MonoBehaviour
         {
             //change volume
         }
-       
         m_settingsData = m_controlerProxyData;
-        if(save)
+
+        if (save)
             saveSettings();
     }
 

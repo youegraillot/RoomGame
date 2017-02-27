@@ -19,6 +19,9 @@ public class KeyboardController : PlayerController
     [SerializeField, Range(1, 128)]
     int m_reticleSize = 24;
 
+    [SerializeField]
+    Menu m_menu;
+
     void Start ()
     {
         if (!m_reticleTextureIdle)
@@ -28,8 +31,36 @@ public class KeyboardController : PlayerController
 
         m_holdPoint.transform.localPosition = transform.forward * m_holdingDistance;
     }
-	
-	public override void Update ()
+
+    public bool DisplayMenu
+    {
+        get
+        {
+            return m_menu.gameObject.activeSelf;
+        }
+        set
+        {
+            if (value)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                m_displayReticle = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                if (!DisplayInventory)
+                {
+                    Cursor.visible = false;
+                    m_displayReticle = true;
+                }
+            }
+            FPSController.enabled = !value;
+            m_menu.gameObject.SetActive(value);
+        }
+    }
+
+    public override void Update ()
     {
 		// Calls updateTarget, eventHandler
 		base.Update();
@@ -87,7 +118,7 @@ public class KeyboardController : PlayerController
 	/// </summary>
 	void OnGUI()
     {
-        if (m_displayReticle)
+        if (m_displayReticle && Settings.Instance.m_controlerProxyData.m_reticle)
         {
             Rect screenCenter = new Rect(Screen.width / 2 - m_reticleSize / 2, Screen.height / 2 - m_reticleSize / 2, m_reticleSize, m_reticleSize);
 
@@ -120,50 +151,60 @@ public class KeyboardController : PlayerController
     [SerializeField]
     KeyCode m_takeObjectKey;
     [SerializeField]
+    KeyCode m_menuKey;
+    [SerializeField]
     KeyCode m_crouch = KeyCode.LeftControl;
+
     [SerializeField, Range(1f,3f)]
     float m_crouchSpeed = 1;
     protected override void eventHandler()
     {
-		// Trigger events
-		if (Target)
-		{
-			if (Input.GetMouseButtonDown(0))
-			{
-				if (Target is MovableObject)
-					freezeObject();
-				else if (Target is ActivableObject)
-					activate();
-			}
-		}
-
-        // Crouch
-        if (Input.GetKey(m_crouch))
+        if (!DisplayMenu)   //si menu on ne reçoit pas d'évents
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
+            // Trigger events
+            if (Target)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (Target is MovableObject)
+                        freezeObject();
+                    else if (Target is ActivableObject)
+                        activate();
+                }
+            }
+
+            // Crouch
+            if (Input.GetKey(m_crouch))
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
+            }
+            else
+            {
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * 0.6f, Time.deltaTime * m_crouchSpeed);
+            }
+
+            GetComponentInParent<Rigidbody>().WakeUp();
+
+            // Holding events
+            HoldState = Input.GetMouseButton(1) && Target is MovableObject;
+            DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
+            RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
+
+            // Inventory events
+            if (Input.GetKeyDown(m_openInventoryKey))
+            {
+                DisplayInventory = !DisplayInventory;
+                m_displayReticle = !DisplayInventory;
+            }
+            if (Input.GetKeyDown(m_takeObjectKey) && Target is MovableObject)
+            {
+                HoldState = false;
+                addToInventory();
+            }
         }
-        else
+        if(Input.GetKeyDown(m_menuKey))
         {
-            transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * 0.6f, Time.deltaTime * m_crouchSpeed);
-        }
-
-        GetComponentInParent<Rigidbody>().WakeUp();
-
-        // Holding events
-        HoldState = Input.GetMouseButton(1) && Target is MovableObject;
-		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
-		RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
-
-        // Inventory events
-        if (Input.GetKeyDown(m_openInventoryKey))
-        {
-            DisplayInventory = !DisplayInventory;
-            m_displayReticle = !DisplayInventory;
-        }
-        if (Input.GetKeyDown(m_takeObjectKey) && Target is MovableObject)
-        {
-            HoldState = false;
-            addToInventory();
+            DisplayMenu = !DisplayMenu;
         }
 	}
 }
