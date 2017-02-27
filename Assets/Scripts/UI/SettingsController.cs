@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 public class SettingsController : MonoBehaviour
 {
+    [SerializeField] MainMenu m_mainMenuBehaviour;
     enum UICompName
     {
         GraphicsQual,
@@ -157,8 +158,8 @@ public class SettingsController : MonoBehaviour
     public void applyChange()
     {
         m_settings.applySettings();
-        if (this.GetComponent<MainMenu>())
-            this.GetComponent<MainMenu>().backToMain();
+        if (m_mainMenuBehaviour)
+            m_mainMenuBehaviour.backToMain();
         else
             this.gameObject.SetActive(false);
     }
@@ -180,8 +181,8 @@ public class SettingsController : MonoBehaviour
     public void Cancel()
     {
         m_settings.m_controlerProxyData = m_settings.getCurrentSettings();
-        if (this.GetComponent<MainMenu>())
-            this.GetComponent<MainMenu>().backToMain();
+        if (m_mainMenuBehaviour)
+            m_mainMenuBehaviour.backToMain();
         else
             this.gameObject.SetActive(false);
     }

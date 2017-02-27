@@ -1992,9 +1992,7 @@ GameObject:
   - 4: {fileID: 629747096}
   - 114: {fileID: 629747095}
   - 114: {fileID: 629747094}
-  - 114: {fileID: 629747098}
   - 114: {fileID: 629747097}
-  - 114: {fileID: 629747099}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2062,47 +2060,6 @@ MonoBehaviour:
   m_optionMenu: {fileID: 882810132}
   m_creditsMenu: {fileID: 0}
   m_baseMenu: {fileID: 1485165130}
---- !u!114 &629747098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 629747093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365fd9f4a3ee10e4c943984d2ba00f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullScreen: {fileID: 2131211460}
-  halo: {fileID: 621945768}
-  reticle: {fileID: 1742813476}
-  volume: {fileID: 1743270983}
-  graphicsQuality: {fileID: 1688015430}
-  resolution: {fileID: 1787691262}
-  antiAliasing: {fileID: 1674482430}
-  shadowQuality: {fileID: 2090114677}
-  textureQuality: {fileID: 1451910580}
---- !u!114 &629747099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 629747093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8419a2ed2bd20b649869994a6656bab5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_controlerProxyData:
-    m_halo: 1
-    m_reticle: 1
-    m_fullscreen: 1
-    m_volume: 100
-    m_resolution: 0
-    m_aa: 0
-    m_qGraphic: 0
-    m_qShadow: 0
-    m_qTexture: 0
 --- !u!1 &653673168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2594,7 +2551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 629747098}
+      - m_Target: {fileID: 1440511122}
         m_MethodName: resetSettings
         m_Mode: 1
         m_Arguments:
@@ -5805,7 +5762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 629747098}
+      - m_Target: {fileID: 1440511122}
         m_MethodName: applyChange
         m_Mode: 1
         m_Arguments:
@@ -6829,7 +6786,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 629747098}
+      - m_Target: {fileID: 1440511122}
         m_MethodName: Cancel
         m_Mode: 1
         m_Arguments:
@@ -7425,6 +7382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365fd9f4a3ee10e4c943984d2ba00f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_mainMenuBehaviour: {fileID: 629747097}
   fullScreen: {fileID: 2131211460}
   halo: {fileID: 621945768}
   reticle: {fileID: 1742813476}
