@@ -69,24 +69,7 @@ public class Settings : MonoBehaviour
     public SettingsData m_controlerProxyData = new SettingsData();
     public SettingsData getCurrentSettings() { return m_settingsData; }
 
-    public void PresetLowQ()
-    {
-        m_controlerProxyData.m_qGraphic = 0;
-        m_controlerProxyData.m_qTexture = 0;
-        m_controlerProxyData.m_volume = 100;
-        m_controlerProxyData.m_qShadow = 0;
-        m_controlerProxyData.m_aa = 0;
-    }
-
-    public void PresetMediumQ()
-    {
-        m_controlerProxyData.m_qGraphic = 1;
-        m_controlerProxyData.m_qTexture = 1;
-        m_controlerProxyData.m_volume = 100;
-        m_controlerProxyData.m_qShadow = 1;
-        m_controlerProxyData.m_aa = 2;
-
-    }
+   
 
 
     public void PresetQ(int value)
@@ -119,17 +102,6 @@ public class Settings : MonoBehaviour
                 break;
         }
     }
-
-    public void PresetHighQ()
-    {
-        m_controlerProxyData.m_qGraphic = 2;
-        m_controlerProxyData.m_qTexture = 2;
-        m_controlerProxyData.m_volume = 100;
-        m_controlerProxyData.m_qShadow = 2;
-        m_controlerProxyData.m_aa = 3;
-    }
-
-
     void Awake()
     {
         m_filename = Application.persistentDataPath + "/Player.settings";
@@ -137,8 +109,6 @@ public class Settings : MonoBehaviour
         m_settingsData = new SettingsData();
         loadSettings();
         m_controlerProxyData = m_settingsData;
-        Debug.Log(QualitySettings.antiAliasing);
-
     }
 
     string m_filename; 
@@ -174,7 +144,7 @@ public class Settings : MonoBehaviour
         }
         else
         {
-            PresetMediumQ();//default quality
+            PresetQ(1);//default quality
         }
         applySettings(false);
     }
@@ -183,7 +153,7 @@ public class Settings : MonoBehaviour
     {
         if(m_settingsData.m_aa != m_controlerProxyData.m_aa)
         {
-            QualitySettings.antiAliasing =(int)Mathf.Pow(m_controlerProxyData.m_aa,2f);
+            QualitySettings.antiAliasing =(int)Mathf.Pow(2f,m_controlerProxyData.m_aa);
         }
         if(m_settingsData.m_fullscreen != m_controlerProxyData.m_fullscreen)
         {
