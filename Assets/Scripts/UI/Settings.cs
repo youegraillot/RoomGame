@@ -199,16 +199,16 @@ public class Settings : MonoBehaviour
             switch(m_controlerProxyData.m_qTexture)
             {
                 case 0:
-                    QualitySettings.masterTextureLimit = 0;
+                    QualitySettings.masterTextureLimit = 2;
                     break;
                 case 1:
                     QualitySettings.masterTextureLimit = 1;
                     break;
                 case 2:
-                    QualitySettings.masterTextureLimit = 2;
+                    QualitySettings.masterTextureLimit = 0;
                     break;
                 default:
-                    QualitySettings.masterTextureLimit = 0;
+                    QualitySettings.masterTextureLimit = 1;
                     break;
             }
         }
