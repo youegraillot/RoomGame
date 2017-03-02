@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
 
     public SaveStruct SaveDatas;
     static SavedMonoBehaviour[] SavedMonoBehaviours;
+    List<Transform> Scene_ObjectsTransform = new List<Transform>();
     string m_saveFilename = "Player.save";
 
     public static Type ControllerType
@@ -41,6 +42,11 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         SavedMonoBehaviours = FindObjectsOfType<SavedMonoBehaviour>();
+
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.Sort(CompareName);
     }
 
     void Update () {
@@ -50,12 +56,6 @@ public class GameManager : MonoBehaviour {
     public void save()
     {
         // Save position and rotations of all objects
-        List<Transform> Scene_ObjectsTransform = new List<Transform>();
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.Sort(CompareTransform);
-
         SaveDatas.Scene_ObjectsPosition = new float[Scene_ObjectsTransform.Count][];
         SaveDatas.Scene_ObjectsRotation = new float[Scene_ObjectsTransform.Count][];
 
@@ -88,12 +88,6 @@ public class GameManager : MonoBehaviour {
         SaveDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
 
         // Load position and rotations of all objects
-        List<Transform> Scene_ObjectsTransform = new List<Transform>();
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
-        Scene_ObjectsTransform.Sort(CompareTransform);
-
         for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Count; sceneObjId++)
         {
             Scene_ObjectsTransform[sceneObjId].localPosition = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
@@ -112,7 +106,7 @@ public class GameManager : MonoBehaviour {
             SavedMonoBehaviours[i].SetAttributes(SaveDatas.SavedAttributes[i]);
     }
 
-    static int CompareTransform(Transform A, Transform B)
+    static int CompareName(Transform A, Transform B)
     {
         return A.name.CompareTo(B.name);
     }
