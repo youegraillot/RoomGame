@@ -55,4 +55,8 @@ public class E_Scroll : Enigma<E_ScrollAttributes>
     {
         throw new NotImplementedException();
     }
+
+    protected override void OnLoadAttributes()
+    {
+    }
 }

@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
-public class InventoryController : MonoBehaviour
+[Serializable]
+public class InventoryAttributes : SavedAttributes
+{
+    public List<int> takenObjectsID = new List<int>();
+}
+
+public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 {
     [SerializeField]
     InventoryView m_inventoryView;
@@ -8,6 +16,8 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField]
     Transform m_Objects;
+
+    List<Transform> Scene_Objects = new List<Transform>();
     
     public bool visible
     {
@@ -27,8 +37,10 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        m_inventoryModel = new InventoryModel();
+        m_inventoryModel  = new InventoryModel();
         m_inventoryView.Init(m_inventoryModel);
+
+        Scene_Objects.AddRange(m_Objects.GetComponentsInChildren<Transform>());
     }
 
     /// <summary>
@@ -54,11 +66,21 @@ public class InventoryController : MonoBehaviour
         m_inventoryModel.add(obj);
         obj.transform.SetParent(transform);
         m_inventoryView.updateContent();
+
+        Attribute.takenObjectsID.Add(Scene_Objects.IndexOf(obj.transform));
     }
 
     void remove(GameObject obj)
     {
         m_inventoryModel.remove(obj);
         m_inventoryView.updateContent();
+
+        Attribute.takenObjectsID.Remove(Scene_Objects.IndexOf(obj.transform));
+    }
+
+    protected override void OnLoadAttributes()
+    {
+        foreach (var objID in Attribute.takenObjectsID)
+            add(Scene_Objects[objID].gameObject);
     }
 }

@@ -1,19 +1,10 @@
-﻿public abstract class Enigma<AttributeType> :
-    SavedMonoBehaviour
+﻿
+
+public abstract class Enigma<AttributeType> :
+    SavedMonoBehaviourImpl<AttributeType>
     where AttributeType : SavedAttributes, new()
 {
     public bool Solved = false;
-
-    public AttributeType Attribute
-    {
-        get { return m_ as AttributeType; }
-        set { m_ = value; }
-    }
-
-    void Awake()
-    {
-        Attribute = new AttributeType();
-    }
 
     protected virtual void Answer(bool Correct)
     {

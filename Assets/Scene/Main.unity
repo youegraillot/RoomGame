@@ -2623,7 +2623,7 @@ MonoBehaviour:
     Game_TotalTime: 0
     Tutorial_Index: 0
     Scene_ActivableObjectsState: 
-    Enigma_SavedAttributes: []
+    SavedAttributes: []
 --- !u!1001 &298031801
 Prefab:
   m_ObjectHideFlags: 0
@@ -3605,8 +3605,8 @@ Transform:
   - {fileID: 213150782}
   - {fileID: 2111560374}
   - {fileID: 500917305}
-  m_Father: {fileID: 2091573745}
-  m_RootOrder: 5
+  m_Father: {fileID: 810637301}
+  m_RootOrder: 4
 --- !u!1 &500917302
 GameObject:
   m_ObjectHideFlags: 0
@@ -4973,6 +4973,7 @@ Transform:
   - {fileID: 2037777346}
   - {fileID: 854442201}
   - {fileID: 2710970}
+  - {fileID: 500917301}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 2
 --- !u!1 &825622573
@@ -6581,9 +6582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20228bafb00a3b6438808dbd40b51712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attributes:
-    answer: 
-    indiceArray: 0
   Solved: 0
   m_solution: 09000000080000000700000006000000050000000400000003000000020000000100000000000000
 --- !u!64 &1076577967
@@ -8698,6 +8696,10 @@ Prefab:
     - target: {fileID: 400000, guid: f0e9d0dc6d69fc94ba1b12f5a22ae67a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.00000005727634
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f0e9d0dc6d69fc94ba1b12f5a22ae67a, type: 3}
+      propertyPath: m_Name
+      value: Labyrinth
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0e9d0dc6d69fc94ba1b12f5a22ae67a, type: 3}
@@ -11165,7 +11167,6 @@ Transform:
   - {fileID: 1174237357}
   - {fileID: 1798868370}
   - {fileID: 1600640482}
-  - {fileID: 500917301}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 3
 --- !u!1 &2093786468

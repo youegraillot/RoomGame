@@ -13,7 +13,7 @@ public struct SaveStruct
 
     public bool[] Scene_ActivableObjectsState;
 
-    public List<SavedAttributes> Enigma_SavedAttributes;
+    public List<SavedAttributes> SavedAttributes;
 }
 
 public class GameManager : MonoBehaviour {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        SavedMonoBehaviours = GameObject.Find("Room").GetComponentsInChildren<SavedMonoBehaviour>();
+        SavedMonoBehaviours = FindObjectsOfType<SavedMonoBehaviour>();
     }
 
     void Update () {
@@ -50,14 +50,18 @@ public class GameManager : MonoBehaviour {
     public void save()
     {
         // Save position and rotations of all objects
-        Transform[] Scene_ObjectsTransform = GameObject.Find("Room").GetComponentsInChildren<Transform>();
+        List<Transform> Scene_ObjectsTransform = new List<Transform>();
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.Sort(CompareTransform);
 
-        SaveDatas.Scene_ObjectsPosition = new float[Scene_ObjectsTransform.Length][];
-        SaveDatas.Scene_ObjectsRotation = new float[Scene_ObjectsTransform.Length][];
+        SaveDatas.Scene_ObjectsPosition = new float[Scene_ObjectsTransform.Count][];
+        SaveDatas.Scene_ObjectsRotation = new float[Scene_ObjectsTransform.Count][];
 
-        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Length; sceneObjId++)
+        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Count; sceneObjId++)
         {
-            SaveDatas.Scene_ObjectsPosition[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].position);
+            SaveDatas.Scene_ObjectsPosition[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].localPosition);
             SaveDatas.Scene_ObjectsRotation[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].eulerAngles);
         }
 
@@ -69,11 +73,11 @@ public class GameManager : MonoBehaviour {
         for (int sceneObjId = 0; sceneObjId < Scene_ActivableObjects.Length; sceneObjId++)
             SaveDatas.Scene_ActivableObjectsState[sceneObjId] = Scene_ActivableObjects[sceneObjId].isActivated;
 
-        // Save enigmas attributes
-        SaveDatas.Enigma_SavedAttributes = new List<SavedAttributes>();
+        // Save SMB attributes
+        SaveDatas.SavedAttributes = new List<SavedAttributes>();
         
         foreach (var sceneSMB in SavedMonoBehaviours)
-            SaveDatas.Enigma_SavedAttributes.Add(sceneSMB.GetAttributes());
+            SaveDatas.SavedAttributes.Add(sceneSMB.GetAttributes());
 
         // Write in file
         BlazeSave.SaveData(m_saveFilename, SaveDatas);
@@ -84,11 +88,15 @@ public class GameManager : MonoBehaviour {
         SaveDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
 
         // Load position and rotations of all objects
-        Transform[] Scene_ObjectsTransform = GameObject.Find("Room").GetComponentsInChildren<Transform>();
+        List<Transform> Scene_ObjectsTransform = new List<Transform>();
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.Sort(CompareTransform);
 
-        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Length; sceneObjId++)
+        for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Count; sceneObjId++)
         {
-            Scene_ObjectsTransform[sceneObjId].position = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
+            Scene_ObjectsTransform[sceneObjId].localPosition = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
             Scene_ObjectsTransform[sceneObjId].eulerAngles = ArrayToVec3(SaveDatas.Scene_ObjectsRotation[sceneObjId]);
         }
 
@@ -98,10 +106,15 @@ public class GameManager : MonoBehaviour {
         for (int sceneObjId = 0; sceneObjId < Scene_ActivableObjects.Length; sceneObjId++)
             Scene_ActivableObjects[sceneObjId].isActivated = SaveDatas.Scene_ActivableObjectsState[sceneObjId];
 
-        // Load enigmas attributes
-        
+        // Load SMB attributes
+
         for (int i = 0; i < SavedMonoBehaviours.Length; i++)
-            SavedMonoBehaviours[i].SetAttributes(SaveDatas.Enigma_SavedAttributes[i]);
+            SavedMonoBehaviours[i].SetAttributes(SaveDatas.SavedAttributes[i]);
+    }
+
+    static int CompareTransform(Transform A, Transform B)
+    {
+        return A.name.CompareTo(B.name);
     }
 
     float[] Vec3ToArray(Vector3 INPUT)

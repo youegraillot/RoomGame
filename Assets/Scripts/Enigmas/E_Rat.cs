@@ -59,4 +59,8 @@ public class E_Rat : Enigma<E_RatAttributes>
     {
         throw new NotImplementedException();
     }
+
+    protected override void OnLoadAttributes()
+    {
+    }
 }

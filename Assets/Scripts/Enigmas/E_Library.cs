@@ -53,4 +53,8 @@ public class E_Library : Enigma<E_LibraryAttributes>
 
         (GetAttributes() as E_LibraryAttributes).indiceArray = 0;
     }
+
+    protected override void OnLoadAttributes()
+    {
+    }
 }
