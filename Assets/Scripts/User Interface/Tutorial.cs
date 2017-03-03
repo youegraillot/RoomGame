@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class Tutorial : MonoBehaviour {
+[Serializable]
+public class TutorialAttributes : SavedAttributes
+{
+    public int index = 0;
+}
 
+public class Tutorial : SavedMonoBehaviourImpl<TutorialAttributes>
+{
     enum Action
     {
         None,
@@ -10,23 +17,22 @@ public class Tutorial : MonoBehaviour {
         OpenInventory,
     }
 
-    int m_index = 0;
     public bool Completed
     {
         get
         {
-            return m_index >= m_actionList.Length;
+            return savedAttributes.index >= m_actionList.Length - 1;
         }
         set
         {
             if (value)
             {
-                m_index = m_actionList.Length;
+                savedAttributes.index = m_actionList.Length;
             }
             else
             {
-                m_index = 0;
-                play(m_index);
+                savedAttributes.index = 0;
+                play(savedAttributes.index);
             }
         }
     }
@@ -52,7 +58,7 @@ public class Tutorial : MonoBehaviour {
 
         if (GameManager.ControllerType == typeof(KeyboardController))
         {
-            play(m_index);
+            play(savedAttributes.index);
         }
     }
 	
@@ -75,25 +81,29 @@ public class Tutorial : MonoBehaviour {
     {
         if(index < m_actionList.Length)
         {
-            m_index = index;
-            //GameManager.SaveDatas.Tutorial_Index = m_index;
+            savedAttributes.index = index;
 
             m_animator.Play("Fade IN");
 
-            m_pendingAction = m_actionList[m_index];
-            m_illustration.texture = m_illustrationList[m_index];
-            m_caption.text = m_captionList[m_index];
+            m_pendingAction = m_actionList[savedAttributes.index];
+            m_illustration.texture = m_illustrationList[savedAttributes.index];
+            m_caption.text = m_captionList[savedAttributes.index];
         }
     }
 
     void playNext()
     {
-        play(m_index+1);
+        play(savedAttributes.index + 1);
     }
 
     void end()
     {
         m_animator.Play("Fade OUT");
         m_pendingAction = Action.None;
+    }
+
+    protected override void OnLoadAttributes()
+    {
+        gameObject.SetActive(!Completed);
     }
 }

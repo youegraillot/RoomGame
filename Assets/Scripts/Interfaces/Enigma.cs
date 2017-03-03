@@ -25,4 +25,8 @@ public abstract class Enigma<AttributeType> :
     /// Triggered when the enigma is failed.
     /// </summary>
     protected abstract void OnFail();
+
+    protected override void OnLoadAttributes()
+    {
+    }
 }

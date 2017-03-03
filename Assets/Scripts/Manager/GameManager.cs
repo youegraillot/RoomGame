@@ -6,7 +6,6 @@ using System;
 public struct SaveStruct
 {
     public float Game_TotalTime;
-    public int Tutorial_Index;
 
     public float[][] Scene_ObjectsPosition;
     public float[][] Scene_ObjectsRotation;
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviour {
         Scene_ObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
         Scene_ObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
         Scene_ObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
+        Scene_ObjectsTransform.AddRange(GameObject.Find("Player").GetComponentsInChildren<Transform>(true));
         Scene_ObjectsTransform.Sort(CompareName);
     }
 
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
         for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Count; sceneObjId++)
         {
             SaveDatas.Scene_ObjectsPosition[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].localPosition);
-            SaveDatas.Scene_ObjectsRotation[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].eulerAngles);
+            SaveDatas.Scene_ObjectsRotation[sceneObjId] = Vec3ToArray(Scene_ObjectsTransform[sceneObjId].localEulerAngles);
         }
 
         // Save state of all ActivableObjects
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour {
         for (int sceneObjId = 0; sceneObjId < Scene_ObjectsTransform.Count; sceneObjId++)
         {
             Scene_ObjectsTransform[sceneObjId].localPosition = ArrayToVec3(SaveDatas.Scene_ObjectsPosition[sceneObjId]);
-            Scene_ObjectsTransform[sceneObjId].eulerAngles = ArrayToVec3(SaveDatas.Scene_ObjectsRotation[sceneObjId]);
+            Scene_ObjectsTransform[sceneObjId].localEulerAngles = ArrayToVec3(SaveDatas.Scene_ObjectsRotation[sceneObjId]);
         }
 
         // Load state of all ActivableObjects

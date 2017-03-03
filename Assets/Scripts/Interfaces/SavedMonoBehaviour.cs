@@ -26,7 +26,7 @@ public abstract class SavedMonoBehaviourImpl<AttributeType> :
     SavedMonoBehaviour
     where AttributeType : SavedAttributes, new()
 {
-    public AttributeType Attribute
+    public AttributeType savedAttributes
     {
         get
         {
@@ -40,6 +40,6 @@ public abstract class SavedMonoBehaviourImpl<AttributeType> :
 
     void Awake()
     {
-        Attribute = new AttributeType();
+        savedAttributes = new AttributeType();
     }
 }

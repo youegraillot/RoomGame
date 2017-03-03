@@ -12,7 +12,7 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 {
     [SerializeField]
     InventoryView m_inventoryView;
-    InventoryModel m_inventoryModel;
+    InventoryModel m_inventoryModel = new InventoryModel();
 
     [SerializeField]
     Transform m_Objects;
@@ -37,11 +37,10 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 
     void Start()
     {
-        m_inventoryModel  = new InventoryModel();
         m_inventoryView.Init(m_inventoryModel);
 
         Scene_Objects.AddRange(m_Objects.GetComponentsInChildren<Transform>());
-        Attribute.takenObjectsList = new int[Scene_Objects.Count];
+        savedAttributes.takenObjectsList = new int[Scene_Objects.Count];
     }
 
     /// <summary>
@@ -68,7 +67,7 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
         obj.transform.SetParent(transform);
         m_inventoryView.updateContent();
         
-        Attribute.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 1;
+        savedAttributes.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 1;
     }
 
     void remove(GameObject obj)
@@ -76,14 +75,14 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
         m_inventoryModel.remove(obj);
         m_inventoryView.updateContent();
 
-        Attribute.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 0;
+        savedAttributes.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 0;
     }
 
     protected override void OnLoadAttributes()
     {
         int ID = 0;
 
-        foreach (var objID in Attribute.takenObjectsList)
+        foreach (var objID in savedAttributes.takenObjectsList)
         {
             if(objID == 1)
             {
