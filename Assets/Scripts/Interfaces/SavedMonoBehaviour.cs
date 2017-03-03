@@ -7,16 +7,18 @@ public class SavedAttributes { }
 public abstract class SavedMonoBehaviour : MonoBehaviour
 {
     protected SavedAttributes m_;
-    
-    public SavedAttributes GetAttributes()
-    {
-        return m_;
-    }
 
-    public void SetAttributes(SavedAttributes INPUT)
+    public SavedAttributes savedAttributes
     {
-        m_ = INPUT;
-        OnLoadAttributes();
+        get
+        {
+            return m_;
+        }
+        set
+        {
+            m_ = value;
+            OnLoadAttributes();
+        }
     }
 
     protected abstract void OnLoadAttributes();
@@ -26,20 +28,20 @@ public abstract class SavedMonoBehaviourImpl<AttributeType> :
     SavedMonoBehaviour
     where AttributeType : SavedAttributes, new()
 {
-    public AttributeType savedAttributes
+    protected new AttributeType savedAttributes
     {
         get
         {
-            return m_ as AttributeType;
+            return base.savedAttributes as AttributeType;
         }
         set
         {
-            m_ = value;
+            base.savedAttributes = value;
         }
     }
 
     void Awake()
     {
-        savedAttributes = new AttributeType();
+        m_ = new AttributeType();
     }
 }

@@ -50,12 +50,12 @@ public class E_Rat : Enigma<E_RatAttributes>
         }
     }
 
-    protected override void OnSuccess()
+    protected override void onSuccess()
     {
         throw new NotImplementedException();
     }
 
-    protected override void OnFail()
+    protected override void onFail()
     {
         throw new NotImplementedException();
     }

@@ -5,7 +5,7 @@ using System;
 public class E_LibraryAttributes : SavedAttributes
 {
     public int[] answer;
-    public int indiceArray;
+    public int indice;
 }
 
 public class E_Library : Enigma<E_LibraryAttributes>
@@ -24,33 +24,33 @@ public class E_Library : Enigma<E_LibraryAttributes>
     public void activeBook(int BookID)
     {
         // Update answer
-        savedAttributes.answer[savedAttributes.indiceArray] = BookID;
-        savedAttributes.indiceArray++;
+        savedAttributes.answer[savedAttributes.indice] = BookID;
+        savedAttributes.indice++;
         
         // Check solution
-        if (savedAttributes.indiceArray == savedAttributes.answer.Length)
+        if (savedAttributes.indice == savedAttributes.answer.Length)
         {
             for (int i = 0; i < savedAttributes.answer.Length; i++)
                 if (savedAttributes.answer[i] != m_solution[i])
                 {
-                    Answer(false);
+                    answer(false);
                     return;
                 }
 
-            Answer(true);
+            answer(true);
         }
     }
 
-    protected override void OnSuccess()
+    protected override void onSuccess()
     {
         // TODO : Unlock Number
     }
 
-    protected override void OnFail()
+    protected override void onFail()
     {
         foreach (var book in GetComponentsInChildren<E_Book>())
             book.deactivate();
 
-        (GetAttributes() as E_LibraryAttributes).indiceArray = 0;
+        savedAttributes.indice = 0;
     }
 }

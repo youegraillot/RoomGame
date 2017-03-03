@@ -1,30 +1,28 @@
-﻿
-
-public abstract class Enigma<AttributeType> :
+﻿public abstract class Enigma<AttributeType> :
     SavedMonoBehaviourImpl<AttributeType>
     where AttributeType : SavedAttributes, new()
 {
-    public bool Solved = false;
+    public bool m_solved = false;
 
-    protected virtual void Answer(bool Correct)
+    protected virtual void answer(bool isCorrect)
     {
-        Solved = Correct;
+        m_solved = isCorrect;
 
-        if (Correct)
-            OnSuccess();
+        if (isCorrect)
+            onSuccess();
         else
-            OnFail();
+            onFail();
     }
 
     /// <summary>
     /// Triggered when the enigma is succeeded.
     /// </summary>
-    protected abstract void OnSuccess();
+    protected abstract void onSuccess();
 
     /// <summary>
     /// Triggered when the enigma is failed.
     /// </summary>
-    protected abstract void OnFail();
+    protected abstract void onFail();
 
     protected override void OnLoadAttributes()
     {

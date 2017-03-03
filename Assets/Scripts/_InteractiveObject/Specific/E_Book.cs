@@ -18,7 +18,7 @@ public class E_Book : ActivableObject
     /// <summary>
     /// Called at the end of "In" Animation.
     /// </summary>
-    void NotifyELibrary()
+    void notifyELibrary()
     {
         m_library.activeBook(m_index);
     }

@@ -12,7 +12,6 @@ public class E_Scroll : Enigma<E_ScrollAttributes>
     private Renderer m_rend;
     private bool m_isLit = false;
     private float m_litTime = 0.0f;
-    private Light m_LightProperty;
 
     void Start()
     {
@@ -27,31 +26,21 @@ public class E_Scroll : Enigma<E_ScrollAttributes>
             m_litTime += Time.deltaTime;
             m_rend.material.SetFloat("_ProximityLight", m_litTime / m_timeToLit);
         }
-
     }
-
-    void setLitState(bool state) { m_isLit = state; }
+    
     void OnTriggerEnter(Collider other)
     {
-        m_LightProperty = other.gameObject.GetComponent<Light>();
-
-        if (m_LightProperty)
+        if (other.gameObject.GetComponent<Light>())
             m_isLit = true;
     }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponent<Light>())
-        {
-            m_isLit = false;
-        }
-    }
 
-    protected override void OnSuccess()
+
+    protected override void onSuccess()
     {
         throw new NotImplementedException();
     }
 
-    protected override void OnFail()
+    protected override void onFail()
     {
         throw new NotImplementedException();
     }

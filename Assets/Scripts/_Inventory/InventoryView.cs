@@ -11,8 +11,8 @@ public class InventoryView : MonoBehaviour {
 
     [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
+    Animator m_animator;
     InventoryModel m_inventoryModel;
-	Animator m_animator;
 
 	bool m_isVisible;
 	public bool visible
