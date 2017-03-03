@@ -1,13 +1,23 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections.Generic;
 
-public class InventoryController : MonoBehaviour
+[Serializable]
+public class InventoryAttributes : SavedAttributes
+{
+    public int[] takenObjectsList;
+}
+
+public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 {
     [SerializeField]
     InventoryView m_inventoryView;
-    InventoryModel m_inventoryModel;
+    InventoryModel m_inventoryModel = new InventoryModel();
 
     [SerializeField]
     Transform m_Objects;
+
+    List<Transform> Scene_Objects = new List<Transform>();
     
     public bool visible
     {
@@ -27,8 +37,10 @@ public class InventoryController : MonoBehaviour
 
     void Start()
     {
-        m_inventoryModel = new InventoryModel();
         m_inventoryView.Init(m_inventoryModel);
+
+        Scene_Objects.AddRange(m_Objects.GetComponentsInChildren<Transform>());
+        savedAttributes.takenObjectsList = new int[Scene_Objects.Count];
     }
 
     /// <summary>
@@ -54,11 +66,30 @@ public class InventoryController : MonoBehaviour
         m_inventoryModel.add(obj);
         obj.transform.SetParent(transform);
         m_inventoryView.updateContent();
+        
+        savedAttributes.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 1;
     }
 
     void remove(GameObject obj)
     {
         m_inventoryModel.remove(obj);
         m_inventoryView.updateContent();
+
+        savedAttributes.takenObjectsList[Scene_Objects.IndexOf(obj.transform)] = 0;
+    }
+
+    protected override void OnLoadAttributes()
+    {
+        int ID = 0;
+
+        foreach (var objID in savedAttributes.takenObjectsList)
+        {
+            if(objID == 1)
+            {
+                add(Scene_Objects[ID].gameObject);
+            }
+
+            ID++;
+        }
     }
 }
