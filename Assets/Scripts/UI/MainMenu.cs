@@ -54,11 +54,33 @@ public class MainMenu : MonoBehaviour
     }
     public void newGame()
     {
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        StartCoroutine(load(op, false));
+
     }
     public void coninueGame()
     {
+        AsyncOperation op = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        StartCoroutine(load(op, true));
+        
+    }
 
+    IEnumerator load(AsyncOperation op, bool load)
+    {
+        Destroy(this.GetComponent<StandaloneInputModule>());
+        Destroy(this.GetComponent<EventSystem>());
+        //display screen here
+        while (!op.isDone)
+        {
+            yield return null;
+        }
+        if(load)
+            GameManager.Instance.load();
+        SceneManager.UnloadScene("MainMenu");
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
+
+        yield return null;
+        
     }
     public void options()
     {
