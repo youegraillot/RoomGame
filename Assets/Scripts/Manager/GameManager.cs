@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 [Serializable]
 public struct SaveStruct
@@ -16,7 +17,23 @@ public struct SaveStruct
 }
 
 public class GameManager : MonoBehaviour {
-
+    static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if(_instance==null)
+            {
+                _instance = FindObjectOfType(typeof(GameManager)) as GameManager;
+                if(_instance == null)
+                {
+                    GameObject go = new GameObject("GameManager");
+                    _instance = go.AddComponent<GameManager>();
+                }
+            }
+            return _instance;
+        }
+    }
     public SaveStruct SaveDatas;
     static SavedMonoBehaviour[] SavedMonoBehaviours;
     List<Transform> Scene_ObjectsTransform = new List<Transform>();
