@@ -66,7 +66,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 112000040, guid: bff439c124073294bbd4a1bbefa35aeb,
+  m_LightingDataAsset: {fileID: 112000042, guid: 3e834323eb3ab2f4f8307bbf057ede78,
     type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
@@ -2621,7 +2621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveDatas:
     Game_TotalTime: 0
-    Tutorial_Index: 0
     Scene_ActivableObjectsState: 
     SavedAttributes: []
 --- !u!1001 &298031801

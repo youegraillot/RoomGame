@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0ffca0274db41534c96654d31dabf413
-timeCreated: 1486045061
+timeCreated: 1488533300
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -977,20 +977,16 @@ SubstanceImporter:
           second: 0.5
         data:
           first:
-            name: _Glossiness
-          second: 0.5
-        data:
-          first:
-            name: _Metallic
-          second: 0
-        data:
-          first:
             name: _Parallax
           second: 0.005
         data:
           first:
             name: _ZWrite
           second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
         data:
           first:
             name: _BumpScale
@@ -1010,6 +1006,10 @@ SubstanceImporter:
         data:
           first:
             name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
           second: 0
       colors:
         data:
@@ -1082,7 +1082,7 @@ SubstanceImporter:
       textureWidth: 512
       textureHeight: 512
       textureFormat: 0
-      loadingBehavior: 2
+      loadingBehavior: 1
   - serializedVersion: 16
     name: Parquet
     prototypeName: Bitmap2Material_3
@@ -2055,20 +2055,16 @@ SubstanceImporter:
           second: 0.5
         data:
           first:
-            name: _Glossiness
-          second: 0.5
-        data:
-          first:
-            name: _Metallic
-          second: 0
-        data:
-          first:
             name: _Parallax
           second: 0.005
         data:
           first:
             name: _ZWrite
           second: 1
+        data:
+          first:
+            name: _Glossiness
+          second: 0.5
         data:
           first:
             name: _BumpScale
@@ -2088,6 +2084,10 @@ SubstanceImporter:
         data:
           first:
             name: _Mode
+          second: 0
+        data:
+          first:
+            name: _Metallic
           second: 0
       colors:
         data:
@@ -2205,7 +2205,7 @@ SubstanceImporter:
       textureWidth: 512
       textureHeight: 512
       textureFormat: 0
-      loadingBehavior: 2
+      loadingBehavior: 1
   deletedPrototypes: []
   userData: 
   assetBundleName: 
