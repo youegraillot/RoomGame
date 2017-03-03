@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 418d604a808e53a47abcb4744ff6b16e, type: 3}
+          m_Texture: {fileID: 2800000, guid: 5bce1268f4cbdd64f811fad3848606ed, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -34,6 +34,20 @@ Material:
           name: _DetailNormalMap
         second:
           m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _TextTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 5bce1268f4cbdd64f811fad3848606ed, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SolutionTex
+        second:
+          m_Texture: {fileID: 2800000, guid: d359af8f1a5aff542872d8d713c03761, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -80,18 +94,11 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _TextTex
+          name: _Overlay
         second:
-          m_Texture: {fileID: 2800000, guid: 74620568c90d3cb4ebb1a06c5b7794e0, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SolutionTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 82ab3a10b45d985498af48d98ae61635, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+          m_Texture: {fileID: 2800000, guid: 6ffeb1c9b2ec2d44eb613af4fb8a56f6, type: 3}
+          m_Scale: {x: 1.26, y: 4.58}
+          m_Offset: {x: -0.13, y: -1.04}
     m_Floats:
       data:
         first:
@@ -107,16 +114,24 @@ Material:
         second: 0.5
       data:
         first:
+          name: _Glossiness
+        second: 1
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _ProximityLight
+        second: 0
+      data:
+        first:
           name: _Parallax
         second: 0.02
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -139,11 +154,7 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _ProximityLight
+          name: _Ratio
         second: 0
     m_Colors:
       data:

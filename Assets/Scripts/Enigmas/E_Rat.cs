@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class E_RatAttributes : SavedAttributes
+public class E_RatAttributes : EnigmaAttributes
 {
 }
 
@@ -35,28 +35,9 @@ public class E_Rat : Enigma<E_RatAttributes>
     {
         if( enabled && other.gameObject.name == "BoutonPressure" )
         {
-            // TODO: activer le mechanisme de la trappe
-
-            { // TMP
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.name = "PLACEHOLDER_RAT_REWARD";
-                cube.transform.position = m_targetReward.position;
-                cube.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-
-                cube.AddComponent<Rigidbody>();
-            } // END TMP
+            answer(true);
 
             enabled = false;
         }
-    }
-
-    protected override void onSuccess()
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void onFail()
-    {
-        throw new NotImplementedException();
     }
 }

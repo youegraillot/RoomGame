@@ -150,9 +150,12 @@ public class KeyboardController : PlayerController
         GetComponentInParent<Rigidbody>().WakeUp();
 
         // Holding events
-        HoldState = Input.GetMouseButton(1) && Target is MovableObject;
-		DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
-		RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
+        if(!DisplayInventory)
+        {
+            HoldState = Input.GetMouseButton(1) && Target is MovableObject;
+            DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
+            RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
+        }
 
         // Inventory events
         if (Input.GetKeyDown(m_openInventoryKey))

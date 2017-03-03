@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class E_LibraryAttributes : SavedAttributes
+public class E_LibraryAttributes : EnigmaAttributes
 {
     public int[] answer;
     public int indice;
@@ -40,14 +40,12 @@ public class E_Library : Enigma<E_LibraryAttributes>
             answer(true);
         }
     }
-
-    protected override void onSuccess()
-    {
-        // TODO : Unlock Number
-    }
-
+    
     protected override void onFail()
     {
+        base.onFail();
+
+        // Reset books
         foreach (var book in GetComponentsInChildren<E_Book>())
             book.deactivate();
 
