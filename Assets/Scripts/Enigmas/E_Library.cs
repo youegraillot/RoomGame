@@ -1,78 +1,56 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class E_Library : MonoBehaviour
+[Serializable]
+public class E_LibraryAttributes : SavedAttributes
+{
+    public int[] answer;
+    public int indiceArray;
+}
+
+public class E_Library : Enigma<E_LibraryAttributes>
 {
     [SerializeField]
-    Book m_resetBook;
-    [SerializeField]
-    private Book[] m_bookArray;
-    [SerializeField]
-    private int[] m_solution;
-    private int[] m_playerProposal;
-    private int m_indiceArray;
-    private bool canReset=true;
+    public int[] m_solution;
+
     void Start()
     {
-        if(m_bookArray.Length!=m_solution.Length)
-        {
-            Debug.LogError("book_array and solution doesn't have the same size");
-            return;
-        }
-        m_playerProposal = new int[m_bookArray.Length];
-        for(int i=0;i<m_bookArray.Length;i++)
-        {
-            m_bookArray[i].SetLibrary(this);
-        }
-        m_indiceArray = 0;
-        m_resetBook.SetLibrary(this);
+        if (GetComponentsInChildren<E_Book>().Length != m_solution.Length)
+            throw new Exception("Wrong number of E_Book.");
+
+        savedAttributes.answer = new int[m_solution.Length];
     }
 
-    public void resetProposal()
+    public void activeBook(int BookID)
     {
-        if (canReset)
+        // Update answer
+        savedAttributes.answer[savedAttributes.indiceArray] = BookID;
+        savedAttributes.indiceArray++;
+        
+        // Check solution
+        if (savedAttributes.indiceArray == savedAttributes.answer.Length)
         {
-            for (int i = 0; i < m_playerProposal.Length; i++)
-            {
-                m_playerProposal[i] = -1;
-                m_bookArray[i].reset();
-            }
-            m_indiceArray = 0;
+            for (int i = 0; i < savedAttributes.answer.Length; i++)
+                if (savedAttributes.answer[i] != m_solution[i])
+                {
+                    Answer(false);
+                    return;
+                }
+
+            Answer(true);
         }
     }
 
-    public void activeBook(Book book)
+    protected override void OnSuccess()
     {
-        m_playerProposal[m_indiceArray] = book.GetID();
-        m_indiceArray++;
-        if (m_indiceArray == m_playerProposal.Length)
-        {
-            CheckForSolution();
-        }
-    }
-    void CheckForSolution()
-    {
-        for (int i=0;i<m_playerProposal.Length;i++)
-        {
-            if (m_playerProposal[i] != m_solution[i])
-            {
-                Debug.Log("bad soluce");
-                return;
-            }
-        }
-        Debug.Log("soluce ok");
-        canReset = false;
+        // TODO : Unlock Number
     }
 
-#if UNITY_EDITOR
-
-    void Update()
+    protected override void OnFail()
     {
-        if(Input.GetKeyUp(KeyCode.A))
-        {
-            resetProposal();
-            Debug.Log("reset");
-        }
+        foreach (var book in GetComponentsInChildren<E_Book>())
+            book.deactivate();
+
+        (GetAttributes() as E_LibraryAttributes).indiceArray = 0;
     }
-#endif
 }

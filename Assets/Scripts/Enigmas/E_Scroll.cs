@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class E_Scroll : MonoBehaviour
+[Serializable]
+public class E_ScrollAttributes : SavedAttributes
+{
+}
+
+public class E_Scroll : Enigma<E_ScrollAttributes>
 {
     public float m_timeToLit = 3.0f;
     private Renderer m_rend;
     private bool m_isLit = false;
     private float m_litTime = 0.0f;
     private Light m_LightProperty;
-    // Use this for initialization
+
     void Start()
     {
         m_rend = transform.GetChild(0).gameObject.GetComponent<Renderer>();
@@ -39,5 +44,15 @@ public class E_Scroll : MonoBehaviour
         {
             m_isLit = false;
         }
+    }
+
+    protected override void OnSuccess()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void OnFail()
+    {
+        throw new NotImplementedException();
     }
 }

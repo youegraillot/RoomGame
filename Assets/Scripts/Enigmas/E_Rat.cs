@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 
-public class E_Rat : MonoBehaviour
+[Serializable]
+public class E_RatAttributes : SavedAttributes
+{
+}
+
+public class E_Rat : Enigma<E_RatAttributes>
 {
     public Transform    m_target        = null;
     public NavMeshAgent m_navMeshAgent  = null;
@@ -13,9 +18,7 @@ public class E_Rat : MonoBehaviour
     void Start()
     {
         if ( m_target == null || m_navMeshAgent == null )
-        {
-            throw new System.Exception();
-        }
+            throw new Exception();
     }
 	
 	// Update is called once per frame
@@ -30,7 +33,7 @@ public class E_Rat : MonoBehaviour
 
     void OnTriggerEnter( Collider other )
     {
-        if( this.enabled && other.gameObject.name == "BoutonPressure" )
+        if( enabled && other.gameObject.name == "BoutonPressure" )
         {
             // TODO: activer le mechanisme de la trappe
 
@@ -43,7 +46,17 @@ public class E_Rat : MonoBehaviour
                 cube.AddComponent<Rigidbody>();
             } // END TMP
 
-            this.enabled = false;
+            enabled = false;
         }
+    }
+
+    protected override void OnSuccess()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void OnFail()
+    {
+        throw new NotImplementedException();
     }
 }
