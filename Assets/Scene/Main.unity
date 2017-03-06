@@ -9088,10 +9088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_solutionRenderer: {fileID: 1684804332}
   m_target: {fileID: 500917305}
-  m_navMeshAgent: {fileID: 1703239890}
-  m_animator: {fileID: 0}
-  m_sightDistance: 1
-  m_targetReward: {fileID: 752568070}
 --- !u!23 &1703239892
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9645,7 +9641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192e7b2f8a9b8ca439689add490acccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_code: 00000000000000000000000001000000
+  m_code: 07000000030000000400000008000000
   m_digits:
   - {fileID: 628690132}
   - {fileID: 806358031}

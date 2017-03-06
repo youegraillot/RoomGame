@@ -8,17 +8,17 @@ public class E_RatAttributes : EnigmaAttributes
 
 public class E_Rat : Enigma<E_RatAttributes>
 {
-    public Transform    m_target        = null;
-    public NavMeshAgent m_navMeshAgent  = null;
-    public Animator     m_animator      = null;
-    public float        m_sightDistance = 0.5f; // distance (in Unity units) at which the cheese will be out of sight
-
-    public Transform    m_targetReward  = null; // TMP (cf. OnTriggerEnter)
+    [SerializeField]
+    Transform    m_target;
+    NavMeshAgent m_navMeshAgent;
+    float        m_sightDistance = 0.5f; // distance (in Unity units) at which the cheese will be out of sight
 
     void Start()
     {
-        if ( m_target == null || m_navMeshAgent == null )
-            throw new Exception();
+        m_navMeshAgent = GetComponent<NavMeshAgent>();
+
+        if ( m_target == null)
+            throw new Exception("No target");
     }
 	
 	// Update is called once per frame
