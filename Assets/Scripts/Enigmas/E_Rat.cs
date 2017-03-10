@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System;
 
-[Serializable]
-public class E_RatAttributes : EnigmaAttributes
-{
-}
-
-public class E_Rat : Enigma<E_RatAttributes>
+public class E_Rat : Enigma<EnigmaAttributes>
 {
     [SerializeField]
     Transform    m_target;
     NavMeshAgent m_navMeshAgent;
+    Animator m_animator;
+    [SerializeField]
     float        m_sightDistance = 0.5f; // distance (in Unity units) at which the cheese will be out of sight
 
     void Start()
@@ -19,6 +16,8 @@ public class E_Rat : Enigma<E_RatAttributes>
 
         if ( m_target == null)
             throw new Exception("No target");
+
+        m_animator = GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -29,6 +28,8 @@ public class E_Rat : Enigma<E_RatAttributes>
         if ( dst > 0.0f && dst <= m_sightDistance ) {
             m_navMeshAgent.destination = m_target.position;
         }
+
+        m_animator.SetFloat("Speed", m_navMeshAgent.desiredVelocity.magnitude / m_navMeshAgent.speed);
     }
 
     void OnTriggerEnter( Collider other )
