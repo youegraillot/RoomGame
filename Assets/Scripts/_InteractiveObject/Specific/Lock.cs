@@ -10,6 +10,8 @@ public class Lock : ActivableObject
 
     Animation m_animation;
 
+    public AudioSource SoundToPlay = null;
+
 	void Start()
 	{
 		updateState = false;
@@ -24,6 +26,7 @@ public class Lock : ActivableObject
     bool checkCode()
     {
         m_animation.Play("Door_Pivot");
+       
 
         for (int digitID = 0; digitID < 4; digitID++)
 		{
@@ -39,6 +42,7 @@ public class Lock : ActivableObject
     /// </summary>
     void unlock()
     {
+        SoundToPlay.Play();
         m_animation.Play("Door_Open");
         canBeActivated = false;
     }
