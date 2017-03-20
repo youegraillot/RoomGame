@@ -93,7 +93,9 @@ public class KeyboardController : PlayerController
         {
             Rect screenCenter = new Rect(Screen.width / 2 - m_reticleSize / 2, Screen.height / 2 - m_reticleSize / 2, m_reticleSize, m_reticleSize);
 
-            if (Target)
+            if (Target is ActivableObject)
+                GUI.DrawTexture(screenCenter, m_reticleTextureInteractive, ScaleMode.StretchToFill, true);
+            else if(Target)
                 GUI.DrawTexture(screenCenter, m_reticleTextureActive, ScaleMode.StretchToFill, true);
             else
                 GUI.DrawTexture(screenCenter, m_reticleTextureIdle, ScaleMode.StretchToFill, true);
