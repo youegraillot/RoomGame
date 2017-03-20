@@ -50,7 +50,9 @@ public class Tutorial : SavedMonoBehaviourImpl<TutorialAttributes>
     [SerializeField]
     string[] m_captionList;
 
-	void Start () {
+    bool canPlayNext = true;
+
+    void Start () {
         m_animator = GetComponent<Animator>();
 
         m_illustration = GetComponentInChildren<RawImage>();
@@ -64,16 +66,19 @@ public class Tutorial : SavedMonoBehaviourImpl<TutorialAttributes>
 	
 	void Update ()
     {
-        switch (m_pendingAction)
+        if(canPlayNext)
         {
-            case Action.Move:
-                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-                    end();
+            switch (m_pendingAction)
+            {
+                case Action.Move:
+                    if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                        end();
                     break;
-            case Action.OpenInventory:
-                if (Input.GetKey(KeyCode.Tab))
-                    end();
-                break;
+                case Action.OpenInventory:
+                    if (Input.GetKey(KeyCode.Tab))
+                        end();
+                    break;
+            }
         }
     }
 
@@ -84,11 +89,17 @@ public class Tutorial : SavedMonoBehaviourImpl<TutorialAttributes>
             savedAttributes.index = index;
 
             m_animator.Play("Fade IN");
+            canPlayNext = false;
 
             m_pendingAction = m_actionList[savedAttributes.index];
             m_illustration.texture = m_illustrationList[savedAttributes.index];
             m_caption.text = m_captionList[savedAttributes.index];
         }
+    }
+    
+    void endFade()
+    {
+        canPlayNext = true;
     }
 
     void playNext()

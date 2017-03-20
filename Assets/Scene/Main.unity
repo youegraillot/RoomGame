@@ -3656,7 +3656,6 @@ Transform:
   - {fileID: 1918688836}
   - {fileID: 213150782}
   - {fileID: 2111560374}
-  - {fileID: 500917305}
   m_Father: {fileID: 810637301}
   m_RootOrder: 4
 --- !u!1 &500917302
@@ -3671,6 +3670,7 @@ GameObject:
   - 23: {fileID: 500917308}
   - 65: {fileID: 500917304}
   - 54: {fileID: 500917310}
+  - 114: {fileID: 500917306}
   m_Layer: 8
   m_Name: Cheese
   m_TagString: Untagged
@@ -3713,12 +3713,23 @@ Transform:
   m_PrefabParentObject: {fileID: 400016, guid: 2d4b11bf674d8c640adea4948c3e8007, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 500917302}
-  m_LocalRotation: {x: -2.2737368e-13, y: -0.024021447, z: 2.842171e-13, w: 0.99971145}
-  m_LocalPosition: {x: -0.00030000554, y: 0.0068399752, z: -0.026400046}
+  m_LocalRotation: {x: 0.0000008278977, y: 0.9918135, z: -0.0000013706399, w: 0.12769519}
+  m_LocalPosition: {x: -0.0743, y: 0.822, z: -1.4085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 500917301}
-  m_RootOrder: 3
+  m_Father: {fileID: 810637301}
+  m_RootOrder: 5
+--- !u!114 &500917306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 500917302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59754d5193a63f47b06a62c831e0872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &500917307
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5102,6 +5113,7 @@ Transform:
   - {fileID: 854442201}
   - {fileID: 2710970}
   - {fileID: 500917301}
+  - {fileID: 500917305}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 2
 --- !u!1 &825622573
@@ -9355,6 +9367,7 @@ MonoBehaviour:
   m_solutionRenderer: {fileID: 1145919007}
   m_target: {fileID: 500917305}
   m_sightDistance: 1
+  m_mouseTrap: {fileID: 0}
 --- !u!136 &1703239893
 CapsuleCollider:
   m_ObjectHideFlags: 0

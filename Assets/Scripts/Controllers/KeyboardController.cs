@@ -37,6 +37,11 @@ public class KeyboardController : PlayerController
 		base.Update();
     }
 
+    protected override Vector3 getControllerPosition()
+    {
+        return Input.mousePosition;
+    }
+
     Ray m_ray;
     RaycastHit m_targeInfo;
     public override void updateTarget()
@@ -134,10 +139,10 @@ public class KeyboardController : PlayerController
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
-				if (Target is MovableObject)
+                if (Target.GetComponent<ActivableObject>() != null)
+                    activate();
+                else if (Target.GetComponent<MovableObject>() != null)
 					freezeObject();
-				else if (Target is ActivableObject)
-					activate();
 			}
 		}
 
@@ -154,11 +159,11 @@ public class KeyboardController : PlayerController
         GetComponentInParent<Rigidbody>().WakeUp();
 
         // Holding events
-        if(!DisplayInventory)
+        if(!DisplayInventory && Target)
         {
-            HoldState = Input.GetMouseButton(1) && Target is MovableObject;
-            DrawState = Input.GetMouseButton(1) && Target is DrawableObject;
-            RotateState = Input.GetKey(m_rotateObjectKey) && Target is MovableObject;
+            HoldState = Input.GetMouseButton(1) && Target.GetComponent<MovableObject>() != null;
+            DrawState = Input.GetMouseButton(1) && Target.GetComponent<DrawableObject>() != null;
+            RotateState = Input.GetKey(m_rotateObjectKey) && Target.GetComponent<MovableObject>() != null;
         }
 
         // Inventory events
@@ -167,7 +172,7 @@ public class KeyboardController : PlayerController
             DisplayInventory = !DisplayInventory;
             m_displayReticle = !DisplayInventory;
         }
-        if (Input.GetKeyDown(m_takeObjectKey) && Target is MovableObject)
+        if (Input.GetKeyDown(m_takeObjectKey) && Target.GetComponent<MovableObject>() != null)
         {
             HoldState = false;
             addToInventory();
