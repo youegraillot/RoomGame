@@ -29,9 +29,5 @@ public class MouseTrap : ActivableObject
         m_cheese.GetComponent<Rigidbody>().isKinematic = false;
         m_cheese.GetComponent<Collider>().enabled = true;
         m_inventoryController.add(m_cheese);
-
-        // Make this a MovableObject instead of MouseTrap
-        Destroy(this);
-        gameObject.AddComponent<MovableObject>();
     }
 }
