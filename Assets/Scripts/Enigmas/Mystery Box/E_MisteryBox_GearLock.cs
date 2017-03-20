@@ -8,8 +8,7 @@ public class E_MisteryBox_GearLock : MonoBehaviour {
     GameObject m_door;
     // Use this for initialization
     void Start () {
-	
-	}
+    }
 	
 	// Update is called once per frame
 	void OnTriggerEnter(Collider other)
