@@ -52,7 +52,7 @@ public abstract class PlayerController : MonoBehaviour
                     Target.transform.position = m_holdPoint.transform.position;
 
                     m_holdPoint.connectedBody = Target.GetComponent<Rigidbody>();
-                    ((MovableObject)m_currentObject).isFreezed = false;
+                    (m_currentObject.GetComponent<MovableObject>()).isFreezed = false;
                 }
                 else
                 {
@@ -80,7 +80,7 @@ public abstract class PlayerController : MonoBehaviour
 
                 if (value)
                 {
-					((MovableObject)m_currentObject).initRotation();
+                    m_currentObject.GetComponent<MovableObject>().initRotation();
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
@@ -107,7 +107,7 @@ public abstract class PlayerController : MonoBehaviour
 
 				if (value)
 				{
-					((DrawableObject)m_currentObject).initDraw(Input.mousePosition);
+                    m_currentObject.GetComponent<DrawableObject>().initDraw(getControllerPosition());
 					Cursor.lockState = CursorLockMode.None;
 				}
 				else
@@ -152,6 +152,11 @@ public abstract class PlayerController : MonoBehaviour
 	}
 
     /// <summary>
+    /// Return controller position
+    /// </summary>
+    protected abstract Vector3 getControllerPosition();
+
+    /// <summary>
     /// Called by update in order to set the target object.
     /// </summary>
     public abstract void updateTarget();
@@ -181,9 +186,9 @@ public abstract class PlayerController : MonoBehaviour
     /// </summary>
     protected void freezeObject()
     {
-        if (m_currentObject != null)
+        if (m_currentObject.GetComponent<MovableObject>() != null)
 		{
-			((MovableObject)m_currentObject).isFreezed = !(m_currentObject as MovableObject).isFreezed;
+			m_currentObject.GetComponent<MovableObject>().isFreezed = !m_currentObject.GetComponent<MovableObject>().isFreezed;
 		}
     }
 
@@ -193,7 +198,7 @@ public abstract class PlayerController : MonoBehaviour
 	protected void activate()
     {
 		if (m_currentObject != null)
-			((ActivableObject)m_currentObject).activate();
+            m_currentObject.GetComponent<ActivableObject>().activate();
 	}
 
     /// <summary>

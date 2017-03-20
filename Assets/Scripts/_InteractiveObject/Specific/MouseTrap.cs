@@ -24,14 +24,15 @@ public class MouseTrap : ActivableObject
         m_rigidbody.AddForceAtPosition(Vector3.up * m_force, m_cheese.transform.position, ForceMode.Impulse);
         m_pivot.localEulerAngles = new Vector3(180, m_pivot.localEulerAngles.y, m_pivot.localEulerAngles.z);
 
-        // Make cheese a MovableObject and add it to inventory
-        m_cheese.AddComponent<MovableObject>();
-        m_cheese.GetComponent<Rigidbody>().isKinematic = false;
-        m_cheese.GetComponent<Collider>().enabled = true;
+        unlockCheese();
         m_inventoryController.add(m_cheese);
 
-        // Make this a MovableObject instead of MouseTrap
-        Destroy(this);
-        gameObject.AddComponent<MovableObject>();
+        FindObjectOfType<E_Rat>().notifyUnlockedCheese();
+    }
+
+    public void unlockCheese()
+    {
+        m_cheese.GetComponent<Rigidbody>().isKinematic = false;
+        m_cheese.GetComponent<Collider>().enabled = true;
     }
 }
