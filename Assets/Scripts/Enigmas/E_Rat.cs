@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System;
 
-public class E_Rat : Enigma<EnigmaAttributes>
+[Serializable]
+public class E_RatAttributes : EnigmaAttributes
+{
+    public bool isChesseUnlocked = false;
+}
+
+public class E_Rat : Enigma<E_RatAttributes>
 {
     [SerializeField]
     Transform    m_target;
@@ -9,6 +15,9 @@ public class E_Rat : Enigma<EnigmaAttributes>
     Animator m_animator;
     [SerializeField]
     float        m_sightDistance = 0.5f; // distance (in Unity units) at which the cheese will be out of sight
+
+    [SerializeField]
+    MouseTrap m_mouseTrap;
 
     void Start()
     {
@@ -37,8 +46,20 @@ public class E_Rat : Enigma<EnigmaAttributes>
         if( enabled && other.gameObject.name == "BoutonPressure" )
         {
             answer(true);
-
             enabled = false;
         }
+    }
+
+    public void notifyUnlockedCheese()
+    {
+        savedAttributes.isChesseUnlocked = true;
+    }
+
+    protected override void OnLoadAttributes()
+    {
+        base.OnLoadAttributes();
+
+        if (savedAttributes.isChesseUnlocked)
+            m_mouseTrap.unlockCheese();
     }
 }
