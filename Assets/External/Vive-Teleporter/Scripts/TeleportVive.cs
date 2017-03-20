@@ -48,6 +48,9 @@ public class TeleportVive : MonoBehaviour {
 
     private Mesh PlaneMesh;
 
+    bool shouldTeleport = false;
+    bool initTeleport = false;
+
     void Start()
     {
         // Disable the pointer graphic (until the user holds down on the touchpad)
@@ -172,15 +175,14 @@ public class TeleportVive : MonoBehaviour {
         }
 
         // At this point, we are NOT actively teleporting.  So now we care about controller input.
-        if (ActiveController != null)
+        if (initTeleport)
         {
             // Here, there is an active controller - that is, the user is holding down on the trackpad.
             // Poll controller for pertinent button data
             int index = (int)ActiveController.index;
             var device = SteamVR_Controller.Input(index);
-            bool shouldTeleport = device.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad);
-            bool shouldCancel = device.GetPressUp(SteamVR_Controller.ButtonMask.Grip);
-            if (shouldTeleport || shouldCancel)
+
+            if (shouldTeleport)
             {
                 // If the user has decided to teleport (ie lets go of touchpad) then remove all visual indicators
                 // related to selecting things and actually teleport
@@ -191,20 +193,10 @@ public class TeleportVive : MonoBehaviour {
                     Teleporting = true;
                     TeleportTimeMarker = Time.time;
                 }
-                
-                // Reset active controller, disable pointer, disable visual indicators
-                ActiveController = null;
-                Pointer.enabled = false;
-                RoomBorder.enabled = false;
-                //RoomBorder.Transpose = Matrix4x4.TRS(OriginTransform.position, Quaternion.identity, Vector3.one);
-                if (NavmeshAnimator != null)
-                    NavmeshAnimator.SetBool(EnabledAnimatorID, false);
 
-                Pointer.transform.parent = null;
-                Pointer.transform.position = Vector3.zero;
-                Pointer.transform.rotation = Quaternion.identity;
-                Pointer.transform.localScale = Vector3.one;
-            } else
+                shouldTeleport = false;
+            }
+            else
             {
                 // The user is still deciding where to teleport and has the touchpad held down.
                 // Note: rendering of the parabolic pointer / marker is done in ParabolicPointer
@@ -222,37 +214,40 @@ public class TeleportVive : MonoBehaviour {
                     device.TriggerHapticPulse();
                 }
             }
-        } else
-        {
-            // At this point the user is not holding down on the touchpad at all or has canceled a teleport and hasn't
-            // let go of the touchpad.  So we wait for the user to press the touchpad and enable visual indicators
-            // if necessary.
-            foreach (SteamVR_TrackedObject obj in Controllers)
-            {
-                int index = (int)obj.index;
-                if (index == -1)
-                    continue;
-
-                var device = SteamVR_Controller.Input(index);
-                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
-                {
-                    // Set active controller to this controller, and enable the parabolic pointer and visual indicators
-                    // that the user can use to determine where they are able to teleport.
-                    ActiveController = obj;
-
-                    Pointer.transform.parent = obj.transform;
-                    Pointer.transform.localPosition = Vector3.zero;
-                    Pointer.transform.localRotation = Quaternion.identity;
-                    Pointer.transform.localScale = Vector3.one;
-                    Pointer.enabled = true;
-                    RoomBorder.enabled = true;
-                    if(NavmeshAnimator != null)
-                        NavmeshAnimator.SetBool(EnabledAnimatorID, true);
-
-                    Pointer.ForceUpdateCurrentAngle();
-                    LastClickAngle = Pointer.CurrentParabolaAngle;
-                }
-            }
         }
 	}
+
+    public void Teleport()
+    {
+        shouldTeleport = true;
+
+        Pointer.enabled = false;
+        RoomBorder.enabled = false;
+        if (NavmeshAnimator != null)
+            NavmeshAnimator.SetBool(EnabledAnimatorID, false);
+    }
+
+    public void InitTeleport()
+    {
+        initTeleport = true;
+
+        Pointer.enabled = true;
+        RoomBorder.enabled = true;
+        if (NavmeshAnimator != null)
+            NavmeshAnimator.SetBool(EnabledAnimatorID, true);
+    }
+    
+    public void SetActiveController(SteamVR_TrackedObject input)
+    {
+        ActiveController = input;
+        
+        Pointer.transform.parent = input.transform;
+
+        Pointer.transform.localPosition = Vector3.zero;
+        Pointer.transform.localRotation = Quaternion.identity;
+        Pointer.transform.localScale = Vector3.one;
+        
+        Pointer.ForceUpdateCurrentAngle();
+        LastClickAngle = Pointer.CurrentParabolaAngle;
+    }
 }
