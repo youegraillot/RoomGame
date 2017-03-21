@@ -10,6 +10,7 @@ public class MouseTrap : ActivableObject
     InventoryController m_inventoryController;
     [SerializeField, Range(0,0.1f)]
     float m_force;
+    public AudioSource sondToPlayWhenColide = null;
 
     Rigidbody m_rigidbody;
     
@@ -26,12 +27,16 @@ public class MouseTrap : ActivableObject
 
         // Make cheese a MovableObject and add it to inventory
         m_cheese.AddComponent<MovableObject>();
+       
         m_cheese.GetComponent<Rigidbody>().isKinematic = false;
         m_cheese.GetComponent<Collider>().enabled = true;
         m_inventoryController.add(m_cheese);
 
         // Make this a MovableObject instead of MouseTrap
+        MovableObject movableObj = gameObject.AddComponent<MovableObject>();
+        Debug.Log(sondToPlayWhenColide);
+        movableObj.sondToPlayOnColision = sondToPlayWhenColide;
         Destroy(this);
-        gameObject.AddComponent<MovableObject>();
+        
     }
 }

@@ -3,6 +3,8 @@
 [RequireComponent(typeof(Rigidbody))]
 public class MovableObject : InteractiveObject
 {
+    public AudioSource sondToPlayOnColision = null;
+
 	Quaternion m_initialRotation;
 	protected Rigidbody m_rigidbody;
     
@@ -35,4 +37,12 @@ public class MovableObject : InteractiveObject
     {
         transform.localRotation = m_initialRotation * newRotation;
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (sondToPlayOnColision!=null)
+        {
+            sondToPlayOnColision.Play();
+        }
+    }
 }
