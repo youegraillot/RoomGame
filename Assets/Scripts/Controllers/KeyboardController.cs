@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
@@ -168,7 +167,7 @@ public class KeyboardController : PlayerController
             DisplayInventory = !DisplayInventory;
             m_displayReticle = !DisplayInventory;
         }
-        if (Input.GetKeyDown(m_takeObjectKey) && Target.GetComponent<MovableObject>() != null)
+        if (Input.GetKeyDown(m_takeObjectKey) && Target != null && Target.GetComponent<MovableObject>() != null)
         {
             HoldState = false;
             addToInventory();

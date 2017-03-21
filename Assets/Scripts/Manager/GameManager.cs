@@ -15,6 +15,11 @@ public struct SaveStruct
     public List<SavedAttributes> SavedAttributes;
 }
 
+public enum ControllerType
+{
+	Error, Vive, Keyboard
+}
+
 public class GameManager : MonoBehaviour {
 
     SaveStruct m_savedDatas;
@@ -22,15 +27,13 @@ public class GameManager : MonoBehaviour {
     List<Transform> m_sceneObjectsTransform = new List<Transform>();
     string m_saveFilename = "Player.save";
 
-    public static Type ControllerType
-    {
-        get
-        {
-            return FindObjectOfType<PlayerController>().GetType();
-        }
-    }
-    
-    public float TotalPlayedTime
+	public static ControllerType controllerType = ControllerType.Error;
+	[SerializeField]
+	GameObject m_goVive;
+	[SerializeField]
+	GameObject m_goKeyboard;
+
+	public float TotalPlayedTime
     {
         get
         {
@@ -40,12 +43,25 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        m_SMB = FindObjectsOfType<SavedMonoBehaviour>();
+		print("Method 1 : " + UnityEngine.VR.VRDevice.isPresent);
+		print("Method 2 : " + Valve.VR.OpenVR.IsHmdPresent());
+
+		if (false)
+		{
+			controllerType = ControllerType.Vive;
+			Destroy(m_goKeyboard);
+		}
+		else
+		{
+			controllerType = ControllerType.Keyboard;
+			Destroy(m_goVive);
+		}
+
+		m_SMB = FindObjectsOfType<SavedMonoBehaviour>();
 
         m_sceneObjectsTransform.AddRange(GameObject.Find("Objects").GetComponentsInChildren<Transform>(true));
         m_sceneObjectsTransform.AddRange(GameObject.Find("Interractive").GetComponentsInChildren<Transform>(true));
         m_sceneObjectsTransform.AddRange(GameObject.Find("Inventory").GetComponentsInChildren<Transform>(true));
-        m_sceneObjectsTransform.AddRange(GameObject.Find("Player").GetComponentsInChildren<Transform>(true));
         m_sceneObjectsTransform.Sort(CompareName);
     }
 

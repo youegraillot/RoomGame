@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class InventoryViewPC : InventoryView
 {
-    public override void updateContent()
+
+	public override void updateContent()
     {
         m_content.sizeDelta = Vector2.zero;
         selectPreview(m_selectedItem, false);
@@ -43,5 +44,5 @@ public class InventoryViewPC : InventoryView
 
             newItemCard.GetComponentsInChildren<Image>()[1].sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
         }
-    }
+	}
 }

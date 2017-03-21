@@ -136,7 +136,6 @@ public class ViveController : PlayerController
         }
     }
 
-    private bool m_isInventoryOpen = false;
     protected override void eventHandler()
     {
 

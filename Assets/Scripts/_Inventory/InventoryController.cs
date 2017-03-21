@@ -41,10 +41,17 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 
     void Start()
     {
-        if (GameManager.ControllerType == typeof(ViveController))
-            m_inventoryView = m_inventoryViewVive;
-        else if (GameManager.ControllerType == typeof(KeyboardController))
-            m_inventoryView = m_inventoryViewPC;
+		switch (GameManager.controllerType)
+		{
+			case ControllerType.Vive:
+				m_inventoryView = m_inventoryViewVive;
+				break;
+			case ControllerType.Keyboard:
+				m_inventoryView = m_inventoryViewPC;
+				break;
+			default:
+				throw new Exception("Controller type error");
+		}
 
         m_inventoryView.Init(m_inventoryModel);
 

@@ -4,7 +4,6 @@ public abstract class InventoryView : MonoBehaviour
 {
     [SerializeField] protected RectTransform m_content;
     [SerializeField] protected Camera m_cameraPreview;
-    [SerializeField] Transform m_originPreviewTransform;
     [SerializeField] protected RenderTexture m_previewTexture;
     [SerializeField] protected GameObject m_inventoryItemPrefab;
 
@@ -12,9 +11,10 @@ public abstract class InventoryView : MonoBehaviour
 
     Animator m_animator;
     protected InventoryModel m_inventoryModel;
+	Transform m_previewTransform;
 
 	bool m_isVisible;
-	public bool visible
+	public virtual bool visible
 	{
 		get { return m_isVisible; }
 		set
@@ -28,18 +28,19 @@ public abstract class InventoryView : MonoBehaviour
 		}
 	}
 
+	void Start()
+	{
+		m_animator = GetComponent<Animator>();
+		m_previewTransform = m_cameraPreview.transform.GetChild(0);
+	}
+
     protected GameObject m_selectedItem;
     public GameObject SelectedItem
     {
         get { return m_selectedItem; }
     }
 
-	public void Start()
-	{
-		m_animator = GetComponent<Animator>();
-	}
-
-    public void Init (InventoryModel model)
+	public void Init (InventoryModel model)
     {
         m_inventoryModel = model;
     }
@@ -76,8 +77,8 @@ public abstract class InventoryView : MonoBehaviour
     protected void placeForPreview(Transform item)
     {
         item.gameObject.SetActive(true);
-        m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<Collider>().bounds.extents.magnitude;
-        item.position = m_originPreviewTransform.position;
-        item.rotation = Quaternion.Euler(-30, 140, 0);
+		m_previewTransform.localPosition = Vector3.forward * m_previewZoom * item.GetComponentInChildren<Collider>().bounds.extents.magnitude;
+        item.localPosition = Vector3.zero;
+        item.localRotation = Quaternion.Euler(-30, 140, 0);
     }
 }
