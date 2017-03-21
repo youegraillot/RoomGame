@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Front
-  m_Shader: {fileID: 4800000, guid: 94762eeb79e659d47b20827700193ea9, type: 3}
-  m_ShaderKeywords: 
+  m_Name: Holder
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 5bce1268f4cbdd64f811fad3848606ed, type: 3}
+          m_Texture: {fileID: 2800000, guid: 0e934ba0898134e42818ae8d97b545d1, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 536644b0822bb714e9bafd13ad923874, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -75,30 +75,9 @@ Material:
         first:
           name: _MetallicGlossMap
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 34490032fb33f8e4b90c0f004df0303b, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _TextTex
-        second:
-          m_Texture: {fileID: 2800000, guid: 5bce1268f4cbdd64f811fad3848606ed, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SolutionTex
-        second:
-          m_Texture: {fileID: 2800000, guid: d359af8f1a5aff542872d8d713c03761, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Overlay
-        second:
-          m_Texture: {fileID: 2800000, guid: 6ffeb1c9b2ec2d44eb613af4fb8a56f6, type: 3}
-          m_Scale: {x: 1.26, y: 4.58}
-          m_Offset: {x: -0.13, y: -1.04}
     m_Floats:
       data:
         first:
@@ -123,7 +102,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 1
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -147,14 +126,6 @@ Material:
       data:
         first:
           name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _ProximityLight
-        second: 0
-      data:
-        first:
-          name: _Ratio
         second: 0
     m_Colors:
       data:
