@@ -30,13 +30,13 @@ public class MovableObject : InteractiveObject
 
     public void initRotation()
     {
-		m_initialRotation = transform.rotation;
+		m_initialRotation = transform.localRotation;
 	}
     
     public virtual void rotate(Quaternion newRotation)
     {
-        transform.rotation = newRotation * m_initialRotation;
-    }
+        transform.localRotation = m_initialRotation * newRotation;
+	}
 
     void OnCollisionEnter(Collision collision)
     {
