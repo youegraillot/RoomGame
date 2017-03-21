@@ -16,6 +16,8 @@ public class KeyboardController : PlayerController
     Texture m_reticleTextureIdle;
     [SerializeField]
     Texture m_reticleTextureActive;
+    [SerializeField]
+    Texture m_reticleTextureInteractive;
     [SerializeField, Range(1, 128)]
     int m_reticleSize = 24;
 
@@ -48,8 +50,16 @@ public class KeyboardController : PlayerController
 
         if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange))
         {
-			InteractiveObject newTarget = m_targeInfo.transform.GetComponent<InteractiveObject>();
-
+			InteractiveObject newTarget = m_targeInfo.collider.gameObject.GetComponent<InteractiveObject>();
+            Debug.Log(newTarget.gameObject.name);
+            for(int i = 0; i < m_targeInfo.transform.childCount;  i++)
+            {
+                //if(m_targeInfo.transform.GetChild(i).GetComponent<ActivableObject>())
+                //{
+                //    newTarget = m_targeInfo.transform.GetChild(i).GetComponent<ActivableObject>();
+                //    break;
+                //}
+            }
             if (newTarget)
             {
                 if (newTarget != Target)
@@ -96,7 +106,9 @@ public class KeyboardController : PlayerController
         {
             Rect screenCenter = new Rect(Screen.width / 2 - m_reticleSize / 2, Screen.height / 2 - m_reticleSize / 2, m_reticleSize, m_reticleSize);
 
-            if (Target)
+            if (Target is ActivableObject)
+                GUI.DrawTexture(screenCenter, m_reticleTextureInteractive, ScaleMode.StretchToFill, true);
+            else if(Target)
                 GUI.DrawTexture(screenCenter, m_reticleTextureActive, ScaleMode.StretchToFill, true);
             else
                 GUI.DrawTexture(screenCenter, m_reticleTextureIdle, ScaleMode.StretchToFill, true);
