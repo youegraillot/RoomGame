@@ -51,23 +51,23 @@ public class KeyboardController : PlayerController
         if (Physics.Raycast(m_ray, out m_targeInfo, m_raycastRange))
         {
 			InteractiveObject newTarget = m_targeInfo.collider.gameObject.GetComponent<InteractiveObject>();
-            Debug.Log(newTarget.gameObject.name);
-            for(int i = 0; i < m_targeInfo.transform.childCount;  i++)
-            {
-                //if(m_targeInfo.transform.GetChild(i).GetComponent<ActivableObject>())
-                //{
-                //    newTarget = m_targeInfo.transform.GetChild(i).GetComponent<ActivableObject>();
-                //    break;
-                //}
-            }
+            
+            
             if (newTarget)
             {
                 if (newTarget != Target)
                     Target = newTarget;
             }
             // Target is not MoveableObject
+            
             else
-                Target = null;
+            {
+                if (m_targeInfo.collider.transform.parent.GetComponent<InteractiveObject>())
+                    Target = m_targeInfo.collider.transform.parent.GetComponent<InteractiveObject>();
+                else
+                    Target = null;
+
+            }
         }
         // No target
         else
