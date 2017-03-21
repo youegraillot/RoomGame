@@ -17,13 +17,7 @@ public class E_MysteryBox_HiddenButton : ActivableObject {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (Input.GetMouseButtonDown(2))
-        {
-            Debug.Log("Activate");
-            activate();
-        }
-    }
+	
 
     protected override void specificActivation()
     {
