@@ -10,6 +10,7 @@ public class MouseTrap : ActivableObject
     InventoryController m_inventoryController;
     [SerializeField, Range(0,0.1f)]
     float m_force;
+    public AudioSource sondToPlayWhenColide = null;
 
     Rigidbody m_rigidbody;
     
@@ -27,7 +28,8 @@ public class MouseTrap : ActivableObject
         unlockCheese();
         m_inventoryController.add(m_cheese);
 
-        FindObjectOfType<E_Rat>().notifyUnlockedCheese();
+        MovableObject movableObj = gameObject.AddComponent<MovableObject>();
+		movableObj.sondToPlayOnColision = sondToPlayWhenColide;
     }
 
     public void unlockCheese()
