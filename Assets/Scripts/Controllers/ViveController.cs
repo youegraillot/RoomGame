@@ -22,8 +22,8 @@ public class ViveController : PlayerController
         m_controllerLeft.PadClicked += onPadClickedLeft;            // TP init
         m_controllerLeft.PadUnclicked += onPadUnClickedLeft;        // TP launch
 
-        m_controllerRight.PadClicked += onPadClickedRight;          // Take obj
-        m_controllerRight.PadUnclicked += onPadUnClickedRight;      // Drop obj
+        m_controllerRight.Gripped += onGrabRight;                    // Take obj
+        m_controllerRight.Ungripped += onUnGrabRight;                // Drop obj
 
         m_controllerLeft.TriggerClicked += onTriggerClicked;        // interract
         m_controllerRight.TriggerClicked += onTriggerClicked;
@@ -41,16 +41,25 @@ public class ViveController : PlayerController
         m_teleporter.Teleport();
     }
 
-    void onPadClickedRight(object sender, ClickedEventArgs e)
+    Quaternion initRotation;
+    void onGrabRight(object sender, ClickedEventArgs e)
     {
+        
+
         if (Target is MovableObject)
+        {
             HoldState = true;
+            RotateState = true;
+
+            initRotation = m_controllerRight.transform.rotation;
+        }
         else if (Target is DrawableObject)
             DrawState = true;
     }
-    void onPadUnClickedRight(object sender, ClickedEventArgs e)
+    void onUnGrabRight(object sender, ClickedEventArgs e)
     {
         HoldState = false;
+        RotateState = false;
         DrawState = false;
     }
     
@@ -71,7 +80,7 @@ public class ViveController : PlayerController
 
     public override void drawObject()
     {
-        ((DrawableObject)Target).draw(m_controllerRight.transform.position);
+        Target.GetComponent<DrawableObject>().draw(m_controllerRight.transform.position);
     }
 
     public override void pickFromInventoryCallBack()
@@ -80,6 +89,9 @@ public class ViveController : PlayerController
 
     public override void rotateObject()
     {
+        //Quaternion newAngle = Quaternion.Inverse(initRotation) * m_controllerRight.transform.rotation;
+
+        Target.GetComponent<MovableObject>().rotate(m_controllerRight.transform.rotation);
     }
 
     protected override Vector3 getControllerPosition()
