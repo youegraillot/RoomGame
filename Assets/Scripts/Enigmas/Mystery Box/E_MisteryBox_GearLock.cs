@@ -6,6 +6,10 @@ public class E_MisteryBox_GearLock : MonoBehaviour {
     GameObject m_gearKey;
     [SerializeField]
     GameObject m_door;
+    [SerializeField]
+    Transform m_paperSpawn;
+    [SerializeField]
+    GameObject m_paper;
     // Use this for initialization
     void Start () {
     }
@@ -19,14 +23,18 @@ public class E_MisteryBox_GearLock : MonoBehaviour {
         }
     }
 
-    void activate()
+    public void activate()
     {
         Debug.Log("COFFRE OUVERT");
-        m_door.GetComponent<ConfigurableJoint>().angularZMotion = ConfigurableJointMotion.Limited;
-        Destroy(m_gearKey.GetComponent<MovableObject>());
-        Destroy(m_gearKey.GetComponent<Rigidbody>());
-        //m_gearKey.GetComponent<BoxCollider>().enabled = false;
-       // m_gearKey.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
+        
+        Destroy(m_gearKey.GetComponent<BoxCollider>());
+        m_gearKey.GetComponent<MovableObject>().enabled = false;
+        GetComponent<AudioSource>().Play();
+        m_door.GetComponent<AudioSource>().PlayDelayed(2);
+        m_door.GetComponent<Animation>().Play("BoxOpening");
+        m_gearKey.GetComponent<Rigidbody>().isKinematic = true;
+        m_paper.transform.position = m_paperSpawn.position;
+        m_paper.GetComponent<Rigidbody>().isKinematic = false;
 
         m_gearKey.transform.parent = transform;
         m_gearKey.transform.localPosition = new Vector3(-0.0149f, 0.007f, -0.0111f);

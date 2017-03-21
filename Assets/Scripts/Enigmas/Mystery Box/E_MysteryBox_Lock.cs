@@ -27,15 +27,17 @@ public class E_MysteryBox_Lock : MonoBehaviour {
         }
     }
 
-    void activate()
+    public void activate()
     {
         Debug.Log("TIROIR OUVERT");
-        Destroy(m_key.GetComponent<MovableObject>());//.enabled = false;
-        Destroy(m_key.GetComponent<Rigidbody>());
+        Destroy(m_key.GetComponent<BoxCollider>());
+        m_key.GetComponent<MovableObject>().enabled = false;
+        m_key.GetComponent<Rigidbody>().isKinematic = true;
         m_key.transform.rotation = transform.rotation;
         m_key.transform.position = transform.position;
         m_key.transform.parent = transform;
         m_drawerActivate.transform.localPosition += new Vector3(0.035f, 0, 0);
+        m_drawerActivate.GetComponent<AudioSource>().Play();
         m_gearKey.transform.position = m_drawerActivate.transform.GetChild(0).position;
         m_gearKey.GetComponent<Rigidbody>().isKinematic = false;
     }

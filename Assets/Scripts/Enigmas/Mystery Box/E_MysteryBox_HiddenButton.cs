@@ -32,7 +32,7 @@ public class E_MysteryBox_HiddenButton : ActivableObject {
             m_hiddenKey.GetComponent<Rigidbody>().isKinematic = false;
             m_hiddenContainer.SetActive(false);
             m_hiddenKey.transform.position = m_keySpawnPoint.position;
-            
+            m_keySpawnPoint.gameObject.GetComponent<AudioSource>().Play();
         }
 
     }
