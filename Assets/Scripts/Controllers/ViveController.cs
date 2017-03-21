@@ -22,6 +22,8 @@ public class ViveController : PlayerController
         m_controllerLeft.PadClicked += onPadClickedLeft;            // TP init
         m_controllerLeft.PadUnclicked += onPadUnClickedLeft;        // TP launch
 
+        m_controllerRight.PadClicked += onPadClickedRight;          // Take in inventory
+
         m_controllerRight.Gripped += onGrabRight;                    // Take obj
         m_controllerRight.Ungripped += onUnGrabRight;                // Drop obj
 
@@ -29,7 +31,6 @@ public class ViveController : PlayerController
         m_controllerRight.TriggerClicked += onTriggerClicked;
 
         m_controllerLeft.MenuButtonClicked += onMenuClickLeft;      // Main menu
-        m_controllerRight.MenuButtonClicked += onMenuClickRight;    // Inventory menu
     }
     
     void onPadClickedLeft(object sender, ClickedEventArgs e)
@@ -41,11 +42,23 @@ public class ViveController : PlayerController
         m_teleporter.Teleport();
     }
 
+    void onPadClickedRight(object sender, ClickedEventArgs e)
+    {
+        // Take
+        if(HoldState && Target.GetComponent<MovableObject>() != null)
+        {
+            HoldState = false;
+            addToInventory();
+        }
+        else
+        {
+            DisplayInventory = !DisplayInventory;
+        }
+    }
+
     Quaternion initRotation;
     void onGrabRight(object sender, ClickedEventArgs e)
     {
-        
-
         if (Target is MovableObject)
         {
             HoldState = true;
@@ -55,6 +68,10 @@ public class ViveController : PlayerController
         }
         else if (Target is DrawableObject)
             DrawState = true;
+        else
+        {
+            pickFromInventoryCallBack();
+        }
     }
     void onUnGrabRight(object sender, ClickedEventArgs e)
     {
@@ -65,17 +82,17 @@ public class ViveController : PlayerController
     
     void onTriggerClicked(object sender, ClickedEventArgs e)
     {
+        // Freeze
+        if (HoldState && Target.GetComponent<MovableObject>() != null)
+            freezeObject();
+
         if (Target is ActivableObject)
             activate();
     }
 
     void onMenuClickLeft(object sender, ClickedEventArgs e)
     {
-        
-    }
-    void onMenuClickRight(object sender, ClickedEventArgs e)
-    {
-
+        // todo afficher menu
     }
 
     public override void drawObject()
@@ -85,6 +102,7 @@ public class ViveController : PlayerController
 
     public override void pickFromInventoryCallBack()
     {
+        pickFromInventory();
     }
 
     public override void rotateObject()
