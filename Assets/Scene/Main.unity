@@ -3280,7 +3280,7 @@ Transform:
   m_LocalScale: {x: 0.6999999, y: 0.69999987, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1274573565}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!65 &337669870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3879,7 +3879,7 @@ Transform:
   - {fileID: 123580297}
   - {fileID: 1792669603}
   m_Father: {fileID: 1274573565}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &400869424
 GameObject:
   m_ObjectHideFlags: 0
@@ -5642,6 +5642,7 @@ Transform:
   - {fileID: 2710970}
   - {fileID: 500917301}
   - {fileID: 500917305}
+  - {fileID: 618185679}
   m_Father: {fileID: 1274573565}
   m_RootOrder: 2
 --- !u!1 &825622573
@@ -6600,7 +6601,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1274573565}
+    m_TransformParent: {fileID: 810637301}
     m_Modifications:
     - target: {fileID: 433728, guid: 1fd42e40c23b9f741968c6f498438b00, type: 2}
       propertyPath: m_LocalPosition.x
@@ -6632,7 +6633,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 433728, guid: 1fd42e40c23b9f741968c6f498438b00, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1fd42e40c23b9f741968c6f498438b00, type: 2}
@@ -8268,7 +8269,6 @@ Transform:
   - {fileID: 1291841533}
   - {fileID: 810637301}
   - {fileID: 2091573745}
-  - {fileID: 618185679}
   - {fileID: 337669869}
   - {fileID: 1369775296}
   - {fileID: 399459553}
@@ -8768,7 +8768,7 @@ Transform:
   m_Children:
   - {fileID: 1979974994}
   m_Father: {fileID: 1274573565}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!114 &1369775297
 MonoBehaviour:
   m_ObjectHideFlags: 0
