@@ -23,17 +23,14 @@ public class E_MysteryBox_HiddenButton : ActivableObject {
     {
         if (!m_isActivated)
         {
-            m_hiddenKey.GetComponent<Rigidbody>().isKinematic = false;
-            m_hiddenContainer.SetActive(false);
             m_hiddenKey.transform.position = m_keySpawnPoint.position;
-            m_keySpawnPoint.gameObject.GetComponent<AudioSource>().Play();
+            m_keySpawnPoint.gameObject.GetComponent<AudioSource>().Play(); 
         }
+        m_hiddenKey.GetComponent<Rigidbody>().isKinematic = false;
+        m_hiddenContainer.SetActive(false);
 
     }
 
-    new void specificDeactivation()
-    {
-
-    }
+    
 
 }

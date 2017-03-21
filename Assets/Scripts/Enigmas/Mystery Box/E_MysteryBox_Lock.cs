@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class E_MysteryBox_Lock : MonoBehaviour {
+public class E_MysteryBox_Lock : ActivableObject {
 
     [SerializeField]
     GameObject m_key;
@@ -23,13 +23,13 @@ public class E_MysteryBox_Lock : MonoBehaviour {
     {
         if(other.gameObject == m_key)
         {
-            activate();
+            specificActivation();
+            m_drawerActivate.GetComponent<AudioSource>().Play();
         }
     }
 
-    public void activate()
+    protected override void specificActivation()
     {
-        Debug.Log("TIROIR OUVERT");
         Destroy(m_key.GetComponent<BoxCollider>());
         m_key.GetComponent<MovableObject>().enabled = false;
         m_key.GetComponent<Rigidbody>().isKinematic = true;
@@ -37,7 +37,6 @@ public class E_MysteryBox_Lock : MonoBehaviour {
         m_key.transform.position = transform.position;
         m_key.transform.parent = transform;
         m_drawerActivate.transform.localPosition += new Vector3(0.035f, 0, 0);
-        m_drawerActivate.GetComponent<AudioSource>().Play();
         m_gearKey.transform.position = m_drawerActivate.transform.GetChild(0).position;
         m_gearKey.GetComponent<Rigidbody>().isKinematic = false;
     }
