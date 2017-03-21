@@ -1,22 +1,29 @@
 fileFormatVersion: 2
-guid: 851224af4f61c3c48bd4f14506d8daf1
-timeCreated: 1486045121
+guid: 2d4880186ce16d946b97b5b554205773
+timeCreated: 1486315753
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Bound
-    100002: //RootNode
-    100004: Wall
-    400000: Bound
-    400002: //RootNode
-    400004: Wall
-    2300000: Bound
-    2300002: Wall
-    3300000: Bound
-    3300002: Wall
-    4300000: Bound
-    4300002: Wall
+    100000: Cadre
+    100002: Holder
+    100004: Photo
+    100006: //RootNode
+    400000: Cadre
+    400002: Holder
+    400004: Photo
+    400006: //RootNode
+    2300000: Cadre
+    2300002: Holder
+    2300004: Photo
+    3300000: Cadre
+    3300002: Holder
+    3300004: Photo
+    4300000: Cadre
+    4300002: Photo
+    4300004: Holder
+    7400000: Take 001
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -41,7 +48,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 1.5
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -75,7 +82,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
