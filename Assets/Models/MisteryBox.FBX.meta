@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 1ea17c96beb47c542895231419b037ac
+timeCreated: 1485526379
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Boite
+    100002: BoutonCache
+    100004: "CacheCl\xE9"
+    100006: "Cl\xE9Engrenages"
+    100008: Engrenages
+    100010: //RootNode
+    100012: Pieds
+    100014: Porte
+    100016: Tiroir
+    100018: TourneFil
+    100020: TourneFil2
+    100022: Engrenage
+    100024: EngrenageTroue
+    400000: Boite
+    400002: BoutonCache
+    400004: "CacheCl\xE9"
+    400006: "Cl\xE9Engrenages"
+    400008: Engrenages
+    400010: //RootNode
+    400012: Pieds
+    400014: Porte
+    400016: Tiroir
+    400018: TourneFil
+    400020: TourneFil2
+    400022: Engrenage
+    400024: EngrenageTroue
+    2300000: Boite
+    2300002: BoutonCache
+    2300004: "CacheCl\xE9"
+    2300006: "Cl\xE9Engrenages"
+    2300008: Engrenages
+    2300010: Pieds
+    2300012: Porte
+    2300014: Tiroir
+    2300016: TourneFil
+    2300018: TourneFil2
+    2300020: Engrenage
+    2300022: EngrenageTroue
+    3300000: Boite
+    3300002: BoutonCache
+    3300004: "CacheCl\xE9"
+    3300006: "Cl\xE9Engrenages"
+    3300008: Engrenages
+    3300010: Pieds
+    3300012: Porte
+    3300014: Tiroir
+    3300016: TourneFil
+    3300018: TourneFil2
+    3300020: Engrenage
+    3300022: EngrenageTroue
+    4300000: Boite
+    4300002: Pieds
+    4300004: Porte
+    4300006: TourneFil
+    4300008: TourneFil2
+    4300010: Engrenages
+    4300012: "CacheCl\xE9"
+    4300014: Tiroir
+    4300016: BoutonCache
+    4300018: "Cl\xE9Engrenages"
+    4300020: Engrenage
+    4300022: EngrenageTroue
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
