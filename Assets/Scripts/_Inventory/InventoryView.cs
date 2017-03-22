@@ -28,7 +28,7 @@ public abstract class InventoryView : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void Awake()
 	{
 		m_animator = GetComponent<Animator>();
 		m_previewTransform = m_cameraPreview.transform.GetChild(0);

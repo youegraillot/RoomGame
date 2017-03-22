@@ -6,14 +6,14 @@ public class InventoryViewVive : InventoryView
 {
     void Update()
     {
-        if (SteamVR_Controller.Input(4).GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
+        if (SteamVR_Controller.Input((int)OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand)).GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            float padY = 1 - (SteamVR_Controller.Input(4).GetAxis(EVRButtonId.k_EButton_SteamVR_Touchpad).y  + 1) / 2;
+            float padX = (SteamVR_Controller.Input((int)OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand)).GetAxis(EVRButtonId.k_EButton_SteamVR_Touchpad).x  + 1) / 2;
             
-            int MaxIdx = m_inventoryModel.getListCount() - 1;
+            int itemCount = m_inventoryModel.getListCount() - 1;
 
-            if (padY > 0 && padY < MaxIdx+1)
-                selectPreview(m_inventoryModel.Data[Mathf.RoundToInt(padY * MaxIdx)], true);
+            if (padX > 0 && padX < itemCount+1)
+                selectPreview(m_inventoryModel.Data[Mathf.RoundToInt(padX * itemCount)], true);
         }
     }
 
