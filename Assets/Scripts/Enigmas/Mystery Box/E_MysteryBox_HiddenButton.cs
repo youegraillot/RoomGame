@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public class E_MysteryBox_HiddenButtonAttribute : EnigmaAttributes
+{
+
+}
 public class E_MysteryBox_HiddenButton : ActivableObject {
 
 
@@ -21,6 +25,7 @@ public class E_MysteryBox_HiddenButton : ActivableObject {
 
     protected override void specificActivation()
     {
+        //base.OnLoadAttributes();
         if (!m_isActivated)
         {
             m_hiddenKey.transform.position = m_keySpawnPoint.position;

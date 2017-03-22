@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class E_MisteryBox_GearLock : ActivableObject {
+
+public class E_MisteryBox_GearLock : Enigma<EnigmaAttributes>
+{
     [SerializeField]
     GameObject m_gearKey;
     [SerializeField]
@@ -19,13 +21,23 @@ public class E_MisteryBox_GearLock : ActivableObject {
     {
         if(other.gameObject == m_gearKey)
         {
-            specificActivation();
-            m_door.GetComponent<AudioSource>().PlayDelayed(2);
-            GetComponent<AudioSource>().Play();
+            onSuccess();
+            answer(true);
+            if (!savedAttributes.m_solved)
+            {
+                m_door.GetComponent<AudioSource>().PlayDelayed(2);
+                GetComponent<AudioSource>().Play();
+            }
         }
     }
 
-    protected override void specificActivation()
+    protected override void OnLoadAttributes()
+    {
+        base.OnLoadAttributes();
+        
+    }
+
+    protected override void onSuccess()
     {
         Destroy(m_gearKey.GetComponent<BoxCollider>());
         m_gearKey.GetComponent<MovableObject>().enabled = false;

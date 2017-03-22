@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class E_MysteryBox_LockAttribute : EnigmaAttributes
-{
 
-}
 
-public class E_MysteryBox_Lock : ActivableObject {// Enigma<E_MysteryBox_LockAttribute> {
+public class E_MysteryBox_Lock :  Enigma<EnigmaAttributes> {
 
     [SerializeField]
     GameObject m_key;
@@ -28,12 +25,15 @@ public class E_MysteryBox_Lock : ActivableObject {// Enigma<E_MysteryBox_LockAtt
     {
         if(other.gameObject == m_key)
         {
-            specificActivation();
-            m_drawerActivate.GetComponent<AudioSource>().Play();
+            onSuccess();
+            answer(true);
+            if(!savedAttributes.m_solved)
+                m_drawerActivate.GetComponent<AudioSource>().Play();
         }
     }
 
-    protected override void specificActivation()
+   
+    protected override void onSuccess()
     {
         Destroy(m_key.GetComponent<BoxCollider>());
         m_key.GetComponent<MovableObject>().enabled = false;
