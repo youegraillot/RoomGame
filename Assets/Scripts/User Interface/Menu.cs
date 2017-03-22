@@ -10,13 +10,14 @@ public class Menu : MonoBehaviour
 
     public void resume()
     {
-        if (Valve.VR.OpenVR.System != null && Valve.VR.OpenVR.System.IsTrackedDeviceConnected(0))
-        {
+        if(GameManager.controllerType == ControllerType.Vive)
+        { 
             ((ViveController)m_controler).DisplayMenu = false;
 
         }
         else
         {
+            if(GameManager.controllerType == ControllerType.Keyboard)
             ((KeyboardController)m_controler).DisplayMenu = false;
         }
         //this.gameObject.SetActive(false);
