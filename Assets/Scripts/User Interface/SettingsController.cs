@@ -106,6 +106,7 @@ public class SettingsController : MonoBehaviour
                 //m_settings.m_controlerProxyData..m_qGraphic = value;
                 break;
             case UICompName.Resolution:
+                m_settings.m_controlerProxyData.m_resolution = value;
                 break;
             case UICompName.FullScreen:
                 if (value == 1)

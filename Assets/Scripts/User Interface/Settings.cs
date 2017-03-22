@@ -82,6 +82,7 @@ public class Settings : MonoBehaviour
                 m_controlerProxyData.m_volume = 100;
                 m_controlerProxyData.m_qShadow = 0;
                 m_controlerProxyData.m_aa = 0;
+                m_controlerProxyData.m_resolution = Screen.resolutions.Length - 1;
                 break;
             case 1:
                 m_controlerProxyData.m_qGraphic = 1;
@@ -89,6 +90,7 @@ public class Settings : MonoBehaviour
                 m_controlerProxyData.m_volume = 100;
                 m_controlerProxyData.m_qShadow = 1;
                 m_controlerProxyData.m_aa = 1;
+                m_controlerProxyData.m_resolution = Screen.resolutions.Length - 1;
                 break;
             case 2:
                 m_controlerProxyData.m_qGraphic = 2;
@@ -96,6 +98,7 @@ public class Settings : MonoBehaviour
                 m_controlerProxyData.m_volume = 100;
                 m_controlerProxyData.m_qShadow = 2;
                 m_controlerProxyData.m_aa = 2;
+                m_controlerProxyData.m_resolution = Screen.resolutions.Length - 1;
                 break;
             default:
                 m_controlerProxyData.m_qGraphic = 3;
@@ -112,6 +115,8 @@ public class Settings : MonoBehaviour
         m_settingsData.m_volume = -1;
         m_settingsData.m_qShadow = -1;
         m_settingsData.m_qGraphic = -1;
+        m_settingsData.m_resolution = Screen.resolutions.Length - 1;
+
         //m_controlerProxyData = new SettingsData();
         loadSettings();
         m_controlerProxyData = m_settingsData;
