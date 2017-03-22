@@ -255,8 +255,6 @@ MonoBehaviour:
   m_optionMenu: {fileID: 882810132}
   m_creditsMenu: {fileID: 0}
   m_baseMenu: {fileID: 1485165130}
-  canvas: {fileID: 1736474139}
-  camera: {fileID: 318582009}
 --- !u!1 &882810132 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 196730, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
@@ -4105,6 +4103,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485800, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401256, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401256, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11401256, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
