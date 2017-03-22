@@ -160,6 +160,7 @@ public class KeyboardController : PlayerController
         if (Input.GetKey(m_crouch))
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
+            transform.parent.localPosition = Vector3.MoveTowards(transform.parent.localPosition, transform.parent.localPosition + new Vector3(Random.Range(-0.1f,0.1f), 0, Random.Range(-0.1f, 0.1f)), Time.deltaTime / 100);
         }
         else
         {
