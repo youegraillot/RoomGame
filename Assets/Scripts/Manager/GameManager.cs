@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        if (Valve.VR.OpenVR.IsHmdPresent())
+        if (Valve.VR.OpenVR.System.IsTrackedDeviceConnected(0))
 		{
 			controllerType = ControllerType.Vive;
 			Destroy(m_goKeyboard);
