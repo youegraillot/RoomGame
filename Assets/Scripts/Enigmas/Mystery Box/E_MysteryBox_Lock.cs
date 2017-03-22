@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class E_MysteryBox_Lock : ActivableObject {
+public class E_MysteryBox_LockAttribute : EnigmaAttributes
+{
+
+}
+
+public class E_MysteryBox_Lock : ActivableObject {// Enigma<E_MysteryBox_LockAttribute> {
 
     [SerializeField]
     GameObject m_key;
