@@ -4219,6 +4219,18 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11480136, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480136, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11480136, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8e0bf5d3a8b7e4186afbd26ca072e3, type: 2}
   m_IsPrefabParent: 0

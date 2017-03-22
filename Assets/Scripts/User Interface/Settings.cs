@@ -175,6 +175,11 @@ public class Settings : MonoBehaviour
         {
             //preset qualitée graphique
         }
+        if(m_settingsData.m_resolution != m_controlerProxyData.m_resolution)
+        {
+            Screen.SetResolution(Screen.resolutions[m_controlerProxyData.m_resolution].width,
+                Screen.resolutions[m_controlerProxyData.m_resolution].height,m_controlerProxyData.m_fullscreen);
+        }
       
         if(m_settingsData.m_qShadow != m_controlerProxyData.m_qShadow)
         {
@@ -224,6 +229,11 @@ public class Settings : MonoBehaviour
         }
         if(m_settingsData.m_volume!= m_controlerProxyData.m_volume)
         {
+            AudioSource[] sources = FindObjectsOfType<AudioSource>();
+            foreach (AudioSource src in sources)
+            {
+                src.volume = Mathf.Clamp((float)((float)(m_controlerProxyData.m_volume) / 100f), 0f, 1f);
+            }
             //change volume
         }
         m_settingsData = m_controlerProxyData;
@@ -231,7 +241,17 @@ public class Settings : MonoBehaviour
         if (save)
             saveSettings();
     }
-
+    private void OnLevelWasLoaded(int level)
+    {
+        AudioSource[] sources = FindObjectsOfType<AudioSource>();
+        foreach (AudioSource src in sources)
+        {
+            src.volume =Mathf.Clamp( (float)((float)(m_settingsData.m_volume) / 100f),0f,1f);
+        }
+    }
+   
+       
+    
     void saveSettings()
     {
         if (File.Exists(m_filename))
