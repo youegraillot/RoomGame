@@ -126,7 +126,9 @@ public class GameManager : MonoBehaviour {
         ActivableObject[] Scene_ActivableObjects = GameObject.Find("Room").GetComponentsInChildren<ActivableObject>();
 
         for (int sceneObjId = 0; sceneObjId < Scene_ActivableObjects.Length; sceneObjId++)
+        {
             Scene_ActivableObjects[sceneObjId].isActivated = m_savedDatas.Scene_ActivableObjectsState[sceneObjId];
+        }
 
         // Load SMB attributes
 
