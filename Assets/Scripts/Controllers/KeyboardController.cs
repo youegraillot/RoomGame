@@ -2,6 +2,9 @@
 
 public class KeyboardController : PlayerController
 {
+    [SerializeField]
+    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
+
     [Header("Controller Settings")]
     [SerializeField, Range(0f, 2f)]
     float m_holdingDistance = 1f;
@@ -172,5 +175,8 @@ public class KeyboardController : PlayerController
             HoldState = false;
             addToInventory();
         }
-	}
+
+        // Deactivate FPSController
+        FPSController.enabled = !(RotateState || DrawState || DisplayInventory);
+    }
 }

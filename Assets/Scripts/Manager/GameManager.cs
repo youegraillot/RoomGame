@@ -43,10 +43,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-		print("Method 1 : " + UnityEngine.VR.VRDevice.isPresent);
-		print("Method 2 : " + Valve.VR.OpenVR.IsHmdPresent());
-
-		if (false)
+        if (Valve.VR.OpenVR.IsHmdPresent())
 		{
 			controllerType = ControllerType.Vive;
 			Destroy(m_goKeyboard);
