@@ -9,6 +9,8 @@ public class DrawableObject : InteractiveObject
 	Vector3 m_startPoint;
 	Rigidbody m_rigidbody;
 
+    public AudioSource soundToPlay = null;
+
 	void Start()
 	{
 		m_direction = transform.forward;
@@ -18,7 +20,12 @@ public class DrawableObject : InteractiveObject
 	public void initDraw(Vector3 newStartPoint)
 	{
 		m_startPoint = newStartPoint;
-	}
+
+        if (soundToPlay != null)
+        {
+            soundToPlay.Play();
+        }
+    }
 
 	public void draw(Vector3 endPoint)
 	{

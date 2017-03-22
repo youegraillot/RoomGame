@@ -1,7 +1,10 @@
 ﻿using System;
+using UnityEngine;
 
 public abstract class ActivableObject : InteractiveObject
 {
+    public AudioSource SondToPlayOnActivate = null;
+
     protected bool m_isActivated;
 	
 	bool m_canBeActivated = true;
@@ -35,6 +38,12 @@ public abstract class ActivableObject : InteractiveObject
         {
             specificActivation();
             m_isActivated = true && m_updateState;
+
+            if (SondToPlayOnActivate!=null)
+            {
+                SondToPlayOnActivate.Play();
+            }
+
             return true;
         }
 

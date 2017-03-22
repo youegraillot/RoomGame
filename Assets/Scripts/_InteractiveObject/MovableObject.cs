@@ -3,6 +3,9 @@
 [RequireComponent(typeof(Rigidbody))]
 public class MovableObject : InteractiveObject
 {
+    public AudioSource sondToPlayOnColision = null;
+    float TimeBeaforPlaySound = 0.5f;
+
 	Quaternion m_initialRotation;
 	protected Rigidbody m_rigidbody;
     
@@ -23,16 +26,26 @@ public class MovableObject : InteractiveObject
 
     void Start ()
     {
+        TimeBeaforPlaySound += Time.time;
+        Debug.Log(TimeBeaforPlaySound);
         m_rigidbody = GetComponent<Rigidbody>();
     }
 
     public void initRotation()
     {
-		m_initialRotation = transform.rotation;
+		m_initialRotation = transform.localRotation;
 	}
     
     public virtual void rotate(Quaternion newRotation)
     {
-        transform.rotation = newRotation * m_initialRotation;
+        transform.localRotation = m_initialRotation * newRotation;
+	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (sondToPlayOnColision!=null && Time.time > TimeBeaforPlaySound)
+        {
+            sondToPlayOnColision.Play();
+        }
     }
 }
