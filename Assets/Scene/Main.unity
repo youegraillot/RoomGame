@@ -6954,6 +6954,83 @@ Transform:
   - {fileID: 684586669}
   m_Father: {fileID: 810637301}
   m_RootOrder: 2
+--- !u!1 &856825870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 34688631d64a44049b4b6c0ae4498a63, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 856825871}
+  - 33: {fileID: 856825874}
+  - 23: {fileID: 856825873}
+  - 64: {fileID: 856825872}
+  m_Layer: 0
+  m_Name: Violoncelle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &856825871
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 34688631d64a44049b4b6c0ae4498a63, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856825870}
+  m_LocalRotation: {x: -0.11118536, y: -0.097921245, z: -0.011009587, w: 0.98890245}
+  m_LocalPosition: {x: -1.9, y: 0, z: -1.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1274573565}
+  m_RootOrder: 4
+--- !u!64 &856825872
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856825870}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 34688631d64a44049b4b6c0ae4498a63, type: 3}
+--- !u!23 &856825873
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: 34688631d64a44049b4b6c0ae4498a63,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856825870}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 513c4c5f2327b4846ab70eaeff398637, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &856825874
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: 34688631d64a44049b4b6c0ae4498a63,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856825870}
+  m_Mesh: {fileID: 4300000, guid: 34688631d64a44049b4b6c0ae4498a63, type: 3}
 --- !u!1 &861018404
 GameObject:
   m_ObjectHideFlags: 0
@@ -9910,6 +9987,7 @@ Transform:
   - {fileID: 1291841533}
   - {fileID: 810637301}
   - {fileID: 2091573745}
+  - {fileID: 856825871}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1283803722
