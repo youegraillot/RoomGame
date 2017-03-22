@@ -43,16 +43,16 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        if (Valve.VR.OpenVR.System.IsTrackedDeviceConnected(0))
-		{
-			controllerType = ControllerType.Vive;
-			Destroy(m_goKeyboard);
-		}
-		else
-		{
-			controllerType = ControllerType.Keyboard;
-			Destroy(m_goVive);
-		}
+        if (Valve.VR.OpenVR.System != null && Valve.VR.OpenVR.System.IsTrackedDeviceConnected(0))
+        {
+            controllerType = ControllerType.Vive;
+            Destroy(m_goKeyboard);
+        }
+        else
+        {
+            controllerType = ControllerType.Keyboard;
+            Destroy(m_goVive);
+        }
 
 		m_SMB = FindObjectsOfType<SavedMonoBehaviour>();
 
