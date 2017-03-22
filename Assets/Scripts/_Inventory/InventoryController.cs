@@ -11,6 +11,9 @@ public class InventoryAttributes : SavedAttributes
 public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 {
     [SerializeField]
+    InventoryViewPC m_inventoryViewPC;
+    [SerializeField]
+    InventoryViewVive m_inventoryViewVive;
     InventoryView m_inventoryView;
     InventoryModel m_inventoryModel = new InventoryModel();
 
@@ -38,6 +41,18 @@ public class InventoryController : SavedMonoBehaviourImpl<InventoryAttributes>
 
     void Start()
     {
+		switch (GameManager.controllerType)
+		{
+			case ControllerType.Vive:
+				m_inventoryView = m_inventoryViewVive;
+				break;
+			case ControllerType.Keyboard:
+				m_inventoryView = m_inventoryViewPC;
+				break;
+			default:
+				throw new Exception("Controller type error");
+		}
+
         m_inventoryView.Init(m_inventoryModel);
 
         m_sceneObjects.AddRange(m_Objects.GetComponentsInChildren<Transform>());

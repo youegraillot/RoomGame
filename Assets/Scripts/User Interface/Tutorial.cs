@@ -58,10 +58,7 @@ public class Tutorial : SavedMonoBehaviourImpl<TutorialAttributes>
         m_illustration = GetComponentInChildren<RawImage>();
         m_caption = GetComponentInChildren<Text>();
 
-        if (GameManager.ControllerType == typeof(KeyboardController))
-        {
-            play(savedAttributes.index);
-        }
+        play(savedAttributes.index);
     }
 	
 	void Update ()

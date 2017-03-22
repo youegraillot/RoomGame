@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
-public class InventoryView : MonoBehaviour {
-
-    [SerializeField] RectTransform m_content;
-    [SerializeField] Camera m_cameraPreview;
-    [SerializeField] Transform m_originPreviewTransform;
-    [SerializeField] RenderTexture m_previewTexture;
-    [SerializeField] GameObject m_inventoryItemPrefab;
+public abstract class InventoryView : MonoBehaviour
+{
+    [SerializeField] protected RectTransform m_content;
+    [SerializeField] protected Camera m_cameraPreview;
+    [SerializeField] protected RenderTexture m_previewTexture;
+    [SerializeField] protected GameObject m_inventoryItemPrefab;
 
     [SerializeField, Range(1, 3)] float m_previewZoom = 2;
 
     Animator m_animator;
-    InventoryModel m_inventoryModel;
+    protected InventoryModel m_inventoryModel;
+	Transform m_previewTransform;
 
 	bool m_isVisible;
-	public bool visible
+	public virtual bool visible
 	{
 		get { return m_isVisible; }
 		set
@@ -29,18 +28,19 @@ public class InventoryView : MonoBehaviour {
 		}
 	}
 
-	GameObject m_selectedItem;
+	void Awake()
+	{
+		m_animator = GetComponent<Animator>();
+		m_previewTransform = m_cameraPreview.transform.GetChild(0);
+	}
+
+    protected GameObject m_selectedItem;
     public GameObject SelectedItem
     {
         get { return m_selectedItem; }
     }
 
-	public void Start()
-	{
-		m_animator = GetComponent<Animator>();
-	}
-
-    public void Init (InventoryModel model)
+	public void Init (InventoryModel model)
     {
         m_inventoryModel = model;
     }
@@ -48,49 +48,7 @@ public class InventoryView : MonoBehaviour {
     /// <summary>
 	/// Regenerate cards.
 	/// </summary>
-    public void updateContent()
-    {
-        m_content.sizeDelta = Vector2.zero;
-        selectPreview(m_selectedItem, false);
-
-        // Clear old cards
-        foreach (Transform item in m_content.transform)
-            Destroy(item.gameObject);
-
-        Debug.ClearDeveloperConsole();
-
-        // Generate new ones
-        foreach (GameObject item in m_inventoryModel.Data)
-        {
-			// Instantiate new ItemCard
-			GameObject newItemCard = Instantiate(m_inventoryItemPrefab);
-            newItemCard.transform.SetParent(m_content);
-            newItemCard.name = item.name;
-
-			// Extend Content viewport
-			m_content.sizeDelta += m_inventoryItemPrefab.GetComponent<RectTransform>().sizeDelta;
-
-            // Set the card Name
-            newItemCard.GetComponentInChildren<Text>().text = item.name;
-
-            // Define OnClick() callback
-            GameObject tmp = item;
-            newItemCard.GetComponent<Button>().onClick.AddListener(() => selectPreview(tmp, true));
-
-            // Generate scaled Preview Image
-            placeForPreview(item.transform);
-            m_cameraPreview.Render();
-            item.SetActive(false);
-
-            RenderTexture.active = m_previewTexture;
-
-            Texture2D texture = new Texture2D(m_previewTexture.width, m_previewTexture.height);
-            texture.ReadPixels(new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), 0, 0);
-            texture.Apply();
-
-            newItemCard.GetComponentsInChildren<Image>()[1].sprite = Sprite.Create(texture, new Rect(0, 0, m_previewTexture.width, m_previewTexture.height), Vector2.zero);
-        }
-    }
+    public abstract void updateContent();
 
     /// <summary>
 	/// Set an item to display in the animated preview.
@@ -116,11 +74,11 @@ public class InventoryView : MonoBehaviour {
     /// <summary>
 	/// Place the item in front of camera.
 	/// </summary>
-    void placeForPreview(Transform item)
+    protected void placeForPreview(Transform item)
     {
         item.gameObject.SetActive(true);
-        m_originPreviewTransform.localPosition = m_cameraPreview.transform.position + Vector3.forward * m_previewZoom * item.GetComponentInChildren<Collider>().bounds.extents.magnitude;
-        item.position = m_originPreviewTransform.position;
-        item.rotation = Quaternion.Euler(-30, 140, 0);
+		m_previewTransform.localPosition = Vector3.forward * m_previewZoom * item.GetComponentInChildren<Collider>().bounds.extents.magnitude;
+        item.localPosition = Vector3.zero;
+        item.localRotation = Quaternion.Euler(-30, 140, 0);
     }
 }

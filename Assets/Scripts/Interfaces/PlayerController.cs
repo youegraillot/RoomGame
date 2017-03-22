@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
 public abstract class PlayerController : MonoBehaviour
 {
@@ -8,8 +7,6 @@ public abstract class PlayerController : MonoBehaviour
 	bool m_isDrawing;
     InteractiveObject m_currentObject;
 
-    [SerializeField]
-    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
     [SerializeField]
     InventoryController m_inventoryController;
 
@@ -27,8 +24,7 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!HoldState && !DrawState && !RotateState)
-                m_currentObject = value;
+            m_currentObject = value;
         }
     }
 
@@ -76,7 +72,6 @@ public abstract class PlayerController : MonoBehaviour
             if(m_isRotating != value)
             {
                 m_isRotating = value;
-                FPSController.enabled = !value;
 
                 if (value)
                 {
@@ -103,7 +98,6 @@ public abstract class PlayerController : MonoBehaviour
 			if (m_isDrawing != value)
 			{
 				m_isDrawing = value;
-				FPSController.enabled = !value;
 
 				if (value)
 				{
@@ -128,16 +122,14 @@ public abstract class PlayerController : MonoBehaviour
         set
         {
             if (m_inventoryController.visible != value)
-            {
                 m_inventoryController.visible = value;
-                FPSController.enabled = !value;
-            }
         }
     }
 
     public virtual void Update()
     {
-        updateTarget();
+        if (!HoldState && !DrawState && !RotateState)
+            updateTarget();
 
         if (m_currentObject && !m_inventoryController.visible)
         {

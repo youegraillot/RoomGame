@@ -25,4 +25,9 @@ public class InventoryModel
     {
         m_data.Remove(obj);
     }
+
+    public int getListCount()
+    {
+        return m_data.Count;
+    }
 }
