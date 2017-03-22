@@ -113,6 +113,8 @@ public class GameManager : MonoBehaviour {
 
     public void load()
     {
+        if (!System.IO.File.Exists(m_saveFilename))
+            return;
         m_savedDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
 
         // Load position and rotations of all objects
