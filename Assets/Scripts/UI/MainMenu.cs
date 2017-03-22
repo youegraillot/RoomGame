@@ -74,8 +74,8 @@ public class MainMenu : MonoBehaviour
         {
             yield return null;
         }
-        if(load)
-            GameManager.Instance.load();
+        if (load)
+            FindObjectOfType<GameManager>().load();
         SceneManager.UnloadScene("MainMenu");
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main"));
 

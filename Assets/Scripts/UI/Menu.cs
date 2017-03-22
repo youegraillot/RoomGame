@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
     [SerializeField] KeyboardController m_controler;
     public void resume()
     {
-        m_controler.DisplayMenu = false;
+        //m_controler.DisplayMenu = false;
         //this.gameObject.SetActive(false);
     }
 
