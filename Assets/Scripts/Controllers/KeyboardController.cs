@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class KeyboardController : PlayerController
 {
+    [SerializeField]
+    UnityStandardAssets.Characters.FirstPerson.RigidbodyFirstPersonController FPSController;
+
     [Header("Controller Settings")]
     [SerializeField, Range(0f, 2f)]
     float m_holdingDistance = 1f;
@@ -76,7 +78,7 @@ public class KeyboardController : PlayerController
         Vector3 newAngle = new Vector2(Mathf.Lerp(-135, 135, Input.mousePosition.x / Screen.width),
                                        Mathf.Lerp(-135, 135, Input.mousePosition.y / Screen.height));
 
-		((MovableObject)Target).rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
+		Target.GetComponent<MovableObject>().rotate(Quaternion.Euler(newAngle.y, -newAngle.x, 0));
     }
 
 	/// <summary>
@@ -84,7 +86,7 @@ public class KeyboardController : PlayerController
 	/// </summary>
 	public override void drawObject()
 	{
-		((DrawableObject)Target).draw(Input.mousePosition);
+        Target.GetComponent<DrawableObject>().draw(Input.mousePosition);
 	}
 
 	/// <summary>
@@ -168,10 +170,13 @@ public class KeyboardController : PlayerController
             DisplayInventory = !DisplayInventory;
             m_displayReticle = !DisplayInventory;
         }
-        if (Input.GetKeyDown(m_takeObjectKey) && Target.GetComponent<MovableObject>() != null)
+        if (Input.GetKeyDown(m_takeObjectKey) && Target != null && Target.GetComponent<MovableObject>() != null)
         {
             HoldState = false;
             addToInventory();
         }
-	}
+
+        // Deactivate FPSController
+        FPSController.enabled = !(RotateState || DrawState || DisplayInventory);
+    }
 }

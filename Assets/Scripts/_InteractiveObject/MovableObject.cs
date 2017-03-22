@@ -28,11 +28,11 @@ public class MovableObject : InteractiveObject
 
     public void initRotation()
     {
-		m_initialRotation = transform.localRotation;
+		m_initialRotation = transform.rotation;
 	}
     
     public virtual void rotate(Quaternion newRotation)
     {
-        transform.localRotation = m_initialRotation * newRotation;
-	}
+        transform.rotation = newRotation * m_initialRotation;
+    }
 }
