@@ -22,7 +22,16 @@ public class DrawableObject : InteractiveObject
 
 	public void draw(Vector3 endPoint)
 	{
-		m_rigidbody.AddForce(m_direction * (m_startPoint.y - endPoint.y) * m_velocity);
-		m_startPoint = endPoint;
-	}
+        switch (GameManager.controllerType)
+        {
+            case ControllerType.Vive:
+                m_rigidbody.AddForce(m_direction * Vector3.Distance(m_startPoint, endPoint) * 1000 * m_velocity);
+                break;
+            case ControllerType.Keyboard:
+                m_rigidbody.AddForce(m_direction * (m_startPoint.y - endPoint.y) * m_velocity);
+                break;
+        }
+
+        m_startPoint = endPoint;
+    }
 }
