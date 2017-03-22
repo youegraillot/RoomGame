@@ -39,7 +39,7 @@ public class E_Rat : Enigma<E_RatAttributes>
         
         if ( dst > 0.0f && dst <= m_sightDistance ) {
             m_navMeshAgent.destination = m_target.position;
-            if (!cheeseDetected && sondToPlayOnTargetDetected != null)
+            if (!cheeseDetected && sondToPlayOnTargetDetected != null && sondToPlayOnWalk != null)
             {
                 cheeseDetected = true;
                 sondToPlayOnTargetDetected.Play();
@@ -48,8 +48,11 @@ public class E_Rat : Enigma<E_RatAttributes>
         }
         else
         {
-            sondToPlayOnTargetDetected.Stop();
-            sondToPlayOnWalk.Stop();
+            if (sondToPlayOnTargetDetected != null && sondToPlayOnWalk != null)
+            {
+                sondToPlayOnTargetDetected.Stop();
+                sondToPlayOnWalk.Stop();
+            }
             cheeseDetected = false;
         }
 
@@ -62,7 +65,10 @@ public class E_Rat : Enigma<E_RatAttributes>
     {
         if( enabled && other.gameObject.name == "BoutonPressure" )
         {
-            sondToPlayOnWalk.Stop();
+            if (sondToPlayOnWalk != null)
+            {
+                sondToPlayOnWalk.Stop();
+            }
             answer(true);
             enabled = false;
         }
