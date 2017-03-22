@@ -147,4 +147,49 @@ public class ViveController : PlayerController
     {
 
     }
+
+    public bool DisplayMenu
+    {
+        get
+        {
+            return m_menu.gameObject.activeSelf;
+        }
+        set
+        {
+            if (value)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                m_controllerLeft.PadClicked -= onPadClickedLeft;            // TP init
+                m_controllerLeft.PadUnclicked -= onPadUnClickedLeft;        // TP launch
+
+                m_controllerRight.PadClicked -= onPadClickedRight;          // Take in inventory
+
+                m_controllerRight.Gripped -= onGrabRight;                    // Take obj
+                m_controllerRight.Ungripped -= onUnGrabRight;                // Drop obj
+
+                m_controllerLeft.TriggerClicked -= onTriggerClicked;        // interract
+                m_controllerRight.TriggerClicked -= onTriggerClicked;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                if (!DisplayInventory)
+                {
+                    Cursor.visible = false;
+                    m_controllerLeft.PadClicked += onPadClickedLeft;            // TP init
+                    m_controllerLeft.PadUnclicked += onPadUnClickedLeft;        // TP launch
+
+                    m_controllerRight.PadClicked += onPadClickedRight;          // Take in inventory
+
+                    m_controllerRight.Gripped += onGrabRight;                    // Take obj
+                    m_controllerRight.Ungripped += onUnGrabRight;                // Drop obj
+
+                    m_controllerLeft.TriggerClicked += onTriggerClicked;        // interract
+                    m_controllerRight.TriggerClicked += onTriggerClicked;
+                }
+            }
+            m_menu.gameObject.SetActive(value);
+        }
+    }
 }

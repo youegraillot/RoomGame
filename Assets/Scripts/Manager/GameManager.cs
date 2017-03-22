@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
-
+using System.Collections;
 [Serializable]
 public struct SaveStruct
 {
@@ -113,8 +113,9 @@ public class GameManager : MonoBehaviour {
 
     public void load()
     {
+        if (!BlazeSave.Exists(m_saveFilename))
+            return;
         m_savedDatas = BlazeSave.LoadData<SaveStruct>(m_saveFilename);
-
         // Load position and rotations of all objects
         for (int sceneObjId = 0; sceneObjId < m_sceneObjectsTransform.Count; sceneObjId++)
         {
