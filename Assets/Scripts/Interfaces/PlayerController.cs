@@ -24,8 +24,7 @@ public abstract class PlayerController : MonoBehaviour
         }
         set
         {
-            if (!HoldState && !DrawState && !RotateState)
-                m_currentObject = value;
+            m_currentObject = value;
         }
     }
 
@@ -129,7 +128,8 @@ public abstract class PlayerController : MonoBehaviour
 
     public virtual void Update()
     {
-        updateTarget();
+        if (!HoldState && !DrawState && !RotateState)
+            updateTarget();
 
         if (m_currentObject && !m_inventoryController.visible)
         {

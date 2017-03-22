@@ -4,6 +4,9 @@ using Valve.VR;
 
 public class InventoryViewVive : InventoryView
 {
+    int m_selected = -1;
+
+
     void Update()
     {
         if (SteamVR_Controller.Input((int)OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand)).GetTouch(SteamVR_Controller.ButtonMask.Touchpad))
@@ -12,8 +15,22 @@ public class InventoryViewVive : InventoryView
             
             int itemCount = m_inventoryModel.getListCount() - 1;
 
-            if (padX > 0 && padX < itemCount+1)
-                selectPreview(m_inventoryModel.Data[Mathf.RoundToInt(padX * itemCount)], true);
+            if(itemCount >= 0)
+            {
+                if (itemCount == 0)
+                {
+                    m_selected = 0;
+                    selectPreview(m_inventoryModel.Data[0], true);
+                }
+                else if (m_selected != Mathf.RoundToInt(padX * itemCount))
+                {
+                    m_selected = Mathf.RoundToInt(padX * itemCount);
+                    SteamVR_Controller.Input((int)OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand)).TriggerHapticPulse(1000);
+
+                    if (padX > 0 && padX < itemCount + 1)
+                        selectPreview(m_inventoryModel.Data[m_selected], true);
+                }
+            }
         }
     }
 

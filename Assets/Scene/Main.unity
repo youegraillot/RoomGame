@@ -8717,7 +8717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_inventoryController: {fileID: 61211369}
   m_holdPoint: {fileID: 91666855}
-  m_detectionRadius: 0.3
+  m_detectionRadius: 0.1
 --- !u!114 &1163066044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12906,7 +12906,7 @@ RectTransform:
   m_GameObject: {fileID: 1804094641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 990972661}
   - {fileID: 620028305}
@@ -13324,7 +13324,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1829091883}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620028305}

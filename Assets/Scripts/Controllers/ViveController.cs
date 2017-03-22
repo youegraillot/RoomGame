@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Valve.VR;
 
 public class ViveController : PlayerController
 {
@@ -132,7 +133,10 @@ public class ViveController : PlayerController
             Target = item.GetComponentInParent<InteractiveObject>();
 
             if (Target != null)
+            {
+                SteamVR_Controller.Input((int)OpenVR.System.GetTrackedDeviceIndexForControllerRole(ETrackedControllerRole.RightHand)).TriggerHapticPulse(500);
                 break;
+            }
         }
     }
 
