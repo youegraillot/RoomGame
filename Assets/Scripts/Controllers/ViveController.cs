@@ -12,6 +12,8 @@ public class ViveController : PlayerController
 
     TeleportVive m_teleporter;
 
+    public AudioSource SonudToPlayOnTeleport = null;
+
     void Start()
     {
         m_controllerLeft = transform.FindChild("Controller (left)").GetComponent<SteamVR_TrackedController>();
@@ -40,6 +42,7 @@ public class ViveController : PlayerController
     }
     void onPadUnClickedLeft(object sender, ClickedEventArgs e)
     {
+        SonudToPlayOnTeleport.Play();
         m_teleporter.Teleport();
     }
 

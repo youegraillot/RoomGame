@@ -23,6 +23,10 @@ public class Digit : ActivableObject
     {
         transform.Rotate(m_rotationAxis, -36);
         m_animation.Play();
+        //if (SondToPlayOnActivate != null)
+        //{
+        //    SondToPlayOnActivate.Play();
+        //}
     }
 
     protected override void specificDeactivation()
