@@ -11,6 +11,7 @@ public class E_Rat : Enigma<EnigmaAttributes>
     float        m_sightDistance = 0.5f; // distance (in Unity units) at which the cheese will be out of sight
     bool cheeseDetected = false;
     public AudioSource sondToPlayOnTargetDetected = null;
+    public AudioSource sondToPlayOnWalk = null;
 
     void Start()
     {
@@ -33,10 +34,13 @@ public class E_Rat : Enigma<EnigmaAttributes>
             {
                 cheeseDetected = true;
                 sondToPlayOnTargetDetected.Play();
+                sondToPlayOnWalk.Play();
             }
         }
         else
         {
+            sondToPlayOnTargetDetected.Stop();
+            sondToPlayOnWalk.Stop();
             cheeseDetected = false;
         }
 
@@ -49,6 +53,7 @@ public class E_Rat : Enigma<EnigmaAttributes>
     {
         if( enabled && other.gameObject.name == "BoutonPressure" )
         {
+            sondToPlayOnWalk.Stop();
             answer(true);
 
             enabled = false;
