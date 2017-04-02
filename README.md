@@ -1,21 +1,40 @@
-# RoomGame
+# Description
+Ce projet a été réalisé dans le cadre de la formation en 3D temps réel de la licence professionnelle SIL du Puy en Velay. L'application fonctionne avec le clavier ou avec le HTC Vive (détection automatique).
+Une vidéo de présentation est disponible sur youtube :
 
-Tous les noms en anglais
+![Trailer](http://img.youtube.com/vi/bOMxnMvPiKE/maxresdefault.jpg)
 
-Attributs :
+# Contrôles
+__HTC Vive__
+* Pad Gauche : Téléportation
+* Pad Droit : Ouvrir l'inventaire / Mettre l'objet saisi dans l'inventaire
+* Trigger Droit : Activer objet / Freezer l'objet saisi
+* Grab Droit : Saisir objet / Sortir l'objet de l'inventaire
 
-	m_*camelCaps
+__Clavier / Souris__
+* Flèches directionnelles : se déplacer
+* C : S'accroupir
+* Tab : Ouvrir l'inventaire
+* E : Mettre l'objet dans l'inventaire
+* Clique Droit : Saisir un objet / Sortir l'objet de l'inventaire
+* Clique Gauche : Activer un objet / Freezer l'objet saisi
 
+# Crédits
+__Développement__
+* Bourdon Thomas
+* Dousse Robin
+* Graillot Youé
 
-Fonction :
+__Intégration__
+* Graillot Youé
 
-	getObj()
-	{
-	}
+__Modélisation__
+* Dousse Robin
+* Graillot Youé
+* Molveau Stanislas
 
-
-Classe :
-
-	class MaClass
-	{
-	}
+__Texturing__
+* Bourdon Thomas
+* Dousse Robin
+* Graillot Youé
+* Guillaume Schott
