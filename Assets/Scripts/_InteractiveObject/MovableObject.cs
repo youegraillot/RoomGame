@@ -27,7 +27,6 @@ public class MovableObject : InteractiveObject
     void Start ()
     {
         TimeBeaforPlaySound += Time.time;
-        Debug.Log(TimeBeaforPlaySound);
         m_rigidbody = GetComponent<Rigidbody>();
     }
 
