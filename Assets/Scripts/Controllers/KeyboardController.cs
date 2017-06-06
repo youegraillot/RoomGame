@@ -104,7 +104,7 @@ public class KeyboardController : PlayerController
 	/// </summary>
 	void OnGUI()
     {
-        if (m_displayReticle)
+        if (m_displayReticle && Settings.Instance.m_controlerProxyData.m_reticle)
         {
             Rect screenCenter = new Rect(Screen.width / 2 - m_reticleSize / 2, Screen.height / 2 - m_reticleSize / 2, m_reticleSize, m_reticleSize);
 
@@ -137,6 +137,8 @@ public class KeyboardController : PlayerController
     [SerializeField]
     KeyCode m_openInventoryKey;
     [SerializeField]
+    KeyCode m_openMenuKey;
+    [SerializeField]
     KeyCode m_takeObjectKey;
     [SerializeField]
     KeyCode m_crouch = KeyCode.LeftControl;
@@ -144,23 +146,31 @@ public class KeyboardController : PlayerController
     float m_crouchSpeed = 1;
     protected override void eventHandler()
     {
-		// Trigger events
-		if (Target)
-		{
-			if (Input.GetMouseButtonDown(0))
-			{
+        if (Input.GetKeyDown(m_openMenuKey))
+        {
+            DisplayMenu = !DisplayMenu;
+        }
+        if (DisplayMenu)
+        {
+            return;
+        }
+        // Trigger events
+        if (Target)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
                 if (Target.GetComponent<ActivableObject>() != null)
                     activate();
                 else if (Target.GetComponent<MovableObject>() != null)
-					freezeObject();
-			}
-		}
+                    freezeObject();
+            }
+        }
 
         // Crouch
         if (Input.GetKey(m_crouch))
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, Vector3.up * -0.2f, Time.deltaTime * m_crouchSpeed);
-            transform.parent.localPosition = Vector3.MoveTowards(transform.parent.localPosition, transform.parent.localPosition + new Vector3(Random.Range(-0.1f,0.1f), 0, Random.Range(-0.1f, 0.1f)), Time.deltaTime / 100);
+            transform.parent.localPosition = Vector3.MoveTowards(transform.parent.localPosition, transform.parent.localPosition + new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f)), Time.deltaTime / 100);
         }
         else
         {
@@ -170,7 +180,7 @@ public class KeyboardController : PlayerController
         GetComponentInParent<Rigidbody>().WakeUp();
 
         // Holding events
-        if(!DisplayInventory && Target)
+        if (!DisplayInventory && Target)
         {
             HoldState = Input.GetMouseButton(1) && Target.GetComponent<MovableObject>() != null;
             DrawState = Input.GetMouseButton(1) && Target.GetComponent<DrawableObject>() != null;
@@ -192,4 +202,35 @@ public class KeyboardController : PlayerController
         // Deactivate FPSController
         FPSController.enabled = !(RotateState || DrawState || DisplayInventory);
     }
+
+
+
+    public bool DisplayMenu
+    {
+        get
+        {
+            return m_menu.gameObject.activeSelf;
+        }
+        set
+        {
+            if (value)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                m_displayReticle = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                if (!DisplayInventory)
+                {
+                    Cursor.visible = false;
+                    m_displayReticle = true;
+                }
+            }
+            FPSController.enabled = !value;
+            m_menu.gameObject.SetActive(value);
+        }
+    }
 }
+

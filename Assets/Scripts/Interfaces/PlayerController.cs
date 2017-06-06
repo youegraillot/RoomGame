@@ -223,4 +223,7 @@ public abstract class PlayerController : MonoBehaviour
 
         return false;
     }
+
+    [SerializeField]
+    protected GameObject m_menu;
 }
