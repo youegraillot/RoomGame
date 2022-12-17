@@ -25,6 +25,7 @@ __Développement__
 * Bourdon Thomas
 * Dousse Robin
 * Graillot Youé
+* Prévost Baptiste
 
 __Intégration__
 * Graillot Youé
