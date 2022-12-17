@@ -21,9 +21,11 @@ __Clavier / Souris__
 
 # Crédits
 __Développement__
+* Bor Jérémy
 * Bourdon Thomas
 * Dousse Robin
 * Graillot Youé
+* Prévost Baptiste
 
 __Intégration__
 * Graillot Youé
@@ -32,9 +34,10 @@ __Modélisation__
 * Dousse Robin
 * Graillot Youé
 * Molveau Stanislas
+* Schott Guillaume
 
 __Texturing__
 * Bourdon Thomas
 * Dousse Robin
 * Graillot Youé
-* Guillaume Schott
+* Schott Guillaume
